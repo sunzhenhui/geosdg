@@ -2,7 +2,23 @@
 
 **AI 驱动的空间化可持续发展目标（SDG）评估工具**
 
-GeoSDG 将人工智能与地理信息系统（GIS）相结合，为联合国可持续发展目标提供空间化、智能化的评估解决方案。
+GeoSDG 将人工智能与地理信息系统（GIS）相结合，为联合国可持续发展目标（SDGs）提供空间化、智能化的评估解决方案。它能够将抽象的全球 SDG 指标落实到具体的地理空间上，帮助你回答"某个地方在可持续发展上做得如何"这类问题。
+
+核心能力包括：
+
+- **SDG 指标空间化计算**：将 SDG 15.3.1（土地退化）、SDG 11.3.1（城市扩张）等指标从统计口径转化为可量化的空间分布。
+- **土地利用变化模拟（CA）**：基于元胞自动机与随机森林、Markov 需求预测，模拟未来土地利用格局。
+- **优先区域识别**：定位人地关系失衡、需要优先保护或干预的区域。
+- **自然语言驱动**：内置 AI Agent 体系，用对话即可完成指标计算、模拟与结果解读。
+
+## 关于本版本
+
+GeoSDG 最初作为研究工具随论文发布（Sun et al., 2026）。受论文阶段的技术栈与设计目标所限，随论文发布的原始源码与图形界面在今天的 AI 时代已较难直接应用。为了方便大家改造和更好地使用 GeoSDG，我们将核心算法重构为独立、可编程的命令行工具（CLI），并配套提供了一套 AI Agent Skill 体系，使评估流程既能被自然语言驱动，也能灵活集成到各类工作流中。
+
+> **论文引用**：
+> Sun, Zhenhui, Minyi Gao, Mengya Li, Ziheng Xu, and Xia Li. 2026. “New Pathways for UN SDGs Spatialization: GeoSDG Toolkit Empowering the Sustainable Future under a Spatial Context.” *International Journal of Geographical Information Science*, August, 1–24. doi:10.1080/13658816.2026.2717629.
+
+一个更加智能的 GeoSDG 版本正在开发中，敬请期待。
 
 ## 目录结构
 
