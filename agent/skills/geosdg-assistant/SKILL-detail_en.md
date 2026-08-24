@@ -1,7 +1,7 @@
-# GeoSDG Assistant Skill — 完整参考资料
+# GeoSDG Assistant Skill — Complete Reference
 
-> 本文件为 geosdg-assistant Skill 的完整层，由 SKILL.md 摘要层按需加载。
-> 摘要层仅包含 CLI 命令速查表，本文件包含架构、函数映射、构建指南和故障排查。
+> This file is the complete layer of the geosdg-assistant Skill, loaded on demand by the SKILL.md summary layer.
+> The summary layer only contains the CLI command quick reference; this file contains the architecture, function mapping, build guide, and troubleshooting.
 
 ---
 
@@ -17,7 +17,7 @@ The GeoSDG project has 4 core modules and 1 entry point:
 | Logger | `Logger.h` | `Logger.cpp` | Dual-channel (file + console) logging + checkpoint/resume |
 | Entry Point | — | `main.cpp` | CLI tool with 16 sub-commands |
 
-**Dependencies**: C++17 + CMake 3.10+ + GDAL, 跨平台（Windows / macOS / Linux）. No Qt dependency.
+**Dependencies**: C++17 + CMake 3.10+ + GDAL, cross-platform (Windows / macOS / Linux). No Qt dependency.
 
 ---
 
@@ -137,23 +137,23 @@ cmake --build .
 
 | Problem Category | Key Symptoms | Reference File |
 |-----------------|--------------|----------------|
-| File I/O failure | Functions return 0 silently | `references/GeoSDG-Operation-Troubleshooting-Quick-Reference.md` |
-| Data type mismatch | GDT_Byte/Float check fails | `references/GeoSDG-Operation-Troubleshooting-Quick-Reference.md` |
-| Dimension mismatch | Silent return or crash | `references/GeoSDG-Operation-Troubleshooting-Quick-Reference.md` |
-| Division by zero | NaN or inf in results | `references/GeoSDG-Operation-Troubleshooting-Quick-Reference.md` |
-| Modified input parameters | Emission scheme altered after call | `references/GeoSDG-Operation-Troubleshooting-Quick-Reference.md` |
-| Temp file issues | Rule 5 fails (no ../tmp/ dir) | `references/GeoSDG-Operation-Troubleshooting-Quick-Reference.md` |
-| Resolution inconsistency | Ranking map artifacts | `references/GeoSDG-Operation-Troubleshooting-Quick-Reference.md` |
-| Logger issues | Log file not created, checkpoint not found | `references/GeoSDG-Operation-Troubleshooting-Quick-Reference.md` |
-| Build issues | CMake or GDAL not found | `references/GeoSDG-Operation-Troubleshooting-Quick-Reference.md` |
+| File I/O failure | Functions return 0 silently | `references/GeoSDG-Operation-Troubleshooting-Quick-Reference_en.md` |
+| Data type mismatch | GDT_Byte/Float check fails | `references/GeoSDG-Operation-Troubleshooting-Quick-Reference_en.md` |
+| Dimension mismatch | Silent return or crash | `references/GeoSDG-Operation-Troubleshooting-Quick-Reference_en.md` |
+| Division by zero | NaN or inf in results | `references/GeoSDG-Operation-Troubleshooting-Quick-Reference_en.md` |
+| Modified input parameters | Emission scheme altered after call | `references/GeoSDG-Operation-Troubleshooting-Quick-Reference_en.md` |
+| Temp file issues | Rule 5 fails (no ../tmp/ dir) | `references/GeoSDG-Operation-Troubleshooting-Quick-Reference_en.md` |
+| Resolution inconsistency | Ranking map artifacts | `references/GeoSDG-Operation-Troubleshooting-Quick-Reference_en.md` |
+| Logger issues | Log file not created, checkpoint not found | `references/GeoSDG-Operation-Troubleshooting-Quick-Reference_en.md` |
+| Build issues | CMake or GDAL not found | `references/GeoSDG-Operation-Troubleshooting-Quick-Reference_en.md` |
 
 ---
 
 ## Bundled Resources
 
 ### References (`references/`)
-- **GeoSDG-Project-Structure-Quick-Reference.md** — Complete function→file mapping with problem index
-- **GeoSDG-Operation-Troubleshooting-Quick-Reference.md** — Complete operation→problem→module mapping with troubleshooting
+- **GeoSDG-Project-Structure-Quick-Reference_en.md** — Complete function→file mapping with problem index
+- **GeoSDG-Operation-Troubleshooting-Quick-Reference_en.md** — Complete operation→problem→module mapping with troubleshooting
 
 ### Assets (`assets/`)
 - **Introduction for GeoSDG.pdf** — Original project documentation (historical reference)
@@ -164,10 +164,10 @@ cmake --build .
 
 ## Important Caveats
 
-- **数据安全**：Agent 框架通过 `agent-executor` Step 3.5 自动将所有输入文件拷贝到 `tmp/` 目录，CLI 对副本执行计算，Step 7 自动清理。用户原始数据**绝对不会被修改**
-- `calculateLandProportionIndicator()` 底层使用 `GA_Update` 模式，但 Agent 层通过 `tmp/` 副本隔离，实际不会影响用户文件
-- `calculateSDG1322Indicator()` 底层会修改 emission 系数映射（in-place），但 C++ 层已做 map 副本保护（`CalculateSDG.cpp:575`），且 Agent 层有 `tmp/` 隔离
-- `PriorityAreasExtractEmissionNoPeak()` 底层修改 emission 系数映射，且需要 `../tmp/` 目录存放中间文件。Agent 层通过 `tmp/` 隔离输入数据，并自动创建 `../tmp/` 目录
+- **Data safety**: The Agent framework automatically copies all input files to the `tmp/` directory via `agent-executor` Step 3.5, the CLI computes on the copies, and Step 7 cleans up automatically. User original data is **never modified**.
+- `calculateLandProportionIndicator()` internally uses the `GA_Update` mode, but the Agent layer isolates via `tmp/` copies, so user files are not actually affected.
+- `calculateSDG1322Indicator()` internally modifies the emission coefficient mapping (in-place), but the C++ layer already protects via a map copy (`CalculateSDG.cpp:575`), and the Agent layer adds `tmp/` isolation.
+- `PriorityAreasExtractEmissionNoPeak()` internally modifies the emission coefficient mapping and needs a `../tmp/` directory for intermediate files. The Agent layer isolates input data via `tmp/` and auto-creates the `../tmp/` directory.
 - `PriorityAreasExtractHumanLandRelationship()` only supports Float32 population data
 - `generatePriorityAreas()` does not validate dimension consistency across input files
 - NoData handling varies across functions — strict equality may fail for floating-point NoData

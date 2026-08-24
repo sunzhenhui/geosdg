@@ -40,8 +40,8 @@ description: GeoSDG（空间化可持续发展目标评估）项目助手。当�
 
 | 文件 | 何时读取 |
 |------|---------|
-| `references/GeoSDG-项目结构速查表.md` | 需要函数→文件映射和问题索引时 |
-| `references/GeoSDG-操作问题速查表.md` | 用户遇到错误需要排查时 |
+| `references/GeoSDG-Project-Structure-Quick-Reference.md` | 需要函数→文件映射和问题索引时 |
+| `references/GeoSDG-Operation-Troubleshooting-Quick-Reference.md` | 用户遇到错误需要排查时 |
 | `assets/source-code/` | 需要查看源码时 |
 
 ## Detail

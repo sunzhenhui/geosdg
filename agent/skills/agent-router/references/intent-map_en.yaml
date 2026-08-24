@@ -1,0 +1,226 @@
+# GeoSDG Agent Intent Map
+# Intent → Skill/Tool routing rules
+# Smaller priority number matches first (1=highest, 10=fallback)
+
+version: "1.0"
+
+intents:
+  # ── SDG indicator calculation ──
+  sdg-calc:
+    priority: 1
+    description: "The user wants to compute a spatial SDG indicator"
+    patterns:
+      - regex: "(?i)sdg\\s*\\d|sustainab.{0,10}goal|indicator calc|indicator assess"
+      - regex: "(?i)sgd\\s*\\d|target\\s*\\d{1,2}"  # loose match: sgd/target 11
+      - keywords:
+          - land change
+          - urban growth
+          - carbon peaking
+          - water body change
+          - buffer zone
+          - population growth
+          - emission
+          - forest cover
+          - cropland area
+          - land degradation
+      - composite_keywords:  # need a region name or action word as context
+          - assess
+          - analyze
+          - calculate
+          - compute
+    target_skills:
+      - sdg-indicator-knowledge
+    target_tools:
+      - sdg-land-proportion
+      - sdg-land-conversion
+      - sdg-buffer-zone
+      - sdg-1131
+      - sdg-1322
+    rag_query_hint: "SDG {matched_number} indicator definition formula data requirements"
+    routing_flow:
+      - "[RAG] Retrieve the knowledge base for indicator definition, formula, and parameter recommendations"
+      - "Load sdg-indicator-knowledge to query the indicator formula and parameters"
+      - "Load agent-planner to plan the computation chain"
+      - "Call agent-executor to run the corresponding Tool"
+
+  # ── CA accuracy assessment ──
+  ca-precision:
+    priority: 2
+    description: "The user wants to assess CA simulation accuracy or run statistical tests"
+    patterns:
+      - keywords:
+          - accuracy
+          - precision
+          - FoM
+          - Kappa
+          - validation
+          - simulation result
+          - pixel
+          - correlation
+          - t-test
+      - composite_keywords:
+          - is it right
+          - is it accurate
+          - is it good
+          - is it reliable
+    target_tools:
+      - ca-precision
+      - correlation
+      - t-test
+    rag_query_hint: "CA simulation accuracy FoM Kappa assessment method"
+    routing_flow:
+      - "[RAG] Retrieve the knowledge base for accuracy assessment methods and parameters"
+      - "Load agent-planner to plan the validation steps"
+      - "Call agent-executor to run ca-precision / correlation / t-test"
+
+  # ── Priority-area identification ──
+  priority:
+    priority: 3
+    description: "The user wants to identify priority-protection / key areas"
+    patterns:
+      - keywords:
+          - priority area
+          - hotspot
+          - key area
+          - protection
+          - priority protection
+          - ranking
+          - merge
+          - erosion
+          - human-land relationship
+          - emission not peaked
+    target_tools:
+      - priority-loss
+      - priority-transition
+      - priority-buffer
+      - priority-emission
+      - priority-human-land
+      - priority-merge
+    rag_query_hint: "priority-area identification protection hotspot ranking rules"
+    routing_flow:
+      - "[RAG] Retrieve the knowledge base for priority-area rules and cases"
+      - "Load agent-planner to plan the rule execution chain"
+      - "Call agent-executor to run Rules 1-6 in sequence"
+      - "Call agent-executor to run priority-merge and generate the ranking map"
+
+  # ── Knowledge query (pure retrieval, no CLI call) ──
+  knowledge:
+    priority: 4
+    description: "The user asks about SDG indicator definitions, paper revision, or operational questions"
+    patterns:
+      - regex: "(?i)what is|definition|meaning|explain|introduce|describe|how to calc|how to use|usage"
+      - keywords:
+          - review
+          - paper revision
+          - SDG framework
+          - indicator list
+          - indicator system
+          - help
+    target_skills:
+      - sdg-indicator-knowledge
+      - paper-revision-workflow
+      - geosdg-assistant
+    no_tool_calls: true  # pure retrieval conversation, no CLI Tool call
+    rag_query_hint: "SDG indicator definition formula methodology"
+    routing_flow:
+      - "[RAG] Retrieve the knowledge base for indicator definitions and methodology"
+      - "Load sdg-indicator-knowledge or paper-revision-workflow"
+      - "Pure knowledge-retrieval conversation, return a textual explanation"
+
+  # ── Report generation and export ──
+  report:
+    priority: 5
+    description: "The user wants to generate, export, or validate an assessment report"
+    patterns:
+      - keywords:
+          - generate report
+          - export report
+          - produce report
+          - write report
+          - PDF report
+          - HTML report
+          - validate report
+          - report validation
+      - regex: "(?i)report|generate.report|export.report"
+      - composite_keywords:
+          - report
+          - export
+          - PDF
+          - HTML
+    target_skills:
+      - agent-report
+    target_tools:
+      - generate-report
+      - generate-charts
+    rag_query_hint: "GeoSDG report generation template export validation"
+    routing_flow:
+      - "Load the agent-report skill for the report strategy"
+      - "Call generate-charts to produce charts (if not already provided)"
+      - "Call generate-report to render the Markdown report"
+      - "Run report_validator to validate the report"
+      - "Call report_exporter as needed to export HTML/PDF"
+
+  # ── Composite assessment (fallback) ──
+  composite:
+    priority: 10  # fallback
+    description: "Vague or multi-step request that requires the planner to analyze comprehensively"
+    patterns:
+      - keywords:
+          - comprehensive
+          - integrated
+          - holistic
+          - systematic
+          - complete
+          - help me analyze
+          - help me do
+          - help me assess
+    target_skills:
+      - agent-planner
+    note: "The planner decides which Skills and Tools to call, and may chain multiple categories"
+    rag_query_hint: "composite assessment regional analysis SDG multiple indicators"
+    routing_flow:
+      - "[RAG] Retrieve the knowledge base for related indicators and cases"
+      - "Load agent-planner for composite analysis"
+      - "The planner autonomously decides which Tools to call"
+
+# ── Routing decision rules ──
+routing_rules:
+  - rule: "priority matching"
+    description: "Match by ascending priority number; return on the first hit"
+  - rule: "multi-pattern stacking"
+    description: "A hit on any of regex / keywords / composite_keywords assigns the intent"
+  - rule: "composite_keywords need context"
+    description: "composite_keywords alone do not trigger; they need a region name or data description"
+  - rule: "knowledge takes precedence over no_tool_calls"
+    description: "If both ca-precision and knowledge match and the user tone is a question (contains 'what is'/'definition'), assign knowledge"
+  - rule: "vague fallback"
+    description: "When no intent matches, assign composite and let the planner guide the user to clarify"
+  - rule: "loose SDG reference"
+    description: "Non-standard spellings like 'sdg 11' / 'SDG11.3' / 'target 11' / 'sgd 11.3.1' all match sdg-calc"
+
+# ── Test cases (3 per category) ──
+test_cases:
+  sdg-calc:
+    - "Calculate SDG 15.3.1"
+    - "Assess the urban-growth efficiency of SDG 11.3.1 for the Hangzhou Bay area"
+    - "How is sgd 11 computed"
+  ca-precision:
+    - "Is this simulation accurate?"
+    - "Assess the accuracy of this simulation result"
+    - "Validate the Kappa value of the CA simulation"
+  priority:
+    - "Which areas still need priority protection?"
+    - "Find the hotspot areas for me"
+    - "Merge the 6 rule results into a ranking map"
+  knowledge:
+    - "What indicator is SDG 6.6.1?"
+    - "What is the definition of FoM?"
+    - "The reviewer says the indicator design is unreasonable; how should I reply?"
+  report:
+    - "Generate a comprehensive assessment report for Hangzhou"
+    - "Export a PDF report"
+    - "Validate whether the report has any issues"
+  composite:
+    - "Fully analyze Beijing for me"
+    - "Comprehensively assess sustainable development in the Yangtze River Delta"
+    - "Run a complete SDG assessment for me"

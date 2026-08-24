@@ -26,8 +26,8 @@
  *   - GDAL_FILENAME_IS_UTF8=NO 在各函数中设置，中文路径可能异常
  *     GDAL_FILENAME_IS_UTF8=NO is set in each function; Chinese paths may cause issues
  *
- * @see GeoSDG-操作问题速查表.md 操作1~3 / Operations 1-3
- * @see GeoSDG-项目结构速查表.md CA精度评估模块 / CA Precision Assessment Module
+ * @see GeoSDG-Operation-Troubleshooting-Quick-Reference.md 操作1~3 / Operations 1-3
+ * @see GeoSDG-Project-Structure-Quick-Reference.md CA精度评估模块 / CA Precision Assessment Module
  */
 
 #pragma once
@@ -82,7 +82,7 @@ public:
      *   - 若偶然一致性极高（_pe接近1），Kappa 分母接近0导致异常值
      *     If chance agreement is very high (_pe≈1), Kappa denominator nears 0
      *
-     * @see GeoSDG-操作问题速查表.md 操作1 / Operation 1
+     * @see GeoSDG-Operation-Troubleshooting-Quick-Reference.md 操作1 / Operation 1
      */
     void calculatePrecision(std::string oriTifPath, std::string simulatedTifPath, std::string realTifpath,
                             double &FoM, double &PA, double &UA, double &Kappa, double &OA);
@@ -111,7 +111,7 @@ public:
      *   - 若数据方差为0（常数序列），返回0（无法计算相关性）
      *     If variance is 0 (constant sequence), returns 0 (cannot compute)
      *
-     * @see GeoSDG-操作问题速查表.md 操作2 / Operation 2
+     * @see GeoSDG-Operation-Troubleshooting-Quick-Reference.md 操作2 / Operation 2
      */
     double calculateCorrelationCoefficient(const std::vector<double>& x, const std::vector<double>& y);
 
@@ -138,7 +138,7 @@ public:
      *   - 两组方差极小时，t统计量可能溢出为异常大值
      *     With very small variances, t-statistic may overflow
      *
-     * @see GeoSDG-操作问题速查表.md 操作3 / Operation 3
+     * @see GeoSDG-Operation-Troubleshooting-Quick-Reference.md 操作3 / Operation 3
      */
     double tTestIndependent(const std::vector<double>& data1, const std::vector<double>& data2);
 

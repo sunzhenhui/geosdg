@@ -51,7 +51,36 @@ geosdg/
 
 ## 快速开始
 
-### 1. 环境初始化
+> **前置条件**：本项目使用 [Git LFS](https://git-lfs.com/) 管理 TIFF 数据文件。克隆前请先安装：
+> ```bash
+> git lfs install
+> git clone <repo-url>
+> ```
+
+GeoSDG Assistant 内置了完整的 AI Agent 系统，支持**自然语言驱动** —— 你只需要告诉 AI 想做什么，它会自动路由意图、规划步骤、调用 CLI 执行，并生成结果与报告。
+
+### AI 智能模式
+
+使用 CodeBuddy IDE 打开本项目，6 个核心 Skill 会自动加载。直接用自然语言描述任务即可：
+
+| 你想做什么 | 对 AI 这样说 |
+|-----------|-------------|
+| 初始化环境 & 编译 | "帮我安装依赖并编译项目" |
+| 运行演示（快速体验） | "用演示数据跑一遍完整流程" |
+| 计算 SDG 指标 | "帮我算一下 SDG 15.3.1，数据在 data/rasters/lucc_demo_2020.tif" |
+| 评估 CA 模拟精度 | "评估一下这次模拟的精度，原始数据是 ori.tif，模拟结果是 sim.tif，真实数据是 real.tif" |
+| 运行 CA 模拟（完整流程） | "帮我跑一次土地利用模拟，训练期2010年，当前期2020年，预测到2050年" |
+| CA 模拟 — 概率估计（Pg） | "用随机森林估算土地利用转换概率，驱动因子是 DEM 和坡度" |
+| CA 模拟 — Markov 需求预测 | "基于2010和2020年土地利用数据，预测2030到2050的土地需求" |
+| CA 模拟 — 迭代模拟 | "用 FLUS 模型模拟2050年的土地利用，收敛阈值设为0.1%" |
+| 基础设施 CA 模拟 | "模拟2030年基础设施扩张，用生态红线约束新建区域" |
+| 识别优先区域 | "帮我找出哪些地方需要优先保护，分析人地关系失衡的区域" |
+| 查询 SDG 知识 | "SDG 11.3.1 指标怎么定义的？空间化怎么计算？" |
+| 理解源码 | "CalculateSDG.cpp 的逻辑是什么？" |
+
+### 古法（手动模式备查）
+
+#### 1. 环境初始化
 
 ```bash
 source scripts/env-init.sh
@@ -59,7 +88,7 @@ source scripts/env-init.sh
 
 脚本会自动检查 CMake、C++17 编译器、GDAL 等依赖，并设置环境变量。
 
-### 2. 编译
+#### 2. 编译
 
 ```bash
 # 默认 Release 构建
@@ -72,7 +101,7 @@ scripts/build.sh -t Debug -j 4
 scripts/build.sh -c
 ```
 
-### 3. 运行
+#### 3. 运行
 
 ```bash
 # 版本检查
@@ -99,29 +128,6 @@ scripts/build.sh -c
 ```
 
 > 详细 CLI 用法参见 [cli/README.md](./cli/README.md)。
-
-### 4. AI 智能模式
-
-使用 CodeBuddy IDE 打开本项目，6 个核心 Skill 会自动加载。直接用自然语言描述任务即可：
-
-| 你想做什么 | 对 AI 这样说 |
-|-----------|-------------|
-| 计算 SDG 指标 | "帮我算一下 SDG 15.3.1" |
-| 评估 CA 精度 | "评估一下模拟精度" |
-| 识别优先区域 | "找出需要优先保护的区域" |
-| 查询指标定义 | "SDG 11.3.1 怎么计算？" |
-| 理解源码 | "CalculateSDG.cpp 的逻辑是什么？" |
-
-## 核心功能
-
-| 功能模块 | CLI 子命令 | 说明 |
-|---------|-----------|------|
-| SDG 指标计算 | `sdg-land-proportion`, `sdg-land-conversion`, `sdg-buffer-zone`, `sdg-1131`, `sdg-1322` | 覆盖 10 个 SDG · 17 个 Target · 27 个指标 |
-| CA 精度评估 | `ca-precision`, `correlation`, `t-test` | FoM / Kappa / 混淆矩阵 |
-| 优先区域识别 | `priority-loss`, `priority-buffer`, `priority-emission`, `priority-human-land`, `priority-transition`, `priority-merge` | 6 条规则综合判定 |
-| CA 模拟 | `ca-pg`, `ca-simulate`, `markov-predict` | Pg 估计 → Markov 预测 → FLUS CA 迭代 |
-| 栅格预处理 | `raster-resample`, `raster-normalize`, `raster-reclassify`, `raster-diff`, `raster-compress` | 重采样/归一化/重分类/变化检测/压缩 |
-| 数据检查 | `check`, `demo`, `help` | GeoTIFF 元数据查询、演示、帮助 |
 
 ## 依赖
 

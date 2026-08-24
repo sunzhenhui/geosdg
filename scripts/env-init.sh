@@ -22,7 +22,21 @@ warn()  { echo -e "${YELLOW}[WARN]${NC}  $*"; }
 error() { echo -e "${RED}[ERROR]${NC} $*"; }
 
 # ── Project root detection ─────────────────────────────────────────────────
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Support both bash (BASH_SOURCE) and zsh (%x/$_)
+if [[ -n "${BASH_SOURCE+x}" ]]; then
+    SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+elif [[ -n "${(%):-%x}" ]]; then
+    SCRIPT_DIR="$(cd "$(dirname "${(%):-%x}")" && pwd)"
+else
+    # Fallback: assume we're in the project root or scripts/ dir
+    if [[ -f "scripts/env-init.sh" ]]; then
+        SCRIPT_DIR="$(pwd)/scripts"
+    elif [[ -f "../scripts/env-init.sh" ]]; then
+        SCRIPT_DIR="$(cd scripts 2>/dev/null && pwd) || $(pwd)"
+    else
+        SCRIPT_DIR="$(pwd)"
+    fi
+fi
 PROJECT_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
 info "GeoSDG project root: ${PROJECT_ROOT}"

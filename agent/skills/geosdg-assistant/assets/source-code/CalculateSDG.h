@@ -29,8 +29,8 @@
  *   - 部分函数以 GA_Update 方式打开输入文件，可能意外修改源数据
  *     Some functions open input files with GA_Update, potentially modifying source data
  *
- * @see GeoSDG-操作问题速查表.md 操作4~8 / Operations 4-8
- * @see GeoSDG-项目结构速查表.md SDG指标计算模块 / SDG Indicator Calculation Module
+ * @see GeoSDG-Operation-Troubleshooting-Quick-Reference.md 操作4~8 / Operations 4-8
+ * @see GeoSDG-Project-Structure-Quick-Reference.md SDG指标计算模块 / SDG Indicator Calculation Module
  */
 
 #pragma once
@@ -75,7 +75,7 @@ public:
      *     NoData vs Byte comparison may fail if NoData is not an integer in [0,255]
      *   - 阈值设置不当时得分恒为0或100 / Improper thresholds yield constant 0 or 100
      *
-     * @see GeoSDG-操作问题速查表.md 操作4 / Operation 4
+     * @see GeoSDG-Operation-Troubleshooting-Quick-Reference.md 操作4 / Operation 4
      */
     double calculateLandProportionIndicator(std::string qstrFileName,
                                             double dMaxThreshold, double dMinThreshold,
@@ -113,7 +113,7 @@ public:
      *   - bState设置反时归一化方向错误 / Wrong bState inverts normalization direction
      *   - targetTypes包含源类型时nAllCount也计入"保持不变" / nAllCount includes unchanged if source in targets
      *
-     * @see GeoSDG-操作问题速查表.md 操作5 / Operation 5
+     * @see GeoSDG-Operation-Troubleshooting-Quick-Reference.md 操作5 / Operation 5
      */
     double calculateLandConversionIndicator(std::string qstrInputOriginal, std::string qstrInputChanged,
                                             std::unordered_map<int, std::vector<int>> mqsetSelectLUCCTransitionTypes,
@@ -147,7 +147,7 @@ public:
      *   - dOriSum=0时除零导致NaN / Division-by-zero when dOriSum=0
      *   - 缓冲区文件无栅格波段时返回0 / Returns 0 if buffer file has no raster bands
      *
-     * @see GeoSDG-操作问题速查表.md 操作6 / Operation 6
+     * @see GeoSDG-Operation-Troubleshooting-Quick-Reference.md 操作6 / Operation 6
      */
     double calculateBufferZoneIndicator(std::string qstrInputData, std::string qstrBufferZoneData,
                                         std::unordered_set<int> mqsetSelectLUCCTypes,
@@ -182,7 +182,7 @@ public:
      *   - 多期数据仅使用第一对 / Only first pair of multi-period data is used
      *   - dBestThreshold 等于边界阈值时除零导致NaN / NaN if best equals min or max
      *
-     * @see GeoSDG-操作问题速查表.md 操作7 / Operation 7
+     * @see GeoSDG-Operation-Troubleshooting-Quick-Reference.md 操作7 / Operation 7
      */
     double calculateSDG1131Indicator(std::string qstrInitialLUCCFileName, std::string qstrCurrentLUCCFileName,
                                      std::string qstrInitialPopulationFileName, std::string qstrCurrentPopulationFileName,
@@ -214,7 +214,7 @@ public:
      *   - 排放为0时归一化分母为0 / Division-by-zero if emission is 0
      *   - 依赖 ../tmp/ 临时目录 / Depends on ../tmp/ directory
      *
-     * @see GeoSDG-操作问题速查表.md 操作8 / Operation 8
+     * @see GeoSDG-Operation-Troubleshooting-Quick-Reference.md 操作8 / Operation 8
      */
     double calculateSDG1322Indicator(std::string qstrInputOriginal, std::string qstrInputChanged,
                                      std::unordered_map<int, double> vLUCCEmissionScheme, double dRatio);

@@ -110,7 +110,7 @@ CLI 工具，支持 16 个子命令，通过 `parseArgs()` 解析参数，`dispa
 
 ## 功能 → 常见问题索引
 
-> 详细问题排查请参考 [GeoSDG-操作问题速查表.md](./GeoSDG-操作问题速查表.md)
+> 详细问题排查请参考 [GeoSDG-Operation-Troubleshooting-Quick-Reference.md](./GeoSDG-Operation-Troubleshooting-Quick-Reference.md)
 
 ### CalculateCAPrecision 模块问题
 

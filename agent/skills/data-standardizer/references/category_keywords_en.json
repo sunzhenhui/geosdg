@@ -1,0 +1,130 @@
+{
+    "lucc": {
+        "display": "Land Use / Cover",
+        "schema_category": "landuse",
+        "keywords_en": ["lucc", "landuse", "landcover", "land_use", "land_cover", "cls", "classification", "lc"],
+        "keywords_cn": ["土地利用", "土地覆盖", "分类"],
+        "dtype_hint": "int",
+        "value_hint": "integers 1-30 typically"
+    },
+    "pop": {
+        "display": "Population Distribution",
+        "schema_category": "population",
+        "keywords_en": ["pop", "population", "gpw", "density", "popu"],
+        "keywords_cn": ["人口", "人口密度"],
+        "dtype_hint": "float",
+        "value_hint": "0-100000 typically"
+    },
+    "carbon": {
+        "display": "Carbon Emission",
+        "schema_category": "climate",
+        "keywords_en": ["carbon", "emission", "co2", "ghg", "co2e"],
+        "keywords_cn": ["碳", "排放", "二氧化碳"],
+        "dtype_hint": "float",
+        "value_hint": "0-100 typically"
+    },
+    "carbon_forest": {
+        "display": "Forest Carbon Sink",
+        "schema_category": "climate",
+        "keywords_en": ["forest_carbon", "sink", "biomass", "carbon_forest", "carbon_sink"],
+        "keywords_cn": ["森林碳汇", "碳汇", "生物量"],
+        "dtype_hint": "float",
+        "value_hint": "0-500 typically"
+    },
+    "elevation": {
+        "display": "Elevation / DEM",
+        "schema_category": "auxiliary",
+        "keywords_en": ["dem", "elevation", "aster", "srtm", "altitude", "dtm"],
+        "keywords_cn": ["高程", "地形", "海拔"],
+        "dtype_hint": "float",
+        "value_hint": "-500-9000 typically"
+    },
+    "slope": {
+        "display": "Slope",
+        "schema_category": "auxiliary",
+        "keywords_en": ["slope", "gradient", "aspect"],
+        "keywords_cn": ["坡度", "坡向"],
+        "dtype_hint": "float",
+        "value_hint": "0-90 degrees"
+    },
+    "water": {
+        "display": "Water Body",
+        "schema_category": "infrastructure",
+        "keywords_en": ["water", "lake", "river", "wetland", "hydro", "stream"],
+        "keywords_cn": ["水体", "水域", "湖泊", "河流", "湿地"],
+        "dtype_hint": "int",
+        "value_hint": "0/1 binary or 0-100 percentage"
+    },
+    "ndvi": {
+        "display": "NDVI",
+        "schema_category": "auxiliary",
+        "keywords_en": ["ndvi", "vegetation", "greenness", "vi", "evi"],
+        "keywords_cn": ["植被", "指数", "归一化植被"],
+        "dtype_hint": "float",
+        "value_hint": "-1.0 to 1.0"
+    },
+    "dist2city": {
+        "display": "Distance to City",
+        "schema_category": "auxiliary",
+        "keywords_en": ["dist2city", "dist_city", "city_dist", "urban_dist", "dis_city"],
+        "keywords_cn": ["城市距离", "到城市"],
+        "dtype_hint": "float",
+        "value_hint": "0-1000000 meters"
+    },
+    "dist2water": {
+        "display": "Distance to Water",
+        "schema_category": "auxiliary",
+        "keywords_en": ["dist2water", "dist_water", "water_dist", "dis_water"],
+        "keywords_cn": ["水体距离", "到水体"],
+        "dtype_hint": "float",
+        "value_hint": "0-1000000 meters"
+    },
+    "dist2road": {
+        "display": "Distance to Road",
+        "schema_category": "auxiliary",
+        "keywords_en": ["dist2road", "dist_road", "road_dist", "dist2highway", "dis_road"],
+        "keywords_cn": ["道路距离", "到道路"],
+        "dtype_hint": "float",
+        "value_hint": "0-1000000 meters"
+    },
+    "esv": {
+        "display": "Ecosystem Service Value",
+        "schema_category": "economic",
+        "keywords_en": ["esv", "ecosystem", "service", "esv_value"],
+        "keywords_cn": ["生态服务", "生态系统"],
+        "dtype_hint": "float",
+        "value_hint": "0-10000 typically"
+    },
+    "nightlight": {
+        "display": "Nighttime Light",
+        "schema_category": "economic",
+        "keywords_en": ["nightlight", "night_light", "npp", "viirs", "dmsp", "ntl"],
+        "keywords_cn": ["夜间灯光", "灯光", "夜光"],
+        "dtype_hint": "int",
+        "value_hint": "0-63 for DMSP, 0-100 for NPP"
+    },
+    "impervious": {
+        "display": "Impervious Surface",
+        "schema_category": "infrastructure",
+        "keywords_en": ["impervious", "isa", "imperviousness", "imp"],
+        "keywords_cn": ["不透水"],
+        "dtype_hint": "int",
+        "value_hint": "0-100 percentage"
+    },
+    "gdp": {
+        "display": "GDP Distribution",
+        "schema_category": "economic",
+        "keywords_en": ["gdp", "economic", "product", "gdp_ppp"],
+        "keywords_cn": ["生产总值", "经济"],
+        "dtype_hint": "float",
+        "value_hint": "0-1000000 typically"
+    },
+    "agri_suit": {
+        "display": "Agricultural Suitability",
+        "schema_category": "auxiliary",
+        "keywords_en": ["agri", "agriculture", "suitability", "mca", "cropland_suit", "farming"],
+        "keywords_cn": ["农业适宜", "耕地适宜"],
+        "dtype_hint": "float",
+        "value_hint": "0.0-1.0 probability"
+    }
+}

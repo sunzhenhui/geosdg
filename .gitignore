@@ -54,6 +54,7 @@ CTestTestfile.cmake
 reports/
 output/
 outputs/
+logs/
 
 # Agent 运行时记忆
 memory/

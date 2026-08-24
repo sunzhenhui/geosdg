@@ -1,0 +1,6 @@
+*.tif filter=lfs diff=lfs merge=lfs -text
+
+# Exclude third-party libraries from GitHub language statistics
+third_party/alglib/** linguist-vendored
+third_party/eigen3/** linguist-vendored
+third_party/gdal/** linguist-vendored

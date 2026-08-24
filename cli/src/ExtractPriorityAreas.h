@@ -26,7 +26,7 @@
  *   - 不检查坐标系一致性 / No coordinate system consistency check
  *   - Rule 5 依赖 ../tmp/ 临时目录 / Rule 5 depends on ../tmp/ directory
  *
- * @see GeoSDG-操作问题速查表.md 操作9~14 / Operations 9-14
+ * @see GeoSDG-Operation-Troubleshooting-Quick-Reference.md 操作9~14 / Operations 9-14
  */
 
 #pragma once
@@ -53,7 +53,7 @@ public:
      * @param qstrOutputFileName 输出: 1=优先区域, NoData=无效 / Output: 1=priority, NoData=invalid
      * @param mqsetSelectLUCCTypes 被侵占地类集合 / Encroached land type set, e.g. {2, 4}
      *
-     * @see GeoSDG-操作问题速查表.md 操作9 / Operation 9
+     * @see GeoSDG-Operation-Troubleshooting-Quick-Reference.md 操作9 / Operation 9
      */
     void PriorityAreasExtractLUCCLoss(std::string qstrInputOriginal, std::string qstrInputChanged,
                                       std::string qstrOutputFileName,
@@ -72,7 +72,7 @@ public:
      *                           key=源地类/source, value=目标地类列表/target list
      *                           e.g. {{2, {5,6}}, {4, {5}}} = forest→urban/barren, water→urban
      *
-     * @see GeoSDG-操作问题速查表.md 操作10 / Operation 10
+     * @see GeoSDG-Operation-Troubleshooting-Quick-Reference.md 操作10 / Operation 10
      */
     void PriorityAreasExtractLUCCTransition(std::string qstrInputOriginal, std::string qstrInputChanged,
                                             std::string qstrOutputFileName,
@@ -96,7 +96,7 @@ public:
      * @warning 人口模式不使用地类过滤 / Population mode ignores land type filtering
      *          缓冲区NoData视为未覆盖 / Buffer NoData treated as uncovered
      *
-     * @see GeoSDG-操作问题速查表.md 操作11 / Operation 11
+     * @see GeoSDG-Operation-Troubleshooting-Quick-Reference.md 操作11 / Operation 11
      */
     void PriorityAreasExtractOutsideBufferArea(std::string qstrInputData, std::string qstrBufferZoneData,
                                                std::string qstrOutputFileName,
@@ -121,7 +121,7 @@ public:
      *          排放系数map被原地修改 / Emission scheme map modified in-place
      *          临时文件清理不完整 / Incomplete temp file cleanup
      *
-     * @see GeoSDG-操作问题速查表.md 操作12 / Operation 12
+     * @see GeoSDG-Operation-Troubleshooting-Quick-Reference.md 操作12 / Operation 12
      */
     void PriorityAreasExtractEmissionNoPeak(std::string qstrInputOriginal, std::string qstrInputChanged,
                                             std::string qstrOutputFileName,
@@ -145,7 +145,7 @@ public:
      * @warning 人口仅支持Float32 / Population only supports Float32
      *          边界邻域被截断 / Boundary neighborhoods are truncated
      *
-     * @see GeoSDG-操作问题速查表.md 操作13 / Operation 13
+     * @see GeoSDG-Operation-Troubleshooting-Quick-Reference.md 操作13 / Operation 13
      */
     void PriorityAreasExtractHumanLandRelationship(std::string qstrInitialLUCCFileName,
                                                    std::string qstrCurrentLUCCFileName,
@@ -169,7 +169,7 @@ public:
      * @warning 未检查尺寸一致性 / No dimension consistency check
      *          不同NoData值可能误判 / Different NoData values may cause misjudgment
      *
-     * @see GeoSDG-操作问题速查表.md 操作14 / Operation 14
+     * @see GeoSDG-Operation-Troubleshooting-Quick-Reference.md 操作14 / Operation 14
      */
     void generatePriorityAreas(std::vector<std::string> vLUCCFileNames, std::string qstrOutputFileName);
 
@@ -191,7 +191,7 @@ public:
      *
      * @note 经纬度投影的面积换算使用 cos(中心纬度) 修正 / Geographic CRS area uses cos(center latitude) correction
      *
-     * @see GeoSDG-操作问题速查表.md 操作14 / Operation 14
+     * @see GeoSDG-Operation-Troubleshooting-Quick-Reference.md 操作14 / Operation 14
      */
     int priorityAreaStats(const std::string& qstrRankingMapPath);
 
