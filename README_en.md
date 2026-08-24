@@ -2,7 +2,23 @@
 
 **AI-Powered Spatial Sustainable Development Goals (SDG) Assessment Tool**
 
-GeoSDG combines artificial intelligence with geographic information systems (GIS) to deliver spatialized, intelligent assessment solutions for the United Nations Sustainable Development Goals.
+GeoSDG combines artificial intelligence with geographic information systems (GIS) to deliver spatialized, intelligent assessment solutions for the United Nations Sustainable Development Goals (SDGs). It turns abstract global SDG indicators into concrete geographic spaces, helping you answer questions like "how well is a given place doing on sustainable development?"
+
+Core capabilities:
+
+- **Spatialized SDG indicator computation**: Converts indicators such as SDG 15.3.1 (land degradation) and SDG 11.3.1 (urban expansion) from statistical forms into quantifiable spatial distributions.
+- **Land-use change simulation (CA)**: Simulates future land-use patterns using cellular automata with random forest and Markov demand prediction.
+- **Priority-area identification**: Locates zones of human-environment imbalance that require priority protection or intervention.
+- **Natural-language driven**: Ships with a built-in AI Agent system, letting you complete indicator computation, simulation, and interpretation through conversation.
+
+## About This Release
+
+GeoSDG was originally released as a research toolkit accompanying our paper (Sun et al., 2026). Constrained by the technology stack and design goals of the paper's timeframe, the original source code and graphical interface have become difficult to apply directly in today's AI era. To make GeoSDG easier to adapt, extend, and reuse, we have refactored the core algorithms into a standalone, scriptable command-line tool (CLI) and paired it with an AI Agent Skill system, so the assessment workflow can be driven by natural language and integrated flexibly into your own pipelines.
+
+> **Citation**:
+> Sun, Zhenhui, Minyi Gao, Mengya Li, Ziheng Xu, and Xia Li. 2026. “New Pathways for UN SDGs Spatialization: GeoSDG Toolkit Empowering the Sustainable Future under a Spatial Context.” *International Journal of Geographical Information Science*, August, 1–24. doi:10.1080/13658816.2026.2717629.
+
+A more intelligent version of GeoSDG is currently under development — stay tuned.
 
 ## Directory Structure
 
