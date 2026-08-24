@@ -1,0 +1,31 @@
+{
+  "tool": "sdg-land-proportion",
+  "description": "SDG 土地占比指标验证规则",
+  "valid_range": { "min": 0, "max": 100 },
+  "anomaly_patterns": [
+    {
+      "id": "prop-high-type-low",
+      "condition": "score > 95 AND observed_type_ratio < 0.5",
+      "severity": "WARN",
+      "diagnosis": "得分偏高但目标地类占比不足一半，疑似 --types 参数包含了过多非关注地类",
+      "suggestion": "请检查 --types 参数是否需要移除部分地类编码",
+      "auto_fix": false
+    },
+    {
+      "id": "prop-zero-with-data",
+      "condition": "score == 0 AND input_min > 0",
+      "severity": "FAIL",
+      "diagnosis": "得分为 0 但输入数据非全零，疑似 --types 指定地类在数据中不存在",
+      "suggestion": "检查 --types 参数与输入 LUCC 的地类编码是否匹配",
+      "auto_fix": false
+    },
+    {
+      "id": "prop-near-boundary",
+      "condition": "score > 99 OR score < 1",
+      "severity": "WARN",
+      "diagnosis": "得分接近合法区间边界，可能存在参数极端或数据异常",
+      "suggestion": "确认阈值参数 --max/--min 和地类编码是否合理",
+      "auto_fix": false
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "name": "sdg-land-proportion",
+  "category": "sdg-calc",
+  "cli_command": "geosdg-cli",
+  "cli_subcommand": "sdg-land-proportion",
+  "description": "计算土地比例指标（Land Proportion），统计指定地类像元数占总像元数的比例，正向归一化到 [0, 100] 得分。适用于 SDG 2.1.2（农业用地比例）、SDG 6.6.1（水体变化）、SDG 15.1.1（森林面积占比）等指标。",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "init_lucc": {
+        "type": "string",
+        "format": "filepath",
+        "extensions": [
+          ".tif",
+          ".tiff"
+        ],
+        "description": "LUCC 土地利用分类 GeoTIFF 路径（GDT_Byte）",
+        "required": true
+      },
+      "types": {
+        "type": "string",
+        "format": "comma-list",
+        "description": "目标地类编码集合（逗号分隔，如 1,2 表示耕地和森林）",
+        "required": true
+      },
+      "max": {
+        "type": "number",
+        "description": "归一化上限阈值（占比 ≥ 此值得 100 分）",
+        "default": 100,
+        "required": false
+      },
+      "min": {
+        "type": "number",
+        "description": "归一化下限阈值（占比 ≤ 此值得 0 分）",
+        "default": 0,
+        "required": false
+      }
+    },
+    "required": [
+      "init_lucc",
+      "types"
+    ]
+  },
+  "returns": {
+    "type": "object",
+    "properties": {
+      "score": {
+        "type": "number",
+        "description": "归一化得分（0-100，越高越好）"
+      }
+    }
+  },
+  "input_constraints": {
+    "data_type": "GDT_Byte",
+    "value_range": "地类编码通常为 1-6",
+    "note": "注意：此命令使用 GA_Update 模式，Agent 框架会自动将输入文件拷贝到 tmp/ 并清理，用户原始数据不受影响"
+  },
+  "data_safety": {
+    "copy_inputs": "required",
+    "reason": "底层使用 GA_Update 模式，会原地修改输入栅格",
+    "affected_params": ["init_lucc"]
+  },
+  "timeout_seconds": 120,
+  "output_format": "stdout: score=<val>",
+  "examples": [
+    {
+      "description": "计算森林面积占比（SDG 15.1.1）",
+      "params": {
+        "init_lucc": "/data/LUCC/2025.tif",
+        "types": "2",
+        "max": 100,
+        "min": 0
+      }
+    },
+    {
+      "description": "计算水体面积比例（SDG 6.6.1）",
+      "params": {
+        "init_lucc": "/data/LUCC/2025.tif",
+        "types": "4"
+      }
+    }
+  ],
+  "validation": {
+    "rules_file": "agent/validation/rules/sdg-land-proportion.json"
+  }
+}

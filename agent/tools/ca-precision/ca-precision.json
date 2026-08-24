@@ -1,0 +1,93 @@
+{
+  "name": "ca-precision",
+  "category": "ca-precision",
+  "cli_command": "geosdg-cli",
+  "cli_subcommand": "ca-precision",
+  "description": "评估 CA 模拟精度，输入原始 LUCC、模拟结果、真实 LUCC 三个 GeoTIFF，输出 FoM、PA、UA、Kappa、OA 五项精度指标。用于验证土地利用变化模拟模型（如 FLUS/PLUS）的预测准确性。",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "ori": {
+        "type": "string",
+        "format": "filepath",
+        "extensions": [
+          ".tif",
+          ".tiff"
+        ],
+        "description": "原始 LUCC GeoTIFF 路径（起始年份土地利用，GDT_Byte）",
+        "required": true
+      },
+      "sim": {
+        "type": "string",
+        "format": "filepath",
+        "extensions": [
+          ".tif",
+          ".tiff"
+        ],
+        "description": "CA 模拟结果 GeoTIFF 路径（GDT_Byte）",
+        "required": true
+      },
+      "real": {
+        "type": "string",
+        "format": "filepath",
+        "extensions": [
+          ".tif",
+          ".tiff"
+        ],
+        "description": "真实 LUCC GeoTIFF 路径（结束年份土地利用，GDT_Byte）",
+        "required": true
+      }
+    },
+    "required": [
+      "ori",
+      "sim",
+      "real"
+    ]
+  },
+  "returns": {
+    "type": "object",
+    "properties": {
+      "FoM": {
+        "type": "number",
+        "description": "Figure of Merit，综合精度指标（0-1，越高越好）"
+      },
+      "PA": {
+        "type": "number",
+        "description": "Producer's Accuracy，生产者精度（0-1）"
+      },
+      "UA": {
+        "type": "number",
+        "description": "User's Accuracy，用户精度（0-1）"
+      },
+      "Kappa": {
+        "type": "number",
+        "description": "Kappa 系数（0-1，>0.8 为高度一致）"
+      },
+      "OA": {
+        "type": "number",
+        "description": "Overall Accuracy，整体精度（0-1）"
+      }
+    }
+  },
+  "input_constraints": {
+    "data_type": "GDT_Byte",
+    "projection": "任意，但三个输入文件间必须一致",
+    "dimensions": "三个输入文件行列数必须完全一致",
+    "value_range": "像元值为地类编码（通常 1-6）"
+  },
+  "timeout_seconds": 300,
+  "output_format": "stdout: FoM=<val> PA=<val> UA=<val> Kappa=<val> OA=<val>",
+  "examples": [
+    {
+      "description": "评估天目山地区 2010-2030 CA 模拟精度",
+      "params": {
+        "ori": "/data/LUCC/2010.tif",
+        "sim": "/data/LUCC/Simulation.tif",
+        "real": "/data/LUCC/2030.tif"
+      }
+    }
+  ],
+  "validation": {
+    "rules_file": "agent/validation/rules/ca-precision.json"
+  }
+}

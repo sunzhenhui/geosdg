@@ -1,0 +1,48 @@
+{
+    "name": "sdg-custom-forest",
+    "version": "0.1.0",
+    "author": "Example Author",
+    "description": "Custom forest coverage indicator plugin (example skeleton)",
+    "category": "sdg-calc",
+    "library": "libsdg_custom_forest",
+    "class": "ForestCoverageIndicator",
+    "min_cli_version": "1.0",
+    "parameters": [
+        {
+            "name": "init-lucc",
+            "short": "i",
+            "type": "file",
+            "required": true,
+            "description": "Initial land use/cover map (GeoTIFF)"
+        },
+        {
+            "name": "forest-types",
+            "short": "t",
+            "type": "int_list",
+            "required": true,
+            "description": "Forest LUCC type codes (e.g., 1,2,3)"
+        },
+        {
+            "name": "min-area",
+            "short": "a",
+            "type": "float",
+            "required": false,
+            "default": "0.5",
+            "description": "Minimum forest area ratio threshold"
+        }
+    ],
+    "inputs": [
+        {
+            "format": "GeoTIFF",
+            "dtype": "GDT_Byte",
+            "bands": 1,
+            "description": "Land use/cover classification map"
+        }
+    ],
+    "outputs": [
+        {
+            "format": "text",
+            "description": "Forest coverage ratio score"
+        }
+    ]
+}

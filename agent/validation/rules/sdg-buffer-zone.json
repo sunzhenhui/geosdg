@@ -1,0 +1,23 @@
+{
+  "tool": "sdg-buffer-zone",
+  "description": "SDG 缓冲区指标验证规则",
+  "valid_range": { "min": 0, "max": 100 },
+  "anomaly_patterns": [
+    {
+      "id": "buf-zero-with-area",
+      "condition": "score == 0 AND buffer_area > 0",
+      "severity": "FAIL",
+      "diagnosis": "得分为 0 但缓冲区面积 > 0，疑似 --types 指定地类在缓冲区内不存在",
+      "suggestion": "检查 --types 参数与缓冲区数据的地类编码是否匹配",
+      "auto_fix": false
+    },
+    {
+      "id": "buf-full-outside-all-target",
+      "condition": "score == 100 AND outside_target_ratio > 0.9",
+      "severity": "WARN",
+      "diagnosis": "得分为 100 且缓冲区外几乎全为目标地类，可能区域选择或阈值异常",
+      "suggestion": "确认缓冲区数据和地类编码是否正确",
+      "auto_fix": false
+    }
+  ]
+}

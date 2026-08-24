@@ -1,0 +1,24 @@
+{
+  "tool": "priority-human-land",
+  "description": "优先区域 Rule 6 — 人地关系失衡验证规则",
+  "valid_range": { "min": 0, "max": 6 },
+  "output_type": "geotiff",
+  "anomaly_patterns": [
+    {
+      "id": "human-all-same",
+      "condition": "unique_values == 1",
+      "severity": "WARN",
+      "diagnosis": "输出文件全图仅 1 个值，可能人地关系无显著变化或 --types 不匹配",
+      "suggestion": "检查 --types 参数和人口数据是否正确",
+      "auto_fix": false
+    },
+    {
+      "id": "human-empty-output",
+      "condition": "file_size < 1024",
+      "severity": "ERROR",
+      "diagnosis": "输出文件 < 1KB，可能写入失败",
+      "suggestion": "检查磁盘空间和输出路径权限",
+      "auto_fix": false
+    }
+  ]
+}

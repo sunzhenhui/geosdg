@@ -1,0 +1,28 @@
+{
+  "$schema": "../manifest-schema.json",
+  "project": {
+    "name": "",
+    "description": "",
+    "region": {
+      "name": "",
+      "bbox": [0, 0, 0, 0],
+      "crs": "EPSG:4326"
+    },
+    "time_range": {
+      "baseline": 2020,
+      "horizon": 2050,
+      "step": 5
+    }
+  },
+  "scenarios": [],
+  "datasets": [],
+  "indicators": [],
+  "priority_areas": {
+    "rules": [],
+    "output": {
+      "n_classes": 5,
+      "labels": ["Very Low", "Low", "Medium", "High", "Very High"],
+      "classification": "quantile"
+    }
+  }
+}

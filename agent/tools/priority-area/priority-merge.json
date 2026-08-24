@@ -1,0 +1,65 @@
+{
+  "name": "priority-merge",
+  "category": "priority-area",
+  "cli_command": "geosdg-cli",
+  "cli_subcommand": "priority-merge",
+  "description": "将多个优先区域规则的结果合并为一张排名图（0-6）。像元值表示该位置命中的规则数量，值越高表示优先级越高。通常在执行完 Rule 1-6 后调用，生成综合优先区域排名图。",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "files": {
+        "type": "string",
+        "format": "file-list",
+        "description": "优先区域文件路径列表（逗号分隔，通常为 Rule 1-6 的 6 个输出文件）",
+        "required": true
+      },
+      "output": {
+        "type": "string",
+        "format": "filepath",
+        "description": "输出排名图 GeoTIFF 路径（像元值 0-6）",
+        "required": true
+      }
+    },
+    "required": [
+      "files",
+      "output"
+    ]
+  },
+  "returns": {
+    "type": "object",
+    "properties": {
+      "output_file": {
+        "type": "string",
+        "description": "生成的排名图 GeoTIFF 路径"
+      },
+      "status": {
+        "type": "string",
+        "description": "执行状态：success / failed"
+      },
+      "input_count": {
+        "type": "integer",
+        "description": "合并的输入文件数量"
+      }
+    }
+  },
+  "input_constraints": {
+    "data_type": "GDT_Byte（所有输入文件）",
+    "dimensions": "所有输入文件行列数必须完全一致",
+    "projection": "所有文件投影坐标系必须一致",
+    "note": "此命令不校验维度一致性，需确保输入文件对齐"
+  },
+  "timeout_seconds": 120,
+  "output_format": "stdout: Output: <path>",
+  "examples": [
+    {
+      "description": "合并 6 条规则结果为排名图",
+      "params": {
+        "files": "/data/PriorityAreas-1.tif,/data/PriorityAreas-2.tif,/data/PriorityAreas-3.tif,/data/PriorityAreas-4.tif,/data/PriorityAreas-5.tif,/data/PriorityAreas-6.tif",
+        "output": "/data/PriorityAreasRankingMap.tif"
+      }
+    }
+  ],
+  "validation": {
+    "rules_file": "agent/validation/rules/priority-merge.json"
+  }
+}

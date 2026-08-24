@@ -1,0 +1,98 @@
+{
+  "name": "priority-buffer",
+  "category": "priority-area",
+  "cli_command": "geosdg-cli",
+  "cli_subcommand": "priority-buffer",
+  "description": "优先区域规则 3/4：识别基础设施覆盖区外的区域。规则 3 提取缓冲区外的目标地类像元；规则 4 提取缓冲区外人口超过阈值的区域。通过输入数据类型（LUCC 或人口）自动区分规则。",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "init_lucc": {
+        "type": "string",
+        "format": "filepath",
+        "extensions": [
+          ".tif",
+          ".tiff"
+        ],
+        "description": "输入数据 GeoTIFF 路径（GDT_Byte 地类=规则3，Float32 人口=规则4，自动识别）",
+        "required": true
+      },
+      "buffer": {
+        "type": "string",
+        "format": "filepath",
+        "extensions": [
+          ".tif",
+          ".tiff"
+        ],
+        "description": "基础设施覆盖区栅格 GeoTIFF 路径（GDT_Byte）",
+        "required": true
+      },
+      "output": {
+        "type": "string",
+        "format": "filepath",
+        "description": "输出优先区域 GeoTIFF 路径",
+        "required": true
+      },
+      "types": {
+        "type": "string",
+        "format": "comma-list",
+        "description": "目标地类编码集合（规则 3 需要，规则 4 人口模式可留空）",
+        "required": false
+      },
+      "pop_threshold": {
+        "type": "number",
+        "description": "人口阈值（规则 4 使用，超过此值的像元标记为优先区域）",
+        "default": 1000,
+        "required": false
+      }
+    },
+    "required": [
+      "init_lucc",
+      "buffer",
+      "output"
+    ]
+  },
+  "returns": {
+    "type": "object",
+    "properties": {
+      "output_file": {
+        "type": "string",
+        "description": "生成的优先区域 GeoTIFF 路径"
+      },
+      "status": {
+        "type": "string",
+        "description": "执行状态：success / failed"
+      }
+    }
+  },
+  "input_constraints": {
+    "data_type": "GDT_Byte（规则3）或 GDT_Float32（规则4），自动识别",
+    "dimensions": "init_lucc 与 buffer 行列数必须完全一致",
+    "projection": "两文件投影坐标系必须一致"
+  },
+  "timeout_seconds": 120,
+  "output_format": "stdout: Output: <path>",
+  "examples": [
+    {
+      "description": "规则 3：识别道路覆盖区外的建设用地",
+      "params": {
+        "init_lucc": "/data/LUCC/2025.tif",
+        "buffer": "/data/INFRA/roads.tif",
+        "output": "/data/PriorityAreas-3.tif",
+        "types": "5"
+      }
+    },
+    {
+      "description": "规则 4：识别道路覆盖区外人口密集区",
+      "params": {
+        "init_lucc": "/data/POPU/2025.tif",
+        "buffer": "/data/INFRA/roads.tif",
+        "output": "/data/PriorityAreas-4.tif",
+        "pop_threshold": 1000
+      }
+    }
+  ],
+  "validation": {
+    "rules_file": "agent/validation/rules/priority-buffer.json"
+  }
+}

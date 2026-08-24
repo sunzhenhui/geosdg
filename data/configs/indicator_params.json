@@ -1,0 +1,62 @@
+{
+  "_description": "SDG 指标计算参数。指标 ID 必须与 manifest.json 中 indicators 数组的 id 对应。",
+
+  "sdg_11_3_1": {
+    "land_consumption": {
+      "urban_classes": [5],
+      "buffer_distance_m": 500
+    },
+    "population_growth": {
+      "min_pop_threshold": 100
+    }
+  },
+
+  "sdg_3_8_1": {
+    "accessibility": {
+      "max_travel_time_min": 30,
+      "method": "euclidean_distance"
+    }
+  },
+
+  "sdg_6_1_1": {
+    "water_access": {
+      "max_distance_m": 1000,
+      "coverage_threshold": 0.95
+    }
+  },
+
+  "sdg_9_1_1": {
+    "rural_access_index": {
+      "road_buffer_m": 2000,
+      "min_pop_served": 500
+    }
+  },
+
+  "sdg_11_2_1": {
+    "public_transport": {
+      "stop_buffer_m": 500,
+      "frequency_weight": 0.5,
+      "capacity_weight": 0.5
+    }
+  },
+
+  "sdg_13_2_2": {
+    "carbon_emission": {
+      "emission_factors": {
+        "cropland": 1.0,
+        "forest": -2.5,
+        "grassland": 0.5,
+        "urban": 8.0,
+        "water": 0.0,
+        "bareland": 0.2
+      }
+    }
+  },
+
+  "sdg_15_1_1": {
+    "forest_coverage": {
+      "forest_classes": [2],
+      "min_patch_area_ha": 0.5
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "tool": "priority-transition",
+  "description": "优先区域 Rule 2 — 特定转换验证规则",
+  "valid_range": { "min": 0, "max": 6 },
+  "output_type": "geotiff",
+  "anomaly_patterns": [
+    {
+      "id": "trans-all-same",
+      "condition": "unique_values == 1",
+      "severity": "WARN",
+      "diagnosis": "输出文件全图仅 1 个值，可能无匹配转换或 --transitions 规则不匹配",
+      "suggestion": "检查 --transitions 参数与输入 LUCC 的实际转换是否匹配",
+      "auto_fix": false
+    },
+    {
+      "id": "trans-float-type",
+      "condition": "is_integer == false",
+      "severity": "WARN",
+      "diagnosis": "输出文件为浮点型，应为整型标记值",
+      "suggestion": "检查数据处理流程是否正确",
+      "auto_fix": false
+    }
+  ]
+}

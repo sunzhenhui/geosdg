@@ -1,0 +1,55 @@
+{
+  "name": "correlation",
+  "category": "ca-precision",
+  "cli_command": "geosdg-cli",
+  "cli_subcommand": "correlation",
+  "description": "计算两组样本数据的 Pearson 相关系数（r），衡量两个变量间的线性相关程度。用于验证模拟数据与真实数据的一致性，或两组指标间的关联性。",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "data1": {
+        "type": "string",
+        "format": "comma-list",
+        "description": "第一组样本数据（逗号分隔的数值，如 34.7,34.4,51.8）",
+        "required": true
+      },
+      "data2": {
+        "type": "string",
+        "format": "comma-list",
+        "description": "第二组样本数据（逗号分隔的数值，长度应与 data1 一致）",
+        "required": true
+      }
+    },
+    "required": [
+      "data1",
+      "data2"
+    ]
+  },
+  "returns": {
+    "type": "object",
+    "properties": {
+      "R": {
+        "type": "number",
+        "description": "Pearson 相关系数（-1 到 1，绝对值越接近 1 相关性越强）"
+      }
+    }
+  },
+  "input_constraints": {
+    "data_length": "两组数据长度应一致",
+    "data_type": "数值型（整数或浮点数）"
+  },
+  "timeout_seconds": 10,
+  "output_format": "stdout: R=<val>",
+  "examples": [
+    {
+      "description": "计算两组模拟精度数据的相关性",
+      "params": {
+        "data1": "34.7,34.4,51.8,51.1,44.1,42.6,51.7,51.5,48.1,47.4",
+        "data2": "45.2,45.5,47.6,52.7,48.7,52.5,48.3,46.4,47.4,49.2"
+      }
+    }
+  ],
+  "validation": {
+    "rules_file": "agent/validation/rules/correlation.json"
+  }
+}

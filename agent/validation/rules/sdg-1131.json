@@ -1,0 +1,23 @@
+{
+  "tool": "sdg-1131",
+  "description": "SDG 11.3.1 城市与人口增长率指标验证规则",
+  "valid_range": { "min": 0, "max": 100 },
+  "anomaly_patterns": [
+    {
+      "id": "1131-zero-const-popu",
+      "condition": "score == 0 AND popu_all_same == true",
+      "severity": "WARN",
+      "diagnosis": "得分为 0 且人口数据全同值，疑似无变化区域或人口数据错误",
+      "suggestion": "检查人口数据是否正确，是否为同一时相数据",
+      "auto_fix": false
+    },
+    {
+      "id": "1131-urban-type-missing",
+      "condition": "score == 0 AND urban_type_in_data == false",
+      "severity": "FAIL",
+      "diagnosis": "得分为 0 且城市地类在数据中不存在，疑似 --types 参数错误",
+      "suggestion": "检查 --types 参数是否包含正确的城市地类编码",
+      "auto_fix": false
+    }
+  ]
+}

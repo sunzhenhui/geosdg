@@ -1,0 +1,32 @@
+{
+    "SSP1-26": {
+        "display": "SSP1-2.6 (Sustainability — Taking the Green Road)",
+        "short": "SSP1-26",
+        "family": "SSP",
+        "id": "ssp1_26"
+    },
+    "SSP2-45": {
+        "display": "SSP2-4.5 (Middle of the Road)",
+        "short": "SSP2-45",
+        "family": "SSP",
+        "id": "ssp2_45"
+    },
+    "SSP3-70": {
+        "display": "SSP3-7.0 (Regional Rivalry)",
+        "short": "SSP3-70",
+        "family": "SSP",
+        "id": "ssp3_70"
+    },
+    "SSP5-85": {
+        "display": "SSP5-8.5 (Fossil-fueled Development)",
+        "short": "SSP5-85",
+        "family": "SSP",
+        "id": "ssp5_85"
+    },
+    "baseline": {
+        "display": "Baseline (基准年)",
+        "short": "baseline",
+        "family": null,
+        "id": "baseline"
+    }
+}

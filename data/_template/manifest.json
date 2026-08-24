@@ -1,0 +1,203 @@
+{
+  "$schema": "../manifest-schema.json",
+  "project": {
+    "name": "My SDG Assessment Project",
+    "description": "替换为此项目的描述",
+    "region": {
+      "name": "Your Region",
+      "bbox": [0, 0, 0, 0],
+      "crs": "EPSG:4326"
+    },
+    "time_range": {
+      "baseline": 2020,
+      "horizon": 2050,
+      "step": 5
+    }
+  },
+
+  "scenarios": [
+    {
+      "id": "ssp1",
+      "name": "SSP1 - Sustainability",
+      "family": "SSP",
+      "description": "Taking the Green Road"
+    },
+    {
+      "id": "ssp2",
+      "name": "SSP2 - Middle of the Road",
+      "family": "SSP",
+      "description": "Medium challenges to mitigation and adaptation"
+    },
+    {
+      "id": "ssp3",
+      "name": "SSP3 - Regional Rivalry",
+      "family": "SSP",
+      "description": "High challenges to mitigation and adaptation"
+    },
+    {
+      "id": "ssp4",
+      "name": "SSP4 - Inequality",
+      "family": "SSP",
+      "description": "Low challenges to mitigation, high challenges to adaptation"
+    },
+    {
+      "id": "ssp5",
+      "name": "SSP5 - Fossil-fueled Development",
+      "family": "SSP",
+      "description": "High challenges to mitigation, low challenges to adaptation"
+    }
+  ],
+
+  "datasets": [
+    {
+      "id": "lucc",
+      "name": "Land Use / Land Cover",
+      "category": "landuse",
+      "description": "土地利用/覆盖分类数据",
+      "resolution": { "value": 30, "unit": "m" },
+      "legend": {
+        "cropland": 1, "forest": 2, "grassland": 3,
+        "water": 4, "urban": 5, "bareland": 6
+      },
+      "files": [
+        { "path": "rasters/lucc_yourname_2020.tif", "year": 2020, "tags": ["baseline"] }
+      ]
+    },
+    {
+      "id": "pop",
+      "name": "Population",
+      "category": "population",
+      "description": "人口分布栅格数据",
+      "resolution": { "value": 1000, "unit": "m" },
+      "citation": {
+        "text": "WorldPop 2020",
+        "url": "https://www.worldpop.org/"
+      },
+      "files": [
+        { "path": "rasters/pop_yourname_2020.tif", "year": 2020, "tags": ["baseline"] }
+      ]
+    },
+    {
+      "id": "infra",
+      "name": "Infrastructure",
+      "category": "infrastructure",
+      "description": "基础设施可达性数据",
+      "resolution": { "value": 1000, "unit": "m" },
+      "subcategories": [
+        {
+          "id": "healthcare",
+          "name": "Healthcare Facilities",
+          "sdg_targets": [3.8],
+          "files": [
+            { "path": "rasters/infra_healthcare_yourname_2020.tif", "year": 2020 }
+          ]
+        },
+        {
+          "id": "education_primary",
+          "name": "Primary Schools",
+          "sdg_targets": [4.1],
+          "files": [
+            { "path": "rasters/infra_education_primary_yourname_2020.tif", "year": 2020 }
+          ]
+        },
+        {
+          "id": "education_secondary",
+          "name": "Secondary Schools",
+          "sdg_targets": [4.1],
+          "files": [
+            { "path": "rasters/infra_education_secondary_yourname_2020.tif", "year": 2020 }
+          ]
+        },
+        {
+          "id": "roads",
+          "name": "Road Network",
+          "sdg_targets": [9.1],
+          "files": [
+            { "path": "rasters/infra_roads_yourname_2020.tif", "year": 2020 }
+          ]
+        },
+        {
+          "id": "public_transport",
+          "name": "Public Transport",
+          "sdg_targets": [11.2],
+          "files": [
+            { "path": "rasters/infra_transport_yourname_2020.tif", "year": 2020 }
+          ]
+        },
+        {
+          "id": "water_supply",
+          "name": "Water Supply",
+          "sdg_targets": [6.1],
+          "files": [
+            { "path": "rasters/infra_water_yourname_2020.tif", "year": 2020 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aux",
+      "name": "Auxiliary Variables",
+      "category": "auxiliary",
+      "description": "辅助变量（高程、坡度、密度、距离等）",
+      "resolution": { "value": 30, "unit": "m" },
+      "files": [
+        { "path": "rasters/aux_dem_yourname.tif",     "year": 2020, "tags": ["static"] },
+        { "path": "rasters/aux_slope_yourname.tif",   "year": 2020, "tags": ["static"] },
+        { "path": "rasters/aux_dis_water_yourname.tif","year": 2020, "tags": ["static"] }
+      ]
+    }
+  ],
+
+  "indicators": [
+    {
+      "id": "sdg_11_3_1",
+      "sdg_goal": 11,
+      "sdg_target": 11.3,
+      "sdg_indicator": "11.3.1",
+      "name": "Land consumption rate to population growth rate",
+      "required_datasets": ["lucc", "pop"],
+      "direction": "negative"
+    },
+    {
+      "id": "sdg_3_8_1",
+      "sdg_goal": 3,
+      "sdg_target": 3.8,
+      "sdg_indicator": "3.8.1",
+      "name": "Healthcare accessibility",
+      "required_datasets": ["infra"],
+      "required_subcategories": ["healthcare"],
+      "direction": "positive"
+    }
+  ],
+
+  "priority_areas": {
+    "rules": [
+      {
+        "id": "low_sdg",
+        "name": "Low SDG Score Areas",
+        "type": "threshold",
+        "condition": { "indicator": "sdg_11_3_1", "operator": "<", "value": 0.3 },
+        "weight": 1.0
+      },
+      {
+        "id": "high_pop",
+        "name": "High Population Density",
+        "type": "ranking",
+        "condition": { "dataset": "pop", "ranking": "top", "percentile": 30 },
+        "weight": 0.8
+      },
+      {
+        "id": "composite_priority",
+        "name": "Composite Priority Areas",
+        "type": "composite",
+        "aggregation": "weighted_sum",
+        "sub_rules": ["low_sdg", "high_pop"]
+      }
+    ],
+    "output": {
+      "n_classes": 5,
+      "labels": ["Very Low", "Low", "Medium", "High", "Very High"],
+      "classification": "quantile"
+    }
+  }
+}

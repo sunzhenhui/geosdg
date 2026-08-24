@@ -1,0 +1,55 @@
+{
+  "name": "t-test",
+  "category": "ca-precision",
+  "cli_command": "geosdg-cli",
+  "cli_subcommand": "t-test",
+  "description": "对两组独立样本进行 t 检验，计算 t 统计量，用于判断两组数据均值是否存在显著差异。常用于验证模拟结果与真实数据间是否有统计学差异。",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "data1": {
+        "type": "string",
+        "format": "comma-list",
+        "description": "第一组样本数据（逗号分隔的数值）",
+        "required": true
+      },
+      "data2": {
+        "type": "string",
+        "format": "comma-list",
+        "description": "第二组样本数据（逗号分隔的数值）",
+        "required": true
+      }
+    },
+    "required": [
+      "data1",
+      "data2"
+    ]
+  },
+  "returns": {
+    "type": "object",
+    "properties": {
+      "t": {
+        "type": "number",
+        "description": "t 统计量（绝对值越大，两组差异越显著；|t|<2 通常认为无显著差异）"
+      }
+    }
+  },
+  "input_constraints": {
+    "data_length": "两组数据长度建议均 ≥3，且长度可以不同",
+    "data_type": "数值型（整数或浮点数）"
+  },
+  "timeout_seconds": 10,
+  "output_format": "stdout: t=<val>",
+  "examples": [
+    {
+      "description": "检验两组精度数据是否有显著差异",
+      "params": {
+        "data1": "34.7,34.4,51.8,51.1,44.1,42.6,51.7,51.5,48.1,47.4",
+        "data2": "45.2,45.5,47.6,52.7,48.7,52.5,48.3,46.4,47.4,49.2"
+      }
+    }
+  ],
+  "validation": {
+    "rules_file": "agent/validation/rules/t-test.json"
+  }
+}

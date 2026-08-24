@@ -1,0 +1,93 @@
+{
+  "name": "sdg-buffer-zone",
+  "category": "sdg-calc",
+  "cli_command": "geosdg-cli",
+  "cli_subcommand": "sdg-buffer-zone",
+  "description": "计算缓冲区指标（Buffer Zone），统计基础设施覆盖区内的目标像元（地类或人口）占目标总像元的比例，归一化到 [0, 100]。通过不同缓冲区输入覆盖 18 个 SDG 指标，包括医疗/教育/交通/能源等设施可达性评估。",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "init_lucc": {
+        "type": "string",
+        "format": "filepath",
+        "extensions": [
+          ".tif",
+          ".tiff"
+        ],
+        "description": "输入数据 GeoTIFF 路径（GDT_Byte 地类分布 或 Float32 人口分布，自动识别）",
+        "required": true
+      },
+      "buffer": {
+        "type": "string",
+        "format": "filepath",
+        "extensions": [
+          ".tif",
+          ".tiff"
+        ],
+        "description": "基础设施覆盖区栅格 GeoTIFF 路径（GDT_Byte，有效值=覆盖区，NoData/0=未覆盖）",
+        "required": true
+      },
+      "types": {
+        "type": "string",
+        "format": "comma-list",
+        "description": "目标地类编码集合（仅 LUCC Byte 模式需要，人口 Float 模式忽略此参数）",
+        "required": true
+      },
+      "max": {
+        "type": "number",
+        "description": "归一化上限阈值",
+        "default": 100,
+        "required": false
+      },
+      "min": {
+        "type": "number",
+        "description": "归一化下限阈值",
+        "default": 0,
+        "required": false
+      }
+    },
+    "required": [
+      "init_lucc",
+      "buffer",
+      "types"
+    ]
+  },
+  "returns": {
+    "type": "object",
+    "properties": {
+      "score": {
+        "type": "number",
+        "description": "归一化得分（0-100）"
+      }
+    }
+  },
+  "input_constraints": {
+    "data_type": "GDT_Byte（地类）或 GDT_Float32（人口），自动识别",
+    "dimensions": "init_lucc 与 buffer 行列数必须完全一致",
+    "projection": "两文件投影坐标系必须一致",
+    "note": "人口模式（Float32）时 types 参数被忽略，但仍需传入"
+  },
+  "timeout_seconds": 120,
+  "output_format": "stdout: score=<val>",
+  "examples": [
+    {
+      "description": "评估道路可达性（SDG 9.1.1，人口在道路 2km 内比例）",
+      "params": {
+        "init_lucc": "/data/POPU/2025.tif",
+        "buffer": "/data/INFRA/roads_2km.tif",
+        "types": "5"
+      }
+    },
+    {
+      "description": "评估医疗设施覆盖（SDG 3.8.1）",
+      "params": {
+        "init_lucc": "/data/POPU/2025.tif",
+        "buffer": "/data/INFRA/hospitals.tif",
+        "types": "5"
+      }
+    }
+  ],
+  "validation": {
+    "rules_file": "agent/validation/rules/sdg-buffer-zone.json"
+  }
+}

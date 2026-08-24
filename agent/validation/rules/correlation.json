@@ -1,0 +1,23 @@
+{
+  "tool": "correlation",
+  "description": "Pearson 相关系数验证规则",
+  "valid_range": { "min": -1, "max": 1 },
+  "anomaly_patterns": [
+    {
+      "id": "r-near-perfect",
+      "condition": "abs(R) > 0.99",
+      "severity": "WARN",
+      "diagnosis": "|R| > 0.99，疑似重复数据或数据泄露（两组数据高度线性相关）",
+      "suggestion": "检查两组数据是否来自同一来源或存在数据泄露",
+      "auto_fix": false
+    },
+    {
+      "id": "r-exact-zero",
+      "condition": "R == 0 AND data_variance > 0",
+      "severity": "WARN",
+      "diagnosis": "R 恰好为 0 且数据有方差，两组数据完全线性无关，可能不具可比性",
+      "suggestion": "确认两组数据是否具有可比性",
+      "auto_fix": false
+    }
+  ]
+}

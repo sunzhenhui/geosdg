@@ -1,0 +1,47 @@
+{
+  "version": "1.0",
+  "project": "geosdg-agent",
+  "description": "GeoSDG Agent 工具清单 — 将 geosdg-cli 的 16 个子命令封装为 LLM 可消费的结构化 Tool 定义",
+  "cli_command": "geosdg-cli",
+  "categories": {
+    "ca-precision": {
+      "label": "CA 精度评估",
+      "description": "CA 模拟精度评估与统计检验",
+      "trigger_keywords": ["精度", "准确率", "FoM", "Kappa", "验证", "模拟评估", "相关性", "t检验", "对比", "准不准", "对不对"],
+      "tools": ["ca-precision", "correlation", "t-test"]
+    },
+    "sdg-calc": {
+      "label": "SDG 指标计算",
+      "description": "空间化可持续发展目标指标计算",
+      "trigger_keywords": ["SDG", "可持续", "指标", "土地", "碳达峰", "缓冲区", "人口", "排放", "城市增长", "水体变化", "森林", "耕地"],
+      "tools": ["sdg-land-proportion", "sdg-land-conversion", "sdg-buffer-zone", "sdg-1131", "sdg-1322"]
+    },
+    "priority-area": {
+      "label": "优先区域识别",
+      "description": "优先保护/重点区域识别与排名",
+      "trigger_keywords": ["优先区域", "热点", "重点区", "保护区", "人地关系", "排名", "合并", "侵蚀", "转换", "排放未达峰"],
+      "tools": ["priority-loss", "priority-transition", "priority-buffer", "priority-emission", "priority-human-land", "priority-merge"]
+    },
+    "demo-help": {
+      "label": "演示与帮助",
+      "description": "完整演示流程、帮助信息与数据质量检查",
+      "trigger_keywords": ["演示", "帮助", "demo", "怎么用", "示例", "resume", "续跑", "检查", "check", "数据质量", "预检"],
+      "tools": ["demo", "help", "check"]
+    },
+    "report": {
+      "label": "报告生成",
+      "description": "SDG 综合评估报告生成与可视化",
+      "trigger_keywords": ["报告", "生成报告", "评估报告", "可视化", "图表", "雷达图", "趋势图"],
+      "tools": ["priority-stats", "generate-charts", "generate-report"]
+    },
+    "pipeline": {
+      "label": "Pipeline 编排",
+      "description": "多步骤 DAG 流水线编排引擎，支持依赖解析、并行执行、检查点/恢复",
+      "trigger_keywords": ["流水线", "编排", "pipeline", "批量", "多步骤", "DAG", "并行", "检查点", "续跑", "模板"],
+      "tools": ["pipeline-run", "pipeline-batch", "pipeline-validate", "pipeline-list-templates", "pipeline-dry-run"]
+    }
+  },
+  "tool_count": 25,
+  "schema_path": "agent/tools/{category}/{tool_name}.json",
+  "validation_path": "agent/validation/rules/{tool_name}.json"
+}

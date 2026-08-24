@@ -1,0 +1,179 @@
+{
+  "name": "generate-report",
+  "category": "report",
+  "description": "生成 SDG 综合评估报告。基于 Jinja2 模板引擎渲染结构化 Markdown 报告，支持图表校验与降级、多格式导出（Markdown/HTML/PDF）、章节裁剪、报告校验。自动调用 generate-charts 生成图表，然后组装图文一体的多章节报告。报告和图表统一放在 reports/{region}_{type}_{date}/ 子目录中。",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "region": {
+        "type": "string",
+        "description": "评估区域名称（如杭州、长三角）",
+        "required": true
+      },
+      "report_type": {
+        "type": "string",
+        "enum": ["composite", "trend", "subregion"],
+        "description": "报告类型：composite=综合评估报告, trend=趋势分析报告, subregion=分区对比报告",
+        "required": true
+      },
+      "chart_paths": {
+        "type": "object",
+        "description": "预先生成的图表路径映射（可选）。如不提供，generate-report 会自动调用 generate-charts 生成所有必要图表。",
+        "required": false
+      },
+      "priority_stats": {
+        "type": "object",
+        "description": "优先区域面积统计数据（来自 priority-stats 工具输出）",
+        "required": false
+      },
+      "periods_info": {
+        "type": "object",
+        "description": "多期数据信息（仅趋势分析报告需要），如 {\"years\": [2010, 2020], \"data_refs\": [...]}",
+        "required": false
+      },
+      "subregion_data": {
+        "type": "object",
+        "description": "子区域数据（仅分区对比报告需要），如 {\"regions\": [{\"name\": \"上城\", \"scores\": {...}}, ...]}",
+        "required": false
+      },
+      "indicator_scores": {
+        "type": "object",
+        "description": "各 SDG 指标得分数据，用于自动生成图表。格式：{\"composite\": 68.5, \"indicators\": [{\"name\":\"SDG 15.3.1\",\"score\":72.3,\"dimension\":\"environment\",\"sdg\":\"15\"}, ...]}",
+        "required": false
+      },
+      "output_formats": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": ["markdown", "html", "pdf"]
+        },
+        "default": ["markdown"],
+        "description": "输出格式列表。Markdown 始终先生成作为中间产物，HTML/PDF 在 Markdown 基础上导出。"
+      },
+      "chapters": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": ["summary", "indicators", "dimensions", "subregions", "trends", "conclusions"]
+        },
+        "description": "报告章节列表。省略则渲染模板的全部章节。可用于精简报告篇幅。"
+      },
+      "skip_missing_charts": {
+        "type": "boolean",
+        "default": false,
+        "description": "若为 true，缺失的图表文件将替换为占位框而非报错终止。适用于增量更新场景。"
+      },
+      "validation": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "报告生成后是否运行校验"
+          },
+          "strict": {
+            "type": "boolean",
+            "default": false,
+            "description": "若为 true，校验警告视为错误，需修复后重新生成"
+          }
+        },
+        "default": {
+          "enabled": true,
+          "strict": false
+        },
+        "description": "报告校验配置"
+      },
+      "title": {
+        "type": "string",
+        "description": "报告标题（覆盖数据文件中的标题）"
+      },
+      "period": {
+        "type": "string",
+        "description": "报告周期，如 '2020-2025'（覆盖数据文件中的周期）"
+      }
+    },
+    "required": ["region", "report_type"]
+  },
+  "returns": {
+    "type": "object",
+    "properties": {
+      "report_dir": { "type": "string", "description": "报告子目录路径，如 reports/杭州_综合评估_20260728/" },
+      "report_path": { "type": "string", "description": "Markdown 报告文件路径" },
+      "html_path": { "type": "string", "description": "HTML 报告文件路径（如生成了 HTML 格式）" },
+      "pdf_path": { "type": "string", "description": "PDF 报告文件路径（如生成了 PDF 格式）" },
+      "chart_count": { "type": "integer", "description": "生成/嵌入的图表数量" },
+      "charts_generated": { "type": "array", "description": "本次生成的图表列表", "items": { "type": "string" } },
+      "validation_result": {
+        "type": "object",
+        "description": "校验结果（如启用了校验）",
+        "properties": {
+          "overall": { "type": "string", "description": "PASS / WARN / FAIL" },
+          "checks": { "type": "array", "description": "各项校验结果" }
+        }
+      },
+      "status": { "type": "string", "description": "执行状态：success / failed" }
+    }
+  },
+  "input_constraints": {
+    "report_structure": "每个报告独立子目录：reports/{region}_{type}_{date}/，内含 report.md + 所有图表 PNG + 可选 report.html / report.pdf",
+    "report_naming": "综合评估={region}_综合评估_{YYYYMMDD}; 趋势分析={region}_趋势分析_{YYYYMMDD}; 分区对比={region}_分区SDG评估_{YYYYMMDD}",
+    "image_referencing": "图表使用相对路径在同目录引用（如 ![雷达图](./radar.png)），确保图文一体、可移动",
+    "auto_chart_generation": "必须：如 chart_paths 未提供或缺少必要图表，自动调用 generate-charts（Python 脚本 report_charts.py）补齐所有图表",
+    "required_charts": {
+      "composite": ["radar", "bar"],
+      "composite_with_priority": ["radar", "bar", "priority_map"],
+      "trend": ["trend"],
+      "subregion": ["subregion"]
+    },
+    "chart_degradation": "如 matplotlib 不可用或 skip_missing_charts=true，在报告对应位置插入 [图表占位] 占位框，不阻塞报告生成",
+    "conditional_sections": "无多期数据→隐藏时间变化分析章节; 无分区数据→隐藏子区域对比章节; 无优先区域→显示未执行优先区域识别",
+    "dimension_map": "维度映射配置位于 agent/skills/agent-memory/references/dimension-map.json",
+    "template_engine": "Jinja2 模板位于 agent/templates/report/，模板类型与 report_type 一一对应"
+  },
+  "timeout_seconds": 120,
+  "output_format": "Markdown 文件 + 图表 PNG 统一存放在 reports/{region}_{type}_{date}/ 子目录中，可选 HTML/PDF 导出",
+  "examples": [
+    {
+      "description": "生成综合评估报告（自动生成所有图表，Markdown + HTML 双格式）",
+      "params": {
+        "region": "杭州",
+        "report_type": "composite",
+        "indicator_scores": {
+          "composite": 66.0,
+          "economy": 78.3,
+          "society": 65.4,
+          "environment": 54.3,
+          "indicators": [
+            {"name": "SDG 15.3.1 土地退化", "score": 72.3, "dimension": "environment", "sdg": "15"},
+            {"name": "SDG 11.3.1 城市增长", "score": 65.4, "dimension": "society", "sdg": "11"},
+            {"name": "SDG 13.2.2 碳排放达峰", "score": 54.3, "dimension": "environment", "sdg": "13"}
+          ]
+        },
+        "priority_stats": {
+          "priority_pct": 35.2,
+          "priority_area": 1200.5,
+          "total_area": 3400.0
+        },
+        "output_formats": ["markdown", "html"],
+        "skip_missing_charts": true,
+        "validation": {
+          "enabled": true,
+          "strict": false
+        }
+      }
+    },
+    {
+      "description": "生成趋势分析报告（仅 Markdown，跳过缺失图表）",
+      "params": {
+        "region": "长三角",
+        "report_type": "trend",
+        "periods_info": {
+          "years": [2010, 2015, 2020],
+          "data_refs": ["data/2010/", "data/2015/", "data/2020/"]
+        },
+        "output_formats": ["markdown"],
+        "skip_missing_charts": true
+      }
+    }
+  ]
+}

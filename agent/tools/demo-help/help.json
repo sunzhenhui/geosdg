@@ -1,0 +1,27 @@
+{
+  "name": "help",
+  "category": "demo-help",
+  "cli_command": "geosdg-cli",
+  "cli_subcommand": "help",
+  "description": "显示 geosdg-cli 的完整帮助信息，包括所有 16 个子命令的用法和参数说明。当用户不确定可用命令或参数格式时使用。",
+  "parameters": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  },
+  "returns": {
+    "type": "object",
+    "properties": {
+      "help_text": { "type": "string", "description": "完整的帮助信息文本" }
+    }
+  },
+  "input_constraints": {},
+  "timeout_seconds": 5,
+  "output_format": "stdout: 完整帮助信息（命令列表 + 参数说明）",
+  "examples": [
+    {
+      "description": "查看帮助信息",
+      "params": {}
+    }
+  ]
+}

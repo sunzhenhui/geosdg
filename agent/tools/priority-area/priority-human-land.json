@@ -1,0 +1,115 @@
+{
+  "name": "priority-human-land",
+  "category": "priority-area",
+  "cli_command": "geosdg-cli",
+  "cli_subcommand": "priority-human-land",
+  "description": "优先区域规则 6：识别人地关系失衡的区域。比较两期 LUCC 和人口数据，提取城市用地增长与人口增长不协调的像元（城市扩张过快而人口未同步增长）。",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "init_lucc": {
+        "type": "string",
+        "format": "filepath",
+        "extensions": [
+          ".tif",
+          ".tiff"
+        ],
+        "description": "初始期 LUCC GeoTIFF 路径（GDT_Byte）",
+        "required": true
+      },
+      "curr_lucc": {
+        "type": "string",
+        "format": "filepath",
+        "extensions": [
+          ".tif",
+          ".tiff"
+        ],
+        "description": "变化期 LUCC GeoTIFF 路径（GDT_Byte）",
+        "required": true
+      },
+      "init_popu": {
+        "type": "string",
+        "format": "filepath",
+        "extensions": [
+          ".tif",
+          ".tiff"
+        ],
+        "description": "初始期人口 GeoTIFF 路径（仅支持 GDT_Float32）",
+        "required": true
+      },
+      "curr_popu": {
+        "type": "string",
+        "format": "filepath",
+        "extensions": [
+          ".tif",
+          ".tiff"
+        ],
+        "description": "变化期人口 GeoTIFF 路径（仅支持 GDT_Float32）",
+        "required": true
+      },
+      "output": {
+        "type": "string",
+        "format": "filepath",
+        "description": "输出优先区域 GeoTIFF 路径",
+        "required": true
+      },
+      "types": {
+        "type": "string",
+        "format": "comma-list",
+        "description": "城市用地地类编码集合（如 5 表示建设用地）",
+        "required": true
+      },
+      "radius": {
+        "type": "integer",
+        "description": "邻域半径（像素单位）",
+        "default": 3,
+        "required": false
+      }
+    },
+    "required": [
+      "init_lucc",
+      "curr_lucc",
+      "init_popu",
+      "curr_popu",
+      "output",
+      "types"
+    ]
+  },
+  "returns": {
+    "type": "object",
+    "properties": {
+      "output_file": {
+        "type": "string",
+        "description": "生成的优先区域 GeoTIFF 路径"
+      },
+      "status": {
+        "type": "string",
+        "description": "执行状态：success / failed"
+      }
+    }
+  },
+  "input_constraints": {
+    "data_type": "LUCC=GDT_Byte, POPU=GDT_Float32（硬编码，不支持 Float64）",
+    "dimensions": "四个输入文件行列数必须完全一致",
+    "projection": "所有文件投影坐标系必须一致"
+  },
+  "timeout_seconds": 300,
+  "output_format": "stdout: Output: <path>",
+  "examples": [
+    {
+      "description": "识别人地关系失衡区域",
+      "params": {
+        "init_lucc": "/data/LUCC/2025.tif",
+        "curr_lucc": "/data/LUCC/2050.tif",
+        "init_popu": "/data/POPU/2025.tif",
+        "curr_popu": "/data/POPU/2050.tif",
+        "output": "/data/PriorityAreas-6.tif",
+        "types": "5",
+        "radius": 3
+      }
+    }
+  ],
+  "validation": {
+    "rules_file": "agent/validation/rules/priority-human-land.json"
+  }
+}

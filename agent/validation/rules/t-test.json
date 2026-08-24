@@ -1,0 +1,23 @@
+{
+  "tool": "t-test",
+  "description": "独立样本 t 检验验证规则",
+  "valid_range": { "min": null, "max": null },
+  "anomaly_patterns": [
+    {
+      "id": "t-zero-identical",
+      "condition": "t == 0 AND groups_identical == true",
+      "severity": "WARN",
+      "diagnosis": "t = 0 且两组数据完全相同，trivial case，检验无意义",
+      "suggestion": "确认两组数据是否确实为不同样本",
+      "auto_fix": false
+    },
+    {
+      "id": "t-extreme-small-sample",
+      "condition": "abs(t) > 10 AND sample_size < 10",
+      "severity": "WARN",
+      "diagnosis": "t 值极端但样本量极小，统计结果不稳定",
+      "suggestion": "增加样本量以提高统计可靠性",
+      "auto_fix": false
+    }
+  ]
+}

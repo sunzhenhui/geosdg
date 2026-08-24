@@ -1,0 +1,59 @@
+{
+  "version": "1.0",
+  "description": "GeoSDG 异常诊断模式库 — 从异常现象推断根因并给出修复建议",
+  "patterns": [
+    {
+      "symptom": "score_out_of_range",
+      "root_causes": [
+        { "cause": "参数 typo（如输错地类编码）", "confidence": 0.7, "fix": "核对 --types 参数与数据地类编码" },
+        { "cause": "阈值参数极端（--max 过大）", "confidence": 0.2, "fix": "检查 --max 参数值" },
+        { "cause": "数据损坏或格式异常", "confidence": 0.1, "fix": "用 check 命令验证数据完整性" }
+      ]
+    },
+    {
+      "symptom": "all_zero_result",
+      "root_causes": [
+        { "cause": "指定的 types 在数据中不存在", "confidence": 0.6, "fix": "对比 --types 与 check 输出的 type_coverage" },
+        { "cause": "输入数据全为 NoData", "confidence": 0.3, "fix": "用 check 命令验证数据" },
+        { "cause": "转换参数方向选反（positive/negative）", "confidence": 0.1, "fix": "尝试切换 --positive / --negative" }
+      ]
+    },
+    {
+      "symptom": "tiff_not_integer",
+      "root_causes": [
+        { "cause": "数据处理流程中将整型误存为 Float32/64", "confidence": 0.8, "fix": "用 GDAL Translate 或 GIS 软件重新导出为整型（Byte/Int16/Int32）" },
+        { "cause": "模拟过程直接输出了浮点概率值而非分类结果", "confidence": 0.2, "fix": "模拟结果需要先做硬分类（argmax）再存为整型 TIFF" }
+      ]
+    },
+    {
+      "symptom": "tiff_missing_categories",
+      "root_causes": [
+        { "cause": "模拟模型仅输出了部分地类（如只模拟了城市扩展，其他地类未变化）", "confidence": 0.5, "fix": "检查 CA 模型的地类转换规则是否覆盖了全部类别" },
+        { "cause": "输入 LUCC 本身类别不完整", "confidence": 0.3, "fix": "检查原始 LUCC 数据是否包含所有地类" },
+        { "cause": "NoData 值覆盖了部分类别区域", "confidence": 0.2, "fix": "检查 NoData 值设置，用 check 命令查看空值率和值分布" }
+      ]
+    },
+    {
+      "symptom": "tiff_all_same_pixel",
+      "root_causes": [
+        { "cause": "模拟结果全为单一类别（如全部保持原类别不变）", "confidence": 0.6, "fix": "检查 CA 转换概率矩阵和邻域规则是否有有效的变化驱动" },
+        { "cause": "输出文件写入了错误的波段或为空值填充", "confidence": 0.4, "fix": "检查数据处理流水线，确认写入的是正确的波段" }
+      ]
+    },
+    {
+      "symptom": "high_confidence_suspicious",
+      "root_causes": [
+        { "cause": "模拟与真实数据非独立（数据泄露）", "confidence": 0.6, "fix": "确认模拟和真实 LUCC 来自不同数据源或不同时相" },
+        { "cause": "过拟合（模型在训练数据上表现极好）", "confidence": 0.3, "fix": "使用独立验证数据集评估" },
+        { "cause": "数据本身变化极小（两期数据几乎相同）", "confidence": 0.1, "fix": "检查两期 LUCC 时间间隔是否合理" }
+      ]
+    },
+    {
+      "symptom": "proj_mismatch",
+      "root_causes": [
+        { "cause": "输入文件使用了不同坐标系（如 WGS84 vs UTM）", "confidence": 0.7, "fix": "使用 GDAL Warp 统一投影后再计算" },
+        { "cause": "文件缺少投影信息", "confidence": 0.3, "fix": "用 GIS 软件为文件指定正确的投影" }
+      ]
+    }
+  ]
+}

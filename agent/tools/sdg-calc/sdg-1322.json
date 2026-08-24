@@ -1,0 +1,85 @@
+{
+  "name": "sdg-1322",
+  "category": "sdg-calc",
+  "cli_command": "geosdg-cli",
+  "cli_subcommand": "sdg-1322",
+  "description": "计算 SDG 13.2.2 碳排放达峰评估指标。比较两期 LUCC 的碳排放量，碳排放减少得 100 分，增加则按比例扣分。各地类的碳排放/碳汇系数通过 emission 参数指定。",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "init_lucc": {
+        "type": "string",
+        "format": "filepath",
+        "extensions": [
+          ".tif",
+          ".tiff"
+        ],
+        "description": "初始期 LUCC GeoTIFF 路径（GDT_Byte）",
+        "required": true
+      },
+      "curr_lucc": {
+        "type": "string",
+        "format": "filepath",
+        "extensions": [
+          ".tif",
+          ".tiff"
+        ],
+        "description": "变化期 LUCC GeoTIFF 路径（GDT_Byte）",
+        "required": true
+      },
+      "emission": {
+        "type": "string",
+        "format": "emission-map",
+        "description": "各地类碳排放系数映射，格式 type:factor,...（正值为排放源，负值为碳汇。如 1:-1,2:-20,5:5）",
+        "required": true
+      },
+      "ratio": {
+        "type": "number",
+        "description": "减排比例阈值（碳排放减少比例 ≥ 此值得 100 分）",
+        "default": 0.012,
+        "required": false
+      }
+    },
+    "required": [
+      "init_lucc",
+      "curr_lucc",
+      "emission"
+    ]
+  },
+  "returns": {
+    "type": "object",
+    "properties": {
+      "score": {
+        "type": "number",
+        "description": "归一化得分（0-100，100=碳达峰已实现/减排达标）"
+      }
+    }
+  },
+  "input_constraints": {
+    "data_type": "GDT_Byte",
+    "dimensions": "init_lucc 与 curr_lucc 行列数必须完全一致",
+    "projection": "两期数据投影坐标系必须一致",
+    "note": "C++ 层已对 emission 系数做副本保护，Agent 框架自动将输入文件拷贝到 tmp/ 并清理，用户原始数据不受影响"
+  },
+  "data_safety": {
+    "copy_inputs": "required",
+    "reason": "底层会修改 emission 系数映射（C++ 层已做 map 副本，Agent 层做文件隔离）",
+    "affected_params": ["init_lucc", "curr_lucc"]
+  },
+  "timeout_seconds": 120,
+  "output_format": "stdout: score=<val>",
+  "examples": [
+    {
+      "description": "评估长三角碳排放达峰状态（SDG 13.2.2）",
+      "params": {
+        "init_lucc": "/data/LUCC/2010.tif",
+        "curr_lucc": "/data/LUCC/2020.tif",
+        "emission": "1:-1,2:-20,3:-5,4:-0.5,5:5,6:0.3",
+        "ratio": 0.012
+      }
+    }
+  ],
+  "validation": {
+    "rules_file": "agent/validation/rules/sdg-1322.json"
+  }
+}

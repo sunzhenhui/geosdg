@@ -1,0 +1,75 @@
+# Build directories
+build/
+Build/
+*/build/
+*/Build/
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE
+.vs/
+.vscode/
+.idea/
+*.iml
+*.user
+*.suo
+
+# Compiled objects
+*.obj
+*.o
+*.lo
+*.la
+*.dll
+*.exe
+*.pdb
+*.ilk
+
+# Visual Studio
+Debug/
+Release/
+x64/
+x86/
+*.sdf
+*.opensdf
+*.tlog
+*.log
+*.idb
+*.ipch
+*.lastbuildstate
+*.unsuccessfulbuild
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CTestTestfile.cmake
+
+# AI 工具生成目录
+.codebuddy/
+.claude/
+.agents/
+
+# 生成的报告和图表产物
+reports/
+output/
+outputs/
+
+# Agent 运行时记忆
+memory/
+
+# Agent 知识库生成索引
+agent/knowledge/index/
+
+# Python 虚拟环境
+.venv/
+venv/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# macOS build artifacts
+*.dylib
+*.dSYM/
+build_mac/

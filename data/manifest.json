@@ -1,0 +1,3426 @@
+{
+  "manifest_version": "2.0",
+  "region": "demo",
+  "description": "GeoSDG Spatial Sustainability Assessment Data - Demo Region",
+  "created": "2026-07-24",
+  "datasets": {
+    "aux": {
+      "category": "auxiliary",
+      "file_count": 18,
+      "files": [
+        {
+          "file": "aux_dem_demo.tif",
+          "variable": "dem",
+          "year": "static",
+          "scenario": "static"
+        },
+        {
+          "file": "aux_density_commercial_demo.tif",
+          "variable": "density_commercial",
+          "year": "static",
+          "scenario": "static"
+        },
+        {
+          "file": "aux_density_medical_demo.tif",
+          "variable": "density_medical",
+          "year": "static",
+          "scenario": "static"
+        },
+        {
+          "file": "aux_density_parkland_demo.tif",
+          "variable": "density_parkland",
+          "year": "static",
+          "scenario": "static"
+        },
+        {
+          "file": "aux_density_shopping_demo.tif",
+          "variable": "density_shopping",
+          "year": "static",
+          "scenario": "static"
+        },
+        {
+          "file": "aux_density_transportation_demo.tif",
+          "variable": "density_transportation",
+          "year": "static",
+          "scenario": "static"
+        },
+        {
+          "file": "aux_dis_L1_demo.tif",
+          "variable": "dis_L1",
+          "year": "static",
+          "scenario": "static"
+        },
+        {
+          "file": "aux_dis_L2_demo.tif",
+          "variable": "dis_L2",
+          "year": "static",
+          "scenario": "static"
+        },
+        {
+          "file": "aux_dis_L3_demo.tif",
+          "variable": "dis_L3",
+          "year": "static",
+          "scenario": "static"
+        },
+        {
+          "file": "aux_dis_airport_demo.tif",
+          "variable": "dis_airport",
+          "year": "static",
+          "scenario": "static"
+        },
+        {
+          "file": "aux_dis_cities_demo.tif",
+          "variable": "dis_cities",
+          "year": "static",
+          "scenario": "static"
+        },
+        {
+          "file": "aux_dis_counties_demo.tif",
+          "variable": "dis_counties",
+          "year": "static",
+          "scenario": "static"
+        },
+        {
+          "file": "aux_dis_highways_demo.tif",
+          "variable": "dis_highways",
+          "year": "static",
+          "scenario": "static"
+        },
+        {
+          "file": "aux_dis_railway_station_demo.tif",
+          "variable": "dis_railway_station",
+          "year": "static",
+          "scenario": "static"
+        },
+        {
+          "file": "aux_dis_railways_demo.tif",
+          "variable": "dis_railways",
+          "year": "static",
+          "scenario": "static"
+        },
+        {
+          "file": "aux_dis_roads_demo.tif",
+          "variable": "dis_roads",
+          "year": "static",
+          "scenario": "static"
+        },
+        {
+          "file": "aux_dis_water_demo.tif",
+          "variable": "dis_water",
+          "year": "static",
+          "scenario": "static"
+        },
+        {
+          "file": "aux_slope_demo.tif",
+          "variable": "slope",
+          "year": "static",
+          "scenario": "static"
+        }
+      ]
+    },
+    "infra": {
+      "category": "infrastructure",
+      "file_count": 14,
+      "files": [
+        {
+          "file": "infra_bus_station_demo_2020.tif",
+          "year": "2020",
+          "scenario": "baseline",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2020.tif",
+          "year": "2020",
+          "scenario": "baseline",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2020.tif",
+          "year": "2020",
+          "scenario": "baseline",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_elderly_care_demo_2020.tif",
+          "year": "2020",
+          "scenario": "baseline",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_metro_demo_2020.tif",
+          "year": "2020",
+          "scenario": "baseline",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_mobile_network_demo_2020.tif",
+          "year": "2020",
+          "scenario": "baseline",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_open_public_demo_2020.tif",
+          "year": "2020",
+          "scenario": "baseline",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_preschool_demo_2020.tif",
+          "year": "2020",
+          "scenario": "baseline",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_primary_school_demo_2020.tif",
+          "year": "2020",
+          "scenario": "baseline",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_roads_demo_2020.tif",
+          "year": "2020",
+          "scenario": "baseline",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_secondary_school_demo_2020.tif",
+          "year": "2020",
+          "scenario": "baseline",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_sport_demo_2020.tif",
+          "year": "2020",
+          "scenario": "baseline",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2020.tif",
+          "year": "2020",
+          "scenario": "baseline",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_water_demo_2020.tif",
+          "year": "2020",
+          "scenario": "baseline",
+          "indicator": "water"
+        }
+      ]
+    },
+    "infra_future": {
+      "category": "infrastructure",
+      "file_count": 420,
+      "files": [
+        {
+          "file": "infra_bus_station_demo_2025_ssp1.tif",
+          "year": "2025",
+          "scenario": "ssp1",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_bus_station_demo_2025_ssp2.tif",
+          "year": "2025",
+          "scenario": "ssp2",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_bus_station_demo_2025_ssp3.tif",
+          "year": "2025",
+          "scenario": "ssp3",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_bus_station_demo_2025_ssp4.tif",
+          "year": "2025",
+          "scenario": "ssp4",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_bus_station_demo_2025_ssp5.tif",
+          "year": "2025",
+          "scenario": "ssp5",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_bus_station_demo_2030_ssp1.tif",
+          "year": "2030",
+          "scenario": "ssp1",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_bus_station_demo_2030_ssp2.tif",
+          "year": "2030",
+          "scenario": "ssp2",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_bus_station_demo_2030_ssp3.tif",
+          "year": "2030",
+          "scenario": "ssp3",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_bus_station_demo_2030_ssp4.tif",
+          "year": "2030",
+          "scenario": "ssp4",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_bus_station_demo_2030_ssp5.tif",
+          "year": "2030",
+          "scenario": "ssp5",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_bus_station_demo_2035_ssp1.tif",
+          "year": "2035",
+          "scenario": "ssp1",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_bus_station_demo_2035_ssp2.tif",
+          "year": "2035",
+          "scenario": "ssp2",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_bus_station_demo_2035_ssp3.tif",
+          "year": "2035",
+          "scenario": "ssp3",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_bus_station_demo_2035_ssp4.tif",
+          "year": "2035",
+          "scenario": "ssp4",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_bus_station_demo_2035_ssp5.tif",
+          "year": "2035",
+          "scenario": "ssp5",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_bus_station_demo_2040_ssp1.tif",
+          "year": "2040",
+          "scenario": "ssp1",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_bus_station_demo_2040_ssp2.tif",
+          "year": "2040",
+          "scenario": "ssp2",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_bus_station_demo_2040_ssp3.tif",
+          "year": "2040",
+          "scenario": "ssp3",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_bus_station_demo_2040_ssp4.tif",
+          "year": "2040",
+          "scenario": "ssp4",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_bus_station_demo_2040_ssp5.tif",
+          "year": "2040",
+          "scenario": "ssp5",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_bus_station_demo_2045_ssp1.tif",
+          "year": "2045",
+          "scenario": "ssp1",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_bus_station_demo_2045_ssp2.tif",
+          "year": "2045",
+          "scenario": "ssp2",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_bus_station_demo_2045_ssp3.tif",
+          "year": "2045",
+          "scenario": "ssp3",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_bus_station_demo_2045_ssp4.tif",
+          "year": "2045",
+          "scenario": "ssp4",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_bus_station_demo_2045_ssp5.tif",
+          "year": "2045",
+          "scenario": "ssp5",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_bus_station_demo_2050_ssp1.tif",
+          "year": "2050",
+          "scenario": "ssp1",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_bus_station_demo_2050_ssp2.tif",
+          "year": "2050",
+          "scenario": "ssp2",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_bus_station_demo_2050_ssp3.tif",
+          "year": "2050",
+          "scenario": "ssp3",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_bus_station_demo_2050_ssp4.tif",
+          "year": "2050",
+          "scenario": "ssp4",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_bus_station_demo_2050_ssp5.tif",
+          "year": "2050",
+          "scenario": "ssp5",
+          "indicator": "bus_station"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2025_ssp1.tif",
+          "year": "2025",
+          "scenario": "ssp1",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2025_ssp2.tif",
+          "year": "2025",
+          "scenario": "ssp2",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2025_ssp3.tif",
+          "year": "2025",
+          "scenario": "ssp3",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2025_ssp4.tif",
+          "year": "2025",
+          "scenario": "ssp4",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2025_ssp5.tif",
+          "year": "2025",
+          "scenario": "ssp5",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2030_ssp1.tif",
+          "year": "2030",
+          "scenario": "ssp1",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2030_ssp2.tif",
+          "year": "2030",
+          "scenario": "ssp2",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2030_ssp3.tif",
+          "year": "2030",
+          "scenario": "ssp3",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2030_ssp4.tif",
+          "year": "2030",
+          "scenario": "ssp4",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2030_ssp5.tif",
+          "year": "2030",
+          "scenario": "ssp5",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2035_ssp1.tif",
+          "year": "2035",
+          "scenario": "ssp1",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2035_ssp2.tif",
+          "year": "2035",
+          "scenario": "ssp2",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2035_ssp3.tif",
+          "year": "2035",
+          "scenario": "ssp3",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2035_ssp4.tif",
+          "year": "2035",
+          "scenario": "ssp4",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2035_ssp5.tif",
+          "year": "2035",
+          "scenario": "ssp5",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2040_ssp1.tif",
+          "year": "2040",
+          "scenario": "ssp1",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2040_ssp2.tif",
+          "year": "2040",
+          "scenario": "ssp2",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2040_ssp3.tif",
+          "year": "2040",
+          "scenario": "ssp3",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2040_ssp4.tif",
+          "year": "2040",
+          "scenario": "ssp4",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2040_ssp5.tif",
+          "year": "2040",
+          "scenario": "ssp5",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2045_ssp1.tif",
+          "year": "2045",
+          "scenario": "ssp1",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2045_ssp2.tif",
+          "year": "2045",
+          "scenario": "ssp2",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2045_ssp3.tif",
+          "year": "2045",
+          "scenario": "ssp3",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2045_ssp4.tif",
+          "year": "2045",
+          "scenario": "ssp4",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2045_ssp5.tif",
+          "year": "2045",
+          "scenario": "ssp5",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2050_ssp1.tif",
+          "year": "2050",
+          "scenario": "ssp1",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2050_ssp2.tif",
+          "year": "2050",
+          "scenario": "ssp2",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2050_ssp3.tif",
+          "year": "2050",
+          "scenario": "ssp3",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2050_ssp4.tif",
+          "year": "2050",
+          "scenario": "ssp4",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_clean_energy_facility_demo_2050_ssp5.tif",
+          "year": "2050",
+          "scenario": "ssp5",
+          "indicator": "clean_energy_facility"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2025_ssp1.tif",
+          "year": "2025",
+          "scenario": "ssp1",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2025_ssp2.tif",
+          "year": "2025",
+          "scenario": "ssp2",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2025_ssp3.tif",
+          "year": "2025",
+          "scenario": "ssp3",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2025_ssp4.tif",
+          "year": "2025",
+          "scenario": "ssp4",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2025_ssp5.tif",
+          "year": "2025",
+          "scenario": "ssp5",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2030_ssp1.tif",
+          "year": "2030",
+          "scenario": "ssp1",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2030_ssp2.tif",
+          "year": "2030",
+          "scenario": "ssp2",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2030_ssp3.tif",
+          "year": "2030",
+          "scenario": "ssp3",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2030_ssp4.tif",
+          "year": "2030",
+          "scenario": "ssp4",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2030_ssp5.tif",
+          "year": "2030",
+          "scenario": "ssp5",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2035_ssp1.tif",
+          "year": "2035",
+          "scenario": "ssp1",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2035_ssp2.tif",
+          "year": "2035",
+          "scenario": "ssp2",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2035_ssp3.tif",
+          "year": "2035",
+          "scenario": "ssp3",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2035_ssp4.tif",
+          "year": "2035",
+          "scenario": "ssp4",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2035_ssp5.tif",
+          "year": "2035",
+          "scenario": "ssp5",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2040_ssp1.tif",
+          "year": "2040",
+          "scenario": "ssp1",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2040_ssp2.tif",
+          "year": "2040",
+          "scenario": "ssp2",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2040_ssp3.tif",
+          "year": "2040",
+          "scenario": "ssp3",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2040_ssp4.tif",
+          "year": "2040",
+          "scenario": "ssp4",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2040_ssp5.tif",
+          "year": "2040",
+          "scenario": "ssp5",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2045_ssp1.tif",
+          "year": "2045",
+          "scenario": "ssp1",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2045_ssp2.tif",
+          "year": "2045",
+          "scenario": "ssp2",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2045_ssp3.tif",
+          "year": "2045",
+          "scenario": "ssp3",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2045_ssp4.tif",
+          "year": "2045",
+          "scenario": "ssp4",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2045_ssp5.tif",
+          "year": "2045",
+          "scenario": "ssp5",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2050_ssp1.tif",
+          "year": "2050",
+          "scenario": "ssp1",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2050_ssp2.tif",
+          "year": "2050",
+          "scenario": "ssp2",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2050_ssp3.tif",
+          "year": "2050",
+          "scenario": "ssp3",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2050_ssp4.tif",
+          "year": "2050",
+          "scenario": "ssp4",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_community_healthcare_demo_2050_ssp5.tif",
+          "year": "2050",
+          "scenario": "ssp5",
+          "indicator": "community_healthcare"
+        },
+        {
+          "file": "infra_elderly_care_demo_2025_ssp1.tif",
+          "year": "2025",
+          "scenario": "ssp1",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_elderly_care_demo_2025_ssp2.tif",
+          "year": "2025",
+          "scenario": "ssp2",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_elderly_care_demo_2025_ssp3.tif",
+          "year": "2025",
+          "scenario": "ssp3",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_elderly_care_demo_2025_ssp4.tif",
+          "year": "2025",
+          "scenario": "ssp4",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_elderly_care_demo_2025_ssp5.tif",
+          "year": "2025",
+          "scenario": "ssp5",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_elderly_care_demo_2030_ssp1.tif",
+          "year": "2030",
+          "scenario": "ssp1",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_elderly_care_demo_2030_ssp2.tif",
+          "year": "2030",
+          "scenario": "ssp2",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_elderly_care_demo_2030_ssp3.tif",
+          "year": "2030",
+          "scenario": "ssp3",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_elderly_care_demo_2030_ssp4.tif",
+          "year": "2030",
+          "scenario": "ssp4",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_elderly_care_demo_2030_ssp5.tif",
+          "year": "2030",
+          "scenario": "ssp5",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_elderly_care_demo_2035_ssp1.tif",
+          "year": "2035",
+          "scenario": "ssp1",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_elderly_care_demo_2035_ssp2.tif",
+          "year": "2035",
+          "scenario": "ssp2",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_elderly_care_demo_2035_ssp3.tif",
+          "year": "2035",
+          "scenario": "ssp3",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_elderly_care_demo_2035_ssp4.tif",
+          "year": "2035",
+          "scenario": "ssp4",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_elderly_care_demo_2035_ssp5.tif",
+          "year": "2035",
+          "scenario": "ssp5",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_elderly_care_demo_2040_ssp1.tif",
+          "year": "2040",
+          "scenario": "ssp1",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_elderly_care_demo_2040_ssp2.tif",
+          "year": "2040",
+          "scenario": "ssp2",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_elderly_care_demo_2040_ssp3.tif",
+          "year": "2040",
+          "scenario": "ssp3",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_elderly_care_demo_2040_ssp4.tif",
+          "year": "2040",
+          "scenario": "ssp4",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_elderly_care_demo_2040_ssp5.tif",
+          "year": "2040",
+          "scenario": "ssp5",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_elderly_care_demo_2045_ssp1.tif",
+          "year": "2045",
+          "scenario": "ssp1",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_elderly_care_demo_2045_ssp2.tif",
+          "year": "2045",
+          "scenario": "ssp2",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_elderly_care_demo_2045_ssp3.tif",
+          "year": "2045",
+          "scenario": "ssp3",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_elderly_care_demo_2045_ssp4.tif",
+          "year": "2045",
+          "scenario": "ssp4",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_elderly_care_demo_2045_ssp5.tif",
+          "year": "2045",
+          "scenario": "ssp5",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_elderly_care_demo_2050_ssp1.tif",
+          "year": "2050",
+          "scenario": "ssp1",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_elderly_care_demo_2050_ssp2.tif",
+          "year": "2050",
+          "scenario": "ssp2",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_elderly_care_demo_2050_ssp3.tif",
+          "year": "2050",
+          "scenario": "ssp3",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_elderly_care_demo_2050_ssp4.tif",
+          "year": "2050",
+          "scenario": "ssp4",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_elderly_care_demo_2050_ssp5.tif",
+          "year": "2050",
+          "scenario": "ssp5",
+          "indicator": "elderly_care"
+        },
+        {
+          "file": "infra_metro_demo_2025_ssp1.tif",
+          "year": "2025",
+          "scenario": "ssp1",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_metro_demo_2025_ssp2.tif",
+          "year": "2025",
+          "scenario": "ssp2",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_metro_demo_2025_ssp3.tif",
+          "year": "2025",
+          "scenario": "ssp3",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_metro_demo_2025_ssp4.tif",
+          "year": "2025",
+          "scenario": "ssp4",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_metro_demo_2025_ssp5.tif",
+          "year": "2025",
+          "scenario": "ssp5",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_metro_demo_2030_ssp1.tif",
+          "year": "2030",
+          "scenario": "ssp1",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_metro_demo_2030_ssp2.tif",
+          "year": "2030",
+          "scenario": "ssp2",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_metro_demo_2030_ssp3.tif",
+          "year": "2030",
+          "scenario": "ssp3",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_metro_demo_2030_ssp4.tif",
+          "year": "2030",
+          "scenario": "ssp4",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_metro_demo_2030_ssp5.tif",
+          "year": "2030",
+          "scenario": "ssp5",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_metro_demo_2035_ssp1.tif",
+          "year": "2035",
+          "scenario": "ssp1",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_metro_demo_2035_ssp2.tif",
+          "year": "2035",
+          "scenario": "ssp2",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_metro_demo_2035_ssp3.tif",
+          "year": "2035",
+          "scenario": "ssp3",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_metro_demo_2035_ssp4.tif",
+          "year": "2035",
+          "scenario": "ssp4",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_metro_demo_2035_ssp5.tif",
+          "year": "2035",
+          "scenario": "ssp5",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_metro_demo_2040_ssp1.tif",
+          "year": "2040",
+          "scenario": "ssp1",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_metro_demo_2040_ssp2.tif",
+          "year": "2040",
+          "scenario": "ssp2",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_metro_demo_2040_ssp3.tif",
+          "year": "2040",
+          "scenario": "ssp3",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_metro_demo_2040_ssp4.tif",
+          "year": "2040",
+          "scenario": "ssp4",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_metro_demo_2040_ssp5.tif",
+          "year": "2040",
+          "scenario": "ssp5",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_metro_demo_2045_ssp1.tif",
+          "year": "2045",
+          "scenario": "ssp1",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_metro_demo_2045_ssp2.tif",
+          "year": "2045",
+          "scenario": "ssp2",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_metro_demo_2045_ssp3.tif",
+          "year": "2045",
+          "scenario": "ssp3",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_metro_demo_2045_ssp4.tif",
+          "year": "2045",
+          "scenario": "ssp4",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_metro_demo_2045_ssp5.tif",
+          "year": "2045",
+          "scenario": "ssp5",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_metro_demo_2050_ssp1.tif",
+          "year": "2050",
+          "scenario": "ssp1",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_metro_demo_2050_ssp2.tif",
+          "year": "2050",
+          "scenario": "ssp2",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_metro_demo_2050_ssp3.tif",
+          "year": "2050",
+          "scenario": "ssp3",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_metro_demo_2050_ssp4.tif",
+          "year": "2050",
+          "scenario": "ssp4",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_metro_demo_2050_ssp5.tif",
+          "year": "2050",
+          "scenario": "ssp5",
+          "indicator": "metro"
+        },
+        {
+          "file": "infra_mobile_network_demo_2025_ssp1.tif",
+          "year": "2025",
+          "scenario": "ssp1",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_mobile_network_demo_2025_ssp2.tif",
+          "year": "2025",
+          "scenario": "ssp2",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_mobile_network_demo_2025_ssp3.tif",
+          "year": "2025",
+          "scenario": "ssp3",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_mobile_network_demo_2025_ssp4.tif",
+          "year": "2025",
+          "scenario": "ssp4",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_mobile_network_demo_2025_ssp5.tif",
+          "year": "2025",
+          "scenario": "ssp5",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_mobile_network_demo_2030_ssp1.tif",
+          "year": "2030",
+          "scenario": "ssp1",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_mobile_network_demo_2030_ssp2.tif",
+          "year": "2030",
+          "scenario": "ssp2",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_mobile_network_demo_2030_ssp3.tif",
+          "year": "2030",
+          "scenario": "ssp3",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_mobile_network_demo_2030_ssp4.tif",
+          "year": "2030",
+          "scenario": "ssp4",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_mobile_network_demo_2030_ssp5.tif",
+          "year": "2030",
+          "scenario": "ssp5",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_mobile_network_demo_2035_ssp1.tif",
+          "year": "2035",
+          "scenario": "ssp1",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_mobile_network_demo_2035_ssp2.tif",
+          "year": "2035",
+          "scenario": "ssp2",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_mobile_network_demo_2035_ssp3.tif",
+          "year": "2035",
+          "scenario": "ssp3",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_mobile_network_demo_2035_ssp4.tif",
+          "year": "2035",
+          "scenario": "ssp4",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_mobile_network_demo_2035_ssp5.tif",
+          "year": "2035",
+          "scenario": "ssp5",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_mobile_network_demo_2040_ssp1.tif",
+          "year": "2040",
+          "scenario": "ssp1",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_mobile_network_demo_2040_ssp2.tif",
+          "year": "2040",
+          "scenario": "ssp2",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_mobile_network_demo_2040_ssp3.tif",
+          "year": "2040",
+          "scenario": "ssp3",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_mobile_network_demo_2040_ssp4.tif",
+          "year": "2040",
+          "scenario": "ssp4",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_mobile_network_demo_2040_ssp5.tif",
+          "year": "2040",
+          "scenario": "ssp5",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_mobile_network_demo_2045_ssp1.tif",
+          "year": "2045",
+          "scenario": "ssp1",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_mobile_network_demo_2045_ssp2.tif",
+          "year": "2045",
+          "scenario": "ssp2",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_mobile_network_demo_2045_ssp3.tif",
+          "year": "2045",
+          "scenario": "ssp3",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_mobile_network_demo_2045_ssp4.tif",
+          "year": "2045",
+          "scenario": "ssp4",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_mobile_network_demo_2045_ssp5.tif",
+          "year": "2045",
+          "scenario": "ssp5",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_mobile_network_demo_2050_ssp1.tif",
+          "year": "2050",
+          "scenario": "ssp1",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_mobile_network_demo_2050_ssp2.tif",
+          "year": "2050",
+          "scenario": "ssp2",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_mobile_network_demo_2050_ssp3.tif",
+          "year": "2050",
+          "scenario": "ssp3",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_mobile_network_demo_2050_ssp4.tif",
+          "year": "2050",
+          "scenario": "ssp4",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_mobile_network_demo_2050_ssp5.tif",
+          "year": "2050",
+          "scenario": "ssp5",
+          "indicator": "mobile_network"
+        },
+        {
+          "file": "infra_open_public_demo_2025_ssp1.tif",
+          "year": "2025",
+          "scenario": "ssp1",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_open_public_demo_2025_ssp2.tif",
+          "year": "2025",
+          "scenario": "ssp2",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_open_public_demo_2025_ssp3.tif",
+          "year": "2025",
+          "scenario": "ssp3",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_open_public_demo_2025_ssp4.tif",
+          "year": "2025",
+          "scenario": "ssp4",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_open_public_demo_2025_ssp5.tif",
+          "year": "2025",
+          "scenario": "ssp5",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_open_public_demo_2030_ssp1.tif",
+          "year": "2030",
+          "scenario": "ssp1",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_open_public_demo_2030_ssp2.tif",
+          "year": "2030",
+          "scenario": "ssp2",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_open_public_demo_2030_ssp3.tif",
+          "year": "2030",
+          "scenario": "ssp3",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_open_public_demo_2030_ssp4.tif",
+          "year": "2030",
+          "scenario": "ssp4",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_open_public_demo_2030_ssp5.tif",
+          "year": "2030",
+          "scenario": "ssp5",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_open_public_demo_2035_ssp1.tif",
+          "year": "2035",
+          "scenario": "ssp1",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_open_public_demo_2035_ssp2.tif",
+          "year": "2035",
+          "scenario": "ssp2",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_open_public_demo_2035_ssp3.tif",
+          "year": "2035",
+          "scenario": "ssp3",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_open_public_demo_2035_ssp4.tif",
+          "year": "2035",
+          "scenario": "ssp4",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_open_public_demo_2035_ssp5.tif",
+          "year": "2035",
+          "scenario": "ssp5",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_open_public_demo_2040_ssp1.tif",
+          "year": "2040",
+          "scenario": "ssp1",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_open_public_demo_2040_ssp2.tif",
+          "year": "2040",
+          "scenario": "ssp2",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_open_public_demo_2040_ssp3.tif",
+          "year": "2040",
+          "scenario": "ssp3",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_open_public_demo_2040_ssp4.tif",
+          "year": "2040",
+          "scenario": "ssp4",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_open_public_demo_2040_ssp5.tif",
+          "year": "2040",
+          "scenario": "ssp5",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_open_public_demo_2045_ssp1.tif",
+          "year": "2045",
+          "scenario": "ssp1",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_open_public_demo_2045_ssp2.tif",
+          "year": "2045",
+          "scenario": "ssp2",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_open_public_demo_2045_ssp3.tif",
+          "year": "2045",
+          "scenario": "ssp3",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_open_public_demo_2045_ssp4.tif",
+          "year": "2045",
+          "scenario": "ssp4",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_open_public_demo_2045_ssp5.tif",
+          "year": "2045",
+          "scenario": "ssp5",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_open_public_demo_2050_ssp1.tif",
+          "year": "2050",
+          "scenario": "ssp1",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_open_public_demo_2050_ssp2.tif",
+          "year": "2050",
+          "scenario": "ssp2",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_open_public_demo_2050_ssp3.tif",
+          "year": "2050",
+          "scenario": "ssp3",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_open_public_demo_2050_ssp4.tif",
+          "year": "2050",
+          "scenario": "ssp4",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_open_public_demo_2050_ssp5.tif",
+          "year": "2050",
+          "scenario": "ssp5",
+          "indicator": "open_public"
+        },
+        {
+          "file": "infra_preschool_demo_2025_ssp1.tif",
+          "year": "2025",
+          "scenario": "ssp1",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_preschool_demo_2025_ssp2.tif",
+          "year": "2025",
+          "scenario": "ssp2",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_preschool_demo_2025_ssp3.tif",
+          "year": "2025",
+          "scenario": "ssp3",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_preschool_demo_2025_ssp4.tif",
+          "year": "2025",
+          "scenario": "ssp4",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_preschool_demo_2025_ssp5.tif",
+          "year": "2025",
+          "scenario": "ssp5",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_preschool_demo_2030_ssp1.tif",
+          "year": "2030",
+          "scenario": "ssp1",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_preschool_demo_2030_ssp2.tif",
+          "year": "2030",
+          "scenario": "ssp2",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_preschool_demo_2030_ssp3.tif",
+          "year": "2030",
+          "scenario": "ssp3",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_preschool_demo_2030_ssp4.tif",
+          "year": "2030",
+          "scenario": "ssp4",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_preschool_demo_2030_ssp5.tif",
+          "year": "2030",
+          "scenario": "ssp5",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_preschool_demo_2035_ssp1.tif",
+          "year": "2035",
+          "scenario": "ssp1",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_preschool_demo_2035_ssp2.tif",
+          "year": "2035",
+          "scenario": "ssp2",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_preschool_demo_2035_ssp3.tif",
+          "year": "2035",
+          "scenario": "ssp3",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_preschool_demo_2035_ssp4.tif",
+          "year": "2035",
+          "scenario": "ssp4",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_preschool_demo_2035_ssp5.tif",
+          "year": "2035",
+          "scenario": "ssp5",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_preschool_demo_2040_ssp1.tif",
+          "year": "2040",
+          "scenario": "ssp1",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_preschool_demo_2040_ssp2.tif",
+          "year": "2040",
+          "scenario": "ssp2",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_preschool_demo_2040_ssp3.tif",
+          "year": "2040",
+          "scenario": "ssp3",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_preschool_demo_2040_ssp4.tif",
+          "year": "2040",
+          "scenario": "ssp4",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_preschool_demo_2040_ssp5.tif",
+          "year": "2040",
+          "scenario": "ssp5",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_preschool_demo_2045_ssp1.tif",
+          "year": "2045",
+          "scenario": "ssp1",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_preschool_demo_2045_ssp2.tif",
+          "year": "2045",
+          "scenario": "ssp2",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_preschool_demo_2045_ssp3.tif",
+          "year": "2045",
+          "scenario": "ssp3",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_preschool_demo_2045_ssp4.tif",
+          "year": "2045",
+          "scenario": "ssp4",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_preschool_demo_2045_ssp5.tif",
+          "year": "2045",
+          "scenario": "ssp5",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_preschool_demo_2050_ssp1.tif",
+          "year": "2050",
+          "scenario": "ssp1",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_preschool_demo_2050_ssp2.tif",
+          "year": "2050",
+          "scenario": "ssp2",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_preschool_demo_2050_ssp3.tif",
+          "year": "2050",
+          "scenario": "ssp3",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_preschool_demo_2050_ssp4.tif",
+          "year": "2050",
+          "scenario": "ssp4",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_preschool_demo_2050_ssp5.tif",
+          "year": "2050",
+          "scenario": "ssp5",
+          "indicator": "preschool"
+        },
+        {
+          "file": "infra_primary_school_demo_2025_ssp1.tif",
+          "year": "2025",
+          "scenario": "ssp1",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_primary_school_demo_2025_ssp2.tif",
+          "year": "2025",
+          "scenario": "ssp2",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_primary_school_demo_2025_ssp3.tif",
+          "year": "2025",
+          "scenario": "ssp3",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_primary_school_demo_2025_ssp4.tif",
+          "year": "2025",
+          "scenario": "ssp4",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_primary_school_demo_2025_ssp5.tif",
+          "year": "2025",
+          "scenario": "ssp5",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_primary_school_demo_2030_ssp1.tif",
+          "year": "2030",
+          "scenario": "ssp1",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_primary_school_demo_2030_ssp2.tif",
+          "year": "2030",
+          "scenario": "ssp2",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_primary_school_demo_2030_ssp3.tif",
+          "year": "2030",
+          "scenario": "ssp3",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_primary_school_demo_2030_ssp4.tif",
+          "year": "2030",
+          "scenario": "ssp4",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_primary_school_demo_2030_ssp5.tif",
+          "year": "2030",
+          "scenario": "ssp5",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_primary_school_demo_2035_ssp1.tif",
+          "year": "2035",
+          "scenario": "ssp1",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_primary_school_demo_2035_ssp2.tif",
+          "year": "2035",
+          "scenario": "ssp2",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_primary_school_demo_2035_ssp3.tif",
+          "year": "2035",
+          "scenario": "ssp3",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_primary_school_demo_2035_ssp4.tif",
+          "year": "2035",
+          "scenario": "ssp4",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_primary_school_demo_2035_ssp5.tif",
+          "year": "2035",
+          "scenario": "ssp5",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_primary_school_demo_2040_ssp1.tif",
+          "year": "2040",
+          "scenario": "ssp1",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_primary_school_demo_2040_ssp2.tif",
+          "year": "2040",
+          "scenario": "ssp2",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_primary_school_demo_2040_ssp3.tif",
+          "year": "2040",
+          "scenario": "ssp3",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_primary_school_demo_2040_ssp4.tif",
+          "year": "2040",
+          "scenario": "ssp4",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_primary_school_demo_2040_ssp5.tif",
+          "year": "2040",
+          "scenario": "ssp5",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_primary_school_demo_2045_ssp1.tif",
+          "year": "2045",
+          "scenario": "ssp1",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_primary_school_demo_2045_ssp2.tif",
+          "year": "2045",
+          "scenario": "ssp2",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_primary_school_demo_2045_ssp3.tif",
+          "year": "2045",
+          "scenario": "ssp3",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_primary_school_demo_2045_ssp4.tif",
+          "year": "2045",
+          "scenario": "ssp4",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_primary_school_demo_2045_ssp5.tif",
+          "year": "2045",
+          "scenario": "ssp5",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_primary_school_demo_2050_ssp1.tif",
+          "year": "2050",
+          "scenario": "ssp1",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_primary_school_demo_2050_ssp2.tif",
+          "year": "2050",
+          "scenario": "ssp2",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_primary_school_demo_2050_ssp3.tif",
+          "year": "2050",
+          "scenario": "ssp3",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_primary_school_demo_2050_ssp4.tif",
+          "year": "2050",
+          "scenario": "ssp4",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_primary_school_demo_2050_ssp5.tif",
+          "year": "2050",
+          "scenario": "ssp5",
+          "indicator": "primary_school"
+        },
+        {
+          "file": "infra_roads_demo_2025_ssp1.tif",
+          "year": "2025",
+          "scenario": "ssp1",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_roads_demo_2025_ssp2.tif",
+          "year": "2025",
+          "scenario": "ssp2",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_roads_demo_2025_ssp3.tif",
+          "year": "2025",
+          "scenario": "ssp3",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_roads_demo_2025_ssp4.tif",
+          "year": "2025",
+          "scenario": "ssp4",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_roads_demo_2025_ssp5.tif",
+          "year": "2025",
+          "scenario": "ssp5",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_roads_demo_2030_ssp1.tif",
+          "year": "2030",
+          "scenario": "ssp1",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_roads_demo_2030_ssp2.tif",
+          "year": "2030",
+          "scenario": "ssp2",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_roads_demo_2030_ssp3.tif",
+          "year": "2030",
+          "scenario": "ssp3",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_roads_demo_2030_ssp4.tif",
+          "year": "2030",
+          "scenario": "ssp4",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_roads_demo_2030_ssp5.tif",
+          "year": "2030",
+          "scenario": "ssp5",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_roads_demo_2035_ssp1.tif",
+          "year": "2035",
+          "scenario": "ssp1",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_roads_demo_2035_ssp2.tif",
+          "year": "2035",
+          "scenario": "ssp2",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_roads_demo_2035_ssp3.tif",
+          "year": "2035",
+          "scenario": "ssp3",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_roads_demo_2035_ssp4.tif",
+          "year": "2035",
+          "scenario": "ssp4",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_roads_demo_2035_ssp5.tif",
+          "year": "2035",
+          "scenario": "ssp5",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_roads_demo_2040_ssp1.tif",
+          "year": "2040",
+          "scenario": "ssp1",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_roads_demo_2040_ssp2.tif",
+          "year": "2040",
+          "scenario": "ssp2",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_roads_demo_2040_ssp3.tif",
+          "year": "2040",
+          "scenario": "ssp3",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_roads_demo_2040_ssp4.tif",
+          "year": "2040",
+          "scenario": "ssp4",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_roads_demo_2040_ssp5.tif",
+          "year": "2040",
+          "scenario": "ssp5",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_roads_demo_2045_ssp1.tif",
+          "year": "2045",
+          "scenario": "ssp1",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_roads_demo_2045_ssp2.tif",
+          "year": "2045",
+          "scenario": "ssp2",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_roads_demo_2045_ssp3.tif",
+          "year": "2045",
+          "scenario": "ssp3",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_roads_demo_2045_ssp4.tif",
+          "year": "2045",
+          "scenario": "ssp4",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_roads_demo_2045_ssp5.tif",
+          "year": "2045",
+          "scenario": "ssp5",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_roads_demo_2050_ssp1.tif",
+          "year": "2050",
+          "scenario": "ssp1",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_roads_demo_2050_ssp2.tif",
+          "year": "2050",
+          "scenario": "ssp2",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_roads_demo_2050_ssp3.tif",
+          "year": "2050",
+          "scenario": "ssp3",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_roads_demo_2050_ssp4.tif",
+          "year": "2050",
+          "scenario": "ssp4",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_roads_demo_2050_ssp5.tif",
+          "year": "2050",
+          "scenario": "ssp5",
+          "indicator": "roads"
+        },
+        {
+          "file": "infra_secondary_school_demo_2025_ssp1.tif",
+          "year": "2025",
+          "scenario": "ssp1",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_secondary_school_demo_2025_ssp2.tif",
+          "year": "2025",
+          "scenario": "ssp2",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_secondary_school_demo_2025_ssp3.tif",
+          "year": "2025",
+          "scenario": "ssp3",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_secondary_school_demo_2025_ssp4.tif",
+          "year": "2025",
+          "scenario": "ssp4",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_secondary_school_demo_2025_ssp5.tif",
+          "year": "2025",
+          "scenario": "ssp5",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_secondary_school_demo_2030_ssp1.tif",
+          "year": "2030",
+          "scenario": "ssp1",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_secondary_school_demo_2030_ssp2.tif",
+          "year": "2030",
+          "scenario": "ssp2",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_secondary_school_demo_2030_ssp3.tif",
+          "year": "2030",
+          "scenario": "ssp3",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_secondary_school_demo_2030_ssp4.tif",
+          "year": "2030",
+          "scenario": "ssp4",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_secondary_school_demo_2030_ssp5.tif",
+          "year": "2030",
+          "scenario": "ssp5",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_secondary_school_demo_2035_ssp1.tif",
+          "year": "2035",
+          "scenario": "ssp1",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_secondary_school_demo_2035_ssp2.tif",
+          "year": "2035",
+          "scenario": "ssp2",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_secondary_school_demo_2035_ssp3.tif",
+          "year": "2035",
+          "scenario": "ssp3",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_secondary_school_demo_2035_ssp4.tif",
+          "year": "2035",
+          "scenario": "ssp4",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_secondary_school_demo_2035_ssp5.tif",
+          "year": "2035",
+          "scenario": "ssp5",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_secondary_school_demo_2040_ssp1.tif",
+          "year": "2040",
+          "scenario": "ssp1",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_secondary_school_demo_2040_ssp2.tif",
+          "year": "2040",
+          "scenario": "ssp2",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_secondary_school_demo_2040_ssp3.tif",
+          "year": "2040",
+          "scenario": "ssp3",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_secondary_school_demo_2040_ssp4.tif",
+          "year": "2040",
+          "scenario": "ssp4",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_secondary_school_demo_2040_ssp5.tif",
+          "year": "2040",
+          "scenario": "ssp5",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_secondary_school_demo_2045_ssp1.tif",
+          "year": "2045",
+          "scenario": "ssp1",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_secondary_school_demo_2045_ssp2.tif",
+          "year": "2045",
+          "scenario": "ssp2",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_secondary_school_demo_2045_ssp3.tif",
+          "year": "2045",
+          "scenario": "ssp3",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_secondary_school_demo_2045_ssp4.tif",
+          "year": "2045",
+          "scenario": "ssp4",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_secondary_school_demo_2045_ssp5.tif",
+          "year": "2045",
+          "scenario": "ssp5",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_secondary_school_demo_2050_ssp1.tif",
+          "year": "2050",
+          "scenario": "ssp1",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_secondary_school_demo_2050_ssp2.tif",
+          "year": "2050",
+          "scenario": "ssp2",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_secondary_school_demo_2050_ssp3.tif",
+          "year": "2050",
+          "scenario": "ssp3",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_secondary_school_demo_2050_ssp4.tif",
+          "year": "2050",
+          "scenario": "ssp4",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_secondary_school_demo_2050_ssp5.tif",
+          "year": "2050",
+          "scenario": "ssp5",
+          "indicator": "secondary_school"
+        },
+        {
+          "file": "infra_sport_demo_2025_ssp1.tif",
+          "year": "2025",
+          "scenario": "ssp1",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_sport_demo_2025_ssp2.tif",
+          "year": "2025",
+          "scenario": "ssp2",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_sport_demo_2025_ssp3.tif",
+          "year": "2025",
+          "scenario": "ssp3",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_sport_demo_2025_ssp4.tif",
+          "year": "2025",
+          "scenario": "ssp4",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_sport_demo_2025_ssp5.tif",
+          "year": "2025",
+          "scenario": "ssp5",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_sport_demo_2030_ssp1.tif",
+          "year": "2030",
+          "scenario": "ssp1",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_sport_demo_2030_ssp2.tif",
+          "year": "2030",
+          "scenario": "ssp2",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_sport_demo_2030_ssp3.tif",
+          "year": "2030",
+          "scenario": "ssp3",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_sport_demo_2030_ssp4.tif",
+          "year": "2030",
+          "scenario": "ssp4",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_sport_demo_2030_ssp5.tif",
+          "year": "2030",
+          "scenario": "ssp5",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_sport_demo_2035_ssp1.tif",
+          "year": "2035",
+          "scenario": "ssp1",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_sport_demo_2035_ssp2.tif",
+          "year": "2035",
+          "scenario": "ssp2",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_sport_demo_2035_ssp3.tif",
+          "year": "2035",
+          "scenario": "ssp3",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_sport_demo_2035_ssp4.tif",
+          "year": "2035",
+          "scenario": "ssp4",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_sport_demo_2035_ssp5.tif",
+          "year": "2035",
+          "scenario": "ssp5",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_sport_demo_2040_ssp1.tif",
+          "year": "2040",
+          "scenario": "ssp1",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_sport_demo_2040_ssp2.tif",
+          "year": "2040",
+          "scenario": "ssp2",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_sport_demo_2040_ssp3.tif",
+          "year": "2040",
+          "scenario": "ssp3",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_sport_demo_2040_ssp4.tif",
+          "year": "2040",
+          "scenario": "ssp4",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_sport_demo_2040_ssp5.tif",
+          "year": "2040",
+          "scenario": "ssp5",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_sport_demo_2045_ssp1.tif",
+          "year": "2045",
+          "scenario": "ssp1",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_sport_demo_2045_ssp2.tif",
+          "year": "2045",
+          "scenario": "ssp2",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_sport_demo_2045_ssp3.tif",
+          "year": "2045",
+          "scenario": "ssp3",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_sport_demo_2045_ssp4.tif",
+          "year": "2045",
+          "scenario": "ssp4",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_sport_demo_2045_ssp5.tif",
+          "year": "2045",
+          "scenario": "ssp5",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_sport_demo_2050_ssp1.tif",
+          "year": "2050",
+          "scenario": "ssp1",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_sport_demo_2050_ssp2.tif",
+          "year": "2050",
+          "scenario": "ssp2",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_sport_demo_2050_ssp3.tif",
+          "year": "2050",
+          "scenario": "ssp3",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_sport_demo_2050_ssp4.tif",
+          "year": "2050",
+          "scenario": "ssp4",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_sport_demo_2050_ssp5.tif",
+          "year": "2050",
+          "scenario": "ssp5",
+          "indicator": "sport"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2025_ssp1.tif",
+          "year": "2025",
+          "scenario": "ssp1",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2025_ssp2.tif",
+          "year": "2025",
+          "scenario": "ssp2",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2025_ssp3.tif",
+          "year": "2025",
+          "scenario": "ssp3",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2025_ssp4.tif",
+          "year": "2025",
+          "scenario": "ssp4",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2025_ssp5.tif",
+          "year": "2025",
+          "scenario": "ssp5",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2030_ssp1.tif",
+          "year": "2030",
+          "scenario": "ssp1",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2030_ssp2.tif",
+          "year": "2030",
+          "scenario": "ssp2",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2030_ssp3.tif",
+          "year": "2030",
+          "scenario": "ssp3",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2030_ssp4.tif",
+          "year": "2030",
+          "scenario": "ssp4",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2030_ssp5.tif",
+          "year": "2030",
+          "scenario": "ssp5",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2035_ssp1.tif",
+          "year": "2035",
+          "scenario": "ssp1",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2035_ssp2.tif",
+          "year": "2035",
+          "scenario": "ssp2",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2035_ssp3.tif",
+          "year": "2035",
+          "scenario": "ssp3",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2035_ssp4.tif",
+          "year": "2035",
+          "scenario": "ssp4",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2035_ssp5.tif",
+          "year": "2035",
+          "scenario": "ssp5",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2040_ssp1.tif",
+          "year": "2040",
+          "scenario": "ssp1",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2040_ssp2.tif",
+          "year": "2040",
+          "scenario": "ssp2",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2040_ssp3.tif",
+          "year": "2040",
+          "scenario": "ssp3",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2040_ssp4.tif",
+          "year": "2040",
+          "scenario": "ssp4",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2040_ssp5.tif",
+          "year": "2040",
+          "scenario": "ssp5",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2045_ssp1.tif",
+          "year": "2045",
+          "scenario": "ssp1",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2045_ssp2.tif",
+          "year": "2045",
+          "scenario": "ssp2",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2045_ssp3.tif",
+          "year": "2045",
+          "scenario": "ssp3",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2045_ssp4.tif",
+          "year": "2045",
+          "scenario": "ssp4",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2045_ssp5.tif",
+          "year": "2045",
+          "scenario": "ssp5",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2050_ssp1.tif",
+          "year": "2050",
+          "scenario": "ssp1",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2050_ssp2.tif",
+          "year": "2050",
+          "scenario": "ssp2",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2050_ssp3.tif",
+          "year": "2050",
+          "scenario": "ssp3",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2050_ssp4.tif",
+          "year": "2050",
+          "scenario": "ssp4",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_tiered_hospital_demo_2050_ssp5.tif",
+          "year": "2050",
+          "scenario": "ssp5",
+          "indicator": "tiered_hospital"
+        },
+        {
+          "file": "infra_water_demo_2025_ssp1.tif",
+          "year": "2025",
+          "scenario": "ssp1",
+          "indicator": "water"
+        },
+        {
+          "file": "infra_water_demo_2025_ssp2.tif",
+          "year": "2025",
+          "scenario": "ssp2",
+          "indicator": "water"
+        },
+        {
+          "file": "infra_water_demo_2025_ssp3.tif",
+          "year": "2025",
+          "scenario": "ssp3",
+          "indicator": "water"
+        },
+        {
+          "file": "infra_water_demo_2025_ssp4.tif",
+          "year": "2025",
+          "scenario": "ssp4",
+          "indicator": "water"
+        },
+        {
+          "file": "infra_water_demo_2025_ssp5.tif",
+          "year": "2025",
+          "scenario": "ssp5",
+          "indicator": "water"
+        },
+        {
+          "file": "infra_water_demo_2030_ssp1.tif",
+          "year": "2030",
+          "scenario": "ssp1",
+          "indicator": "water"
+        },
+        {
+          "file": "infra_water_demo_2030_ssp2.tif",
+          "year": "2030",
+          "scenario": "ssp2",
+          "indicator": "water"
+        },
+        {
+          "file": "infra_water_demo_2030_ssp3.tif",
+          "year": "2030",
+          "scenario": "ssp3",
+          "indicator": "water"
+        },
+        {
+          "file": "infra_water_demo_2030_ssp4.tif",
+          "year": "2030",
+          "scenario": "ssp4",
+          "indicator": "water"
+        },
+        {
+          "file": "infra_water_demo_2030_ssp5.tif",
+          "year": "2030",
+          "scenario": "ssp5",
+          "indicator": "water"
+        },
+        {
+          "file": "infra_water_demo_2035_ssp1.tif",
+          "year": "2035",
+          "scenario": "ssp1",
+          "indicator": "water"
+        },
+        {
+          "file": "infra_water_demo_2035_ssp2.tif",
+          "year": "2035",
+          "scenario": "ssp2",
+          "indicator": "water"
+        },
+        {
+          "file": "infra_water_demo_2035_ssp3.tif",
+          "year": "2035",
+          "scenario": "ssp3",
+          "indicator": "water"
+        },
+        {
+          "file": "infra_water_demo_2035_ssp4.tif",
+          "year": "2035",
+          "scenario": "ssp4",
+          "indicator": "water"
+        },
+        {
+          "file": "infra_water_demo_2035_ssp5.tif",
+          "year": "2035",
+          "scenario": "ssp5",
+          "indicator": "water"
+        },
+        {
+          "file": "infra_water_demo_2040_ssp1.tif",
+          "year": "2040",
+          "scenario": "ssp1",
+          "indicator": "water"
+        },
+        {
+          "file": "infra_water_demo_2040_ssp2.tif",
+          "year": "2040",
+          "scenario": "ssp2",
+          "indicator": "water"
+        },
+        {
+          "file": "infra_water_demo_2040_ssp3.tif",
+          "year": "2040",
+          "scenario": "ssp3",
+          "indicator": "water"
+        },
+        {
+          "file": "infra_water_demo_2040_ssp4.tif",
+          "year": "2040",
+          "scenario": "ssp4",
+          "indicator": "water"
+        },
+        {
+          "file": "infra_water_demo_2040_ssp5.tif",
+          "year": "2040",
+          "scenario": "ssp5",
+          "indicator": "water"
+        },
+        {
+          "file": "infra_water_demo_2045_ssp1.tif",
+          "year": "2045",
+          "scenario": "ssp1",
+          "indicator": "water"
+        },
+        {
+          "file": "infra_water_demo_2045_ssp2.tif",
+          "year": "2045",
+          "scenario": "ssp2",
+          "indicator": "water"
+        },
+        {
+          "file": "infra_water_demo_2045_ssp3.tif",
+          "year": "2045",
+          "scenario": "ssp3",
+          "indicator": "water"
+        },
+        {
+          "file": "infra_water_demo_2045_ssp4.tif",
+          "year": "2045",
+          "scenario": "ssp4",
+          "indicator": "water"
+        },
+        {
+          "file": "infra_water_demo_2045_ssp5.tif",
+          "year": "2045",
+          "scenario": "ssp5",
+          "indicator": "water"
+        },
+        {
+          "file": "infra_water_demo_2050_ssp1.tif",
+          "year": "2050",
+          "scenario": "ssp1",
+          "indicator": "water"
+        },
+        {
+          "file": "infra_water_demo_2050_ssp2.tif",
+          "year": "2050",
+          "scenario": "ssp2",
+          "indicator": "water"
+        },
+        {
+          "file": "infra_water_demo_2050_ssp3.tif",
+          "year": "2050",
+          "scenario": "ssp3",
+          "indicator": "water"
+        },
+        {
+          "file": "infra_water_demo_2050_ssp4.tif",
+          "year": "2050",
+          "scenario": "ssp4",
+          "indicator": "water"
+        },
+        {
+          "file": "infra_water_demo_2050_ssp5.tif",
+          "year": "2050",
+          "scenario": "ssp5",
+          "indicator": "water"
+        }
+      ]
+    },
+    "lucc": {
+      "category": "landuse",
+      "file_count": 3,
+      "files": [
+        {
+          "file": "lucc_demo_2010.tif",
+          "year": "2010",
+          "scenario": "baseline"
+        },
+        {
+          "file": "lucc_demo_2020.tif",
+          "year": "2020",
+          "scenario": "baseline"
+        },
+        {
+          "file": "lucc_demo_2020_sim.tif",
+          "year": "2020",
+          "scenario": "simulated_baseline"
+        }
+      ]
+    },
+    "lucc_future": {
+      "category": "landuse",
+      "file_count": 30,
+      "files": [
+        {
+          "file": "lucc_demo_2025_ssp1.tif",
+          "year": "2025",
+          "scenario": "ssp1"
+        },
+        {
+          "file": "lucc_demo_2025_ssp2.tif",
+          "year": "2025",
+          "scenario": "ssp2"
+        },
+        {
+          "file": "lucc_demo_2025_ssp3.tif",
+          "year": "2025",
+          "scenario": "ssp3"
+        },
+        {
+          "file": "lucc_demo_2025_ssp4.tif",
+          "year": "2025",
+          "scenario": "ssp4"
+        },
+        {
+          "file": "lucc_demo_2025_ssp5.tif",
+          "year": "2025",
+          "scenario": "ssp5"
+        },
+        {
+          "file": "lucc_demo_2030_ssp1.tif",
+          "year": "2030",
+          "scenario": "ssp1"
+        },
+        {
+          "file": "lucc_demo_2030_ssp2.tif",
+          "year": "2030",
+          "scenario": "ssp2"
+        },
+        {
+          "file": "lucc_demo_2030_ssp3.tif",
+          "year": "2030",
+          "scenario": "ssp3"
+        },
+        {
+          "file": "lucc_demo_2030_ssp4.tif",
+          "year": "2030",
+          "scenario": "ssp4"
+        },
+        {
+          "file": "lucc_demo_2030_ssp5.tif",
+          "year": "2030",
+          "scenario": "ssp5"
+        },
+        {
+          "file": "lucc_demo_2035_ssp1.tif",
+          "year": "2035",
+          "scenario": "ssp1"
+        },
+        {
+          "file": "lucc_demo_2035_ssp2.tif",
+          "year": "2035",
+          "scenario": "ssp2"
+        },
+        {
+          "file": "lucc_demo_2035_ssp3.tif",
+          "year": "2035",
+          "scenario": "ssp3"
+        },
+        {
+          "file": "lucc_demo_2035_ssp4.tif",
+          "year": "2035",
+          "scenario": "ssp4"
+        },
+        {
+          "file": "lucc_demo_2035_ssp5.tif",
+          "year": "2035",
+          "scenario": "ssp5"
+        },
+        {
+          "file": "lucc_demo_2040_ssp1.tif",
+          "year": "2040",
+          "scenario": "ssp1"
+        },
+        {
+          "file": "lucc_demo_2040_ssp2.tif",
+          "year": "2040",
+          "scenario": "ssp2"
+        },
+        {
+          "file": "lucc_demo_2040_ssp3.tif",
+          "year": "2040",
+          "scenario": "ssp3"
+        },
+        {
+          "file": "lucc_demo_2040_ssp4.tif",
+          "year": "2040",
+          "scenario": "ssp4"
+        },
+        {
+          "file": "lucc_demo_2040_ssp5.tif",
+          "year": "2040",
+          "scenario": "ssp5"
+        },
+        {
+          "file": "lucc_demo_2045_ssp1.tif",
+          "year": "2045",
+          "scenario": "ssp1"
+        },
+        {
+          "file": "lucc_demo_2045_ssp2.tif",
+          "year": "2045",
+          "scenario": "ssp2"
+        },
+        {
+          "file": "lucc_demo_2045_ssp3.tif",
+          "year": "2045",
+          "scenario": "ssp3"
+        },
+        {
+          "file": "lucc_demo_2045_ssp4.tif",
+          "year": "2045",
+          "scenario": "ssp4"
+        },
+        {
+          "file": "lucc_demo_2045_ssp5.tif",
+          "year": "2045",
+          "scenario": "ssp5"
+        },
+        {
+          "file": "lucc_demo_2050_ssp1.tif",
+          "year": "2050",
+          "scenario": "ssp1"
+        },
+        {
+          "file": "lucc_demo_2050_ssp2.tif",
+          "year": "2050",
+          "scenario": "ssp2"
+        },
+        {
+          "file": "lucc_demo_2050_ssp3.tif",
+          "year": "2050",
+          "scenario": "ssp3"
+        },
+        {
+          "file": "lucc_demo_2050_ssp4.tif",
+          "year": "2050",
+          "scenario": "ssp4"
+        },
+        {
+          "file": "lucc_demo_2050_ssp5.tif",
+          "year": "2050",
+          "scenario": "ssp5"
+        }
+      ]
+    },
+    "pop": {
+      "category": "population",
+      "file_count": 2,
+      "files": [
+        {
+          "file": "pop_demo_2010.tif",
+          "year": "2010",
+          "scenario": "baseline"
+        },
+        {
+          "file": "pop_demo_2020.tif",
+          "year": "2020",
+          "scenario": "baseline"
+        }
+      ]
+    },
+    "pop_future": {
+      "category": "population",
+      "file_count": 30,
+      "files": [
+        {
+          "file": "pop_demo_2025_ssp1.tif",
+          "year": "2025",
+          "scenario": "ssp1"
+        },
+        {
+          "file": "pop_demo_2025_ssp2.tif",
+          "year": "2025",
+          "scenario": "ssp2"
+        },
+        {
+          "file": "pop_demo_2025_ssp3.tif",
+          "year": "2025",
+          "scenario": "ssp3"
+        },
+        {
+          "file": "pop_demo_2025_ssp4.tif",
+          "year": "2025",
+          "scenario": "ssp4"
+        },
+        {
+          "file": "pop_demo_2025_ssp5.tif",
+          "year": "2025",
+          "scenario": "ssp5"
+        },
+        {
+          "file": "pop_demo_2030_ssp1.tif",
+          "year": "2030",
+          "scenario": "ssp1"
+        },
+        {
+          "file": "pop_demo_2030_ssp2.tif",
+          "year": "2030",
+          "scenario": "ssp2"
+        },
+        {
+          "file": "pop_demo_2030_ssp3.tif",
+          "year": "2030",
+          "scenario": "ssp3"
+        },
+        {
+          "file": "pop_demo_2030_ssp4.tif",
+          "year": "2030",
+          "scenario": "ssp4"
+        },
+        {
+          "file": "pop_demo_2030_ssp5.tif",
+          "year": "2030",
+          "scenario": "ssp5"
+        },
+        {
+          "file": "pop_demo_2035_ssp1.tif",
+          "year": "2035",
+          "scenario": "ssp1"
+        },
+        {
+          "file": "pop_demo_2035_ssp2.tif",
+          "year": "2035",
+          "scenario": "ssp2"
+        },
+        {
+          "file": "pop_demo_2035_ssp3.tif",
+          "year": "2035",
+          "scenario": "ssp3"
+        },
+        {
+          "file": "pop_demo_2035_ssp4.tif",
+          "year": "2035",
+          "scenario": "ssp4"
+        },
+        {
+          "file": "pop_demo_2035_ssp5.tif",
+          "year": "2035",
+          "scenario": "ssp5"
+        },
+        {
+          "file": "pop_demo_2040_ssp1.tif",
+          "year": "2040",
+          "scenario": "ssp1"
+        },
+        {
+          "file": "pop_demo_2040_ssp2.tif",
+          "year": "2040",
+          "scenario": "ssp2"
+        },
+        {
+          "file": "pop_demo_2040_ssp3.tif",
+          "year": "2040",
+          "scenario": "ssp3"
+        },
+        {
+          "file": "pop_demo_2040_ssp4.tif",
+          "year": "2040",
+          "scenario": "ssp4"
+        },
+        {
+          "file": "pop_demo_2040_ssp5.tif",
+          "year": "2040",
+          "scenario": "ssp5"
+        },
+        {
+          "file": "pop_demo_2045_ssp1.tif",
+          "year": "2045",
+          "scenario": "ssp1"
+        },
+        {
+          "file": "pop_demo_2045_ssp2.tif",
+          "year": "2045",
+          "scenario": "ssp2"
+        },
+        {
+          "file": "pop_demo_2045_ssp3.tif",
+          "year": "2045",
+          "scenario": "ssp3"
+        },
+        {
+          "file": "pop_demo_2045_ssp4.tif",
+          "year": "2045",
+          "scenario": "ssp4"
+        },
+        {
+          "file": "pop_demo_2045_ssp5.tif",
+          "year": "2045",
+          "scenario": "ssp5"
+        },
+        {
+          "file": "pop_demo_2050_ssp1.tif",
+          "year": "2050",
+          "scenario": "ssp1"
+        },
+        {
+          "file": "pop_demo_2050_ssp2.tif",
+          "year": "2050",
+          "scenario": "ssp2"
+        },
+        {
+          "file": "pop_demo_2050_ssp3.tif",
+          "year": "2050",
+          "scenario": "ssp3"
+        },
+        {
+          "file": "pop_demo_2050_ssp4.tif",
+          "year": "2050",
+          "scenario": "ssp4"
+        },
+        {
+          "file": "pop_demo_2050_ssp5.tif",
+          "year": "2050",
+          "scenario": "ssp5"
+        }
+      ]
+    },
+    "simulation": {
+      "category": "landuse_model",
+      "file_count": 18,
+      "files": [
+        {
+          "file": "sim_culture_demo_2010.tif",
+          "subcategory": "culture",
+          "year": "2010",
+          "scenario": "ca_model"
+        },
+        {
+          "file": "sim_culture_demo_2020.tif",
+          "subcategory": "culture",
+          "year": "2020",
+          "scenario": "ca_model"
+        },
+        {
+          "file": "sim_culture_demo_2020_proj.tif",
+          "subcategory": "culture",
+          "year": "2020",
+          "scenario": "simulated_baseline"
+        },
+        {
+          "file": "sim_education_demo_2010.tif",
+          "subcategory": "education",
+          "year": "2010",
+          "scenario": "ca_model"
+        },
+        {
+          "file": "sim_education_demo_2020.tif",
+          "subcategory": "education",
+          "year": "2020",
+          "scenario": "ca_model"
+        },
+        {
+          "file": "sim_education_demo_2020_proj.tif",
+          "subcategory": "education",
+          "year": "2020",
+          "scenario": "simulated_baseline"
+        },
+        {
+          "file": "sim_healthcare_demo_2010.tif",
+          "subcategory": "healthcare",
+          "year": "2010",
+          "scenario": "ca_model"
+        },
+        {
+          "file": "sim_healthcare_demo_2020.tif",
+          "subcategory": "healthcare",
+          "year": "2020",
+          "scenario": "ca_model"
+        },
+        {
+          "file": "sim_healthcare_demo_2020_proj.tif",
+          "subcategory": "healthcare",
+          "year": "2020",
+          "scenario": "simulated_baseline"
+        },
+        {
+          "file": "sim_others_demo_2010.tif",
+          "subcategory": "others",
+          "year": "2010",
+          "scenario": "ca_model"
+        },
+        {
+          "file": "sim_others_demo_2020.tif",
+          "subcategory": "others",
+          "year": "2020",
+          "scenario": "ca_model"
+        },
+        {
+          "file": "sim_others_demo_2020_proj.tif",
+          "subcategory": "others",
+          "year": "2020",
+          "scenario": "simulated_baseline"
+        },
+        {
+          "file": "sim_roads_demo_2010.tif",
+          "subcategory": "roads",
+          "year": "2010",
+          "scenario": "ca_model"
+        },
+        {
+          "file": "sim_roads_demo_2020.tif",
+          "subcategory": "roads",
+          "year": "2020",
+          "scenario": "ca_model"
+        },
+        {
+          "file": "sim_roads_demo_2020_proj.tif",
+          "subcategory": "roads",
+          "year": "2020",
+          "scenario": "simulated_baseline"
+        },
+        {
+          "file": "sim_transportation_demo_2010.tif",
+          "subcategory": "transportation",
+          "year": "2010",
+          "scenario": "ca_model"
+        },
+        {
+          "file": "sim_transportation_demo_2020.tif",
+          "subcategory": "transportation",
+          "year": "2020",
+          "scenario": "ca_model"
+        },
+        {
+          "file": "sim_transportation_demo_2020_proj.tif",
+          "subcategory": "transportation",
+          "year": "2020",
+          "scenario": "simulated_baseline"
+        }
+      ]
+    }
+  },
+  "indicators": [
+    {
+      "id": "sdg_11_3_1",
+      "sdg_target": "11.3",
+      "name": "Land Use Efficiency (LCRPGR)",
+      "description": "Ratio of land consumption rate to population growth rate",
+      "inputs": [
+        "lucc",
+        "lucc_future",
+        "pop",
+        "pop_future"
+      ],
+      "unit": "ratio"
+    },
+    {
+      "id": "sdg_11_7_1",
+      "sdg_target": "11.7",
+      "name": "Open Public Space Accessibility",
+      "description": "Proportion of population with access to open public space",
+      "inputs": [
+        "infra",
+        "pop"
+      ],
+      "unit": "percentage"
+    },
+    {
+      "id": "sdg_3_8_1",
+      "sdg_target": "3.8",
+      "name": "Healthcare Coverage",
+      "description": "Proportion of population with access to healthcare facilities",
+      "inputs": [
+        "infra",
+        "infra_future",
+        "pop",
+        "pop_future"
+      ],
+      "unit": "percentage"
+    },
+    {
+      "id": "sdg_4_a_1",
+      "sdg_target": "4.a",
+      "name": "Education Facility Accessibility",
+      "description": "Proportion of population with access to education facilities",
+      "inputs": [
+        "infra",
+        "infra_future",
+        "pop",
+        "pop_future"
+      ],
+      "unit": "percentage"
+    },
+    {
+      "id": "sdg_9_c_1",
+      "sdg_target": "9.c",
+      "name": "ICT/Mobile Network Coverage",
+      "description": "Proportion of population covered by mobile network",
+      "inputs": [
+        "infra",
+        "infra_future",
+        "pop",
+        "pop_future"
+      ],
+      "unit": "percentage"
+    },
+    {
+      "id": "sdg_11_2_1",
+      "sdg_target": "11.2",
+      "name": "Public Transport Access",
+      "description": "Proportion of population with convenient access to public transport",
+      "inputs": [
+        "infra",
+        "infra_future",
+        "pop",
+        "pop_future"
+      ],
+      "unit": "percentage"
+    },
+    {
+      "id": "sdg_6_1_1",
+      "sdg_target": "6.1",
+      "name": "Safely Managed Drinking Water",
+      "description": "Proportion of population using safely managed drinking water services",
+      "inputs": [
+        "infra",
+        "infra_future",
+        "pop",
+        "pop_future"
+      ],
+      "unit": "percentage"
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "historical",
+      "name": "Historical Baseline",
+      "years": [
+        2010,
+        2020
+      ]
+    },
+    {
+      "id": "baseline",
+      "name": "Current Baseline (2020)",
+      "years": [
+        2020
+      ]
+    },
+    {
+      "id": "simulated_baseline",
+      "name": "Simulated Baseline (2020 Projection)",
+      "years": [
+        2020
+      ]
+    },
+    {
+      "id": "ca_model",
+      "name": "CA Model Simulation Output",
+      "years": [
+        2010,
+        2020
+      ]
+    },
+    {
+      "id": "ssp1",
+      "name": "SSP1 — Sustainability",
+      "years": [
+        2025,
+        2030,
+        2035,
+        2040,
+        2045,
+        2050
+      ]
+    },
+    {
+      "id": "ssp2",
+      "name": "SSP2 — Middle of the Road",
+      "years": [
+        2025,
+        2030,
+        2035,
+        2040,
+        2045,
+        2050
+      ]
+    },
+    {
+      "id": "ssp3",
+      "name": "SSP3 — Regional Rivalry",
+      "years": [
+        2025,
+        2030,
+        2035,
+        2040,
+        2045,
+        2050
+      ]
+    },
+    {
+      "id": "ssp4",
+      "name": "SSP4 — Inequality",
+      "years": [
+        2025,
+        2030,
+        2035,
+        2040,
+        2045,
+        2050
+      ]
+    },
+    {
+      "id": "ssp5",
+      "name": "SSP5 — Fossil-fueled Development",
+      "years": [
+        2025,
+        2030,
+        2035,
+        2040,
+        2045,
+        2050
+      ]
+    }
+  ],
+  "priority_areas": [
+    {
+      "id": "priority_rule_default",
+      "target": "sdg11",
+      "description": "Default priority area based on SDG 11 infrastructure gaps",
+      "rule_type": "threshold",
+      "config": {
+        "infra_gap_pct": 30,
+        "pop_density": "medium"
+      }
+    },
+    {
+      "id": "priority_sdg3_infra",
+      "target": "sdg3",
+      "description": "Healthcare infrastructure priority area",
+      "rule_type": "threshold",
+      "config": {
+        "healthcare_access": "low",
+        "pop_coverage": "<50%"
+      }
+    },
+    {
+      "id": "priority_sdg4_edu",
+      "target": "sdg4",
+      "description": "Education facility priority area",
+      "rule_type": "threshold",
+      "config": {
+        "school_access": "low",
+        "age_group": "6-18"
+      }
+    },
+    {
+      "id": "priority_sdg11_transport",
+      "target": "sdg11",
+      "description": "Public transport coverage gap",
+      "rule_type": "threshold",
+      "config": {
+        "transit_access": "low",
+        "buffer_km": 1
+      }
+    }
+  ]
+}

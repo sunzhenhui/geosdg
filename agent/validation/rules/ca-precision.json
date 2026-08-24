@@ -1,0 +1,31 @@
+{
+  "tool": "ca-precision",
+  "description": "CA 模拟精度评估验证规则（FoM, PA, UA, Kappa, OA）",
+  "valid_range": { "min": 0, "max": 1 },
+  "anomaly_patterns": [
+    {
+      "id": "fom-overfitting",
+      "condition": "FoM > 0.8",
+      "severity": "WARN",
+      "diagnosis": "FoM > 0.8，极高精度可能为过拟合或数据泄露（模拟结果与真实数据非独立）",
+      "suggestion": "检查模拟和真实 LUCC 是否来自同一数据源或存在数据泄露",
+      "auto_fix": false
+    },
+    {
+      "id": "fom-zero-with-match",
+      "condition": "FoM == 0 AND dims_match == true",
+      "severity": "FAIL",
+      "diagnosis": "FoM 为 0 但数据维度匹配，疑似模拟结果与真实数据完全不一致",
+      "suggestion": "检查 --sim 和 --real 文件是否对应正确",
+      "auto_fix": false
+    },
+    {
+      "id": "pa-ua-extreme-imbalance",
+      "condition": "(PA == 1 AND UA == 0) OR (PA == 0 AND UA == 1)",
+      "severity": "WARN",
+      "diagnosis": "PA 和 UA 极端不平衡，模拟结果可能严重偏向某一类",
+      "suggestion": "检查模拟模型是否存在类别偏向问题",
+      "auto_fix": false
+    }
+  ]
+}

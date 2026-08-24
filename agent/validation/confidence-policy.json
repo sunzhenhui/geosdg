@@ -1,0 +1,53 @@
+{
+  "version": "1.0",
+  "description": "GeoSDG 置信度评分四因子权重配置",
+  "default_weights": {
+    "data_quality": 0.30,
+    "reasonability": 0.40,
+    "consistency": 0.15,
+    "completeness": 0.15
+  },
+  "special_rules": {
+    "no_history": {
+      "description": "首次评估无历史数据时，w₃ 权重平摊给 w₁ 和 w₂",
+      "weights": {
+        "data_quality": 0.375,
+        "reasonability": 0.475,
+        "consistency": 0.0,
+        "completeness": 0.15
+      },
+      "consistency_neutral": 0.5
+    },
+    "boundary_test": {
+      "description": "用户声明边界/极端场景测试时，降低 w₂ 避免过度告警",
+      "weights": {
+        "data_quality": 0.35,
+        "reasonability": 0.20,
+        "consistency": 0.30,
+        "completeness": 0.15
+      }
+    }
+  },
+  "tool_overrides": {
+    "ca-precision": {
+      "description": "CA 精度评估历史波动大，降低历史一致性权重",
+      "weights": {
+        "data_quality": 0.35,
+        "reasonability": 0.40,
+        "consistency": 0.10,
+        "completeness": 0.15
+      }
+    },
+    "correlation": {
+      "description": "相关系数对数据敏感，提高数据质量权重",
+      "weights": {
+        "data_quality": 0.40,
+        "reasonability": 0.30,
+        "consistency": 0.15,
+        "completeness": 0.15
+      }
+    }
+  },
+  "history_bias_threshold": 0.05,
+  "history_bias_threshold_description": "历史对比偏差 < 5% 时 Consistency 直接取 1.0"
+}

@@ -1,0 +1,105 @@
+{
+  "name": "priority-emission",
+  "category": "priority-area",
+  "cli_command": "geosdg-cli",
+  "cli_subcommand": "priority-emission",
+  "description": "优先区域规则 5：识别碳排放未达峰的区域。比较两期 LUCC 的碳排放量，提取碳排放仍在增长（未达峰）的区域。使用前缀和算法加速邻域计算，需要 ../tmp/ 临时目录。",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "init_lucc": {
+        "type": "string",
+        "format": "filepath",
+        "extensions": [
+          ".tif",
+          ".tiff"
+        ],
+        "description": "初始期 LUCC GeoTIFF 路径（GDT_Byte）",
+        "required": true
+      },
+      "curr_lucc": {
+        "type": "string",
+        "format": "filepath",
+        "extensions": [
+          ".tif",
+          ".tiff"
+        ],
+        "description": "变化期 LUCC GeoTIFF 路径（GDT_Byte）",
+        "required": true
+      },
+      "output": {
+        "type": "string",
+        "format": "filepath",
+        "description": "输出优先区域 GeoTIFF 路径",
+        "required": true
+      },
+      "emission": {
+        "type": "string",
+        "format": "emission-map",
+        "description": "各地类碳排放系数映射，格式 type:factor,...（如 1:-1,2:-20,5:5）",
+        "required": true
+      },
+      "ratio": {
+        "type": "number",
+        "description": "减排比例阈值",
+        "default": 0.012,
+        "required": false
+      },
+      "radius": {
+        "type": "integer",
+        "description": "邻域半径（像素单位，用于前缀和邻域统计）",
+        "default": 5,
+        "required": false
+      }
+    },
+    "required": [
+      "init_lucc",
+      "curr_lucc",
+      "output",
+      "emission"
+    ]
+  },
+  "returns": {
+    "type": "object",
+    "properties": {
+      "output_file": {
+        "type": "string",
+        "description": "生成的优先区域 GeoTIFF 路径"
+      },
+      "status": {
+        "type": "string",
+        "description": "执行状态：success / failed"
+      }
+    }
+  },
+  "input_constraints": {
+    "data_type": "GDT_Byte",
+    "dimensions": "init_lucc 与 curr_lucc 行列数必须完全一致",
+    "projection": "两期数据投影坐标系必须一致",
+    "temp_dir": "需要 ../tmp/ 临时目录存放中间文件（相对于 geosdg-cli 可执行文件），Agent 框架会自动创建。同时会使用 workspace tmp/ 隔离输入文件"
+  },
+  "data_safety": {
+    "copy_inputs": "required",
+    "reason": "底层会修改 emission 系数映射（in-place），且会产生中间临时文件",
+    "affected_params": ["init_lucc", "curr_lucc"],
+    "extra_tmp_dirs": ["../tmp/ (relative to geosdg-cli binary)"]
+  },
+  "timeout_seconds": 300,
+  "output_format": "stdout: Output: <path>",
+  "examples": [
+    {
+      "description": "识别碳排放未达峰区域",
+      "params": {
+        "init_lucc": "/data/LUCC/2025.tif",
+        "curr_lucc": "/data/LUCC/2050.tif",
+        "output": "/data/PriorityAreas-5.tif",
+        "emission": "1:-1,2:-20,3:-5,4:-0.5,5:5,6:0.3",
+        "ratio": 0.012,
+        "radius": 5
+      }
+    }
+  ],
+  "validation": {
+    "rules_file": "agent/validation/rules/priority-emission.json"
+  }
+}

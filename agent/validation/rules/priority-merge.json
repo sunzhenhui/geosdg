@@ -1,0 +1,24 @@
+{
+  "tool": "priority-merge",
+  "description": "优先区域合并排名图验证规则",
+  "valid_range": { "min": 0, "max": 6 },
+  "output_type": "geotiff",
+  "anomaly_patterns": [
+    {
+      "id": "merge-all-same",
+      "condition": "unique_values == 1",
+      "severity": "WARN",
+      "diagnosis": "合并结果全图仅 1 个值，所有规则返回一致，检查各规则输入是否正确",
+      "suggestion": "检查各输入文件是否正确，是否为同一规则重复",
+      "auto_fix": false
+    },
+    {
+      "id": "merge-max-eq-min",
+      "condition": "max_value == min_value",
+      "severity": "WARN",
+      "diagnosis": "最高优先级 = 最低优先级，所有区域排名一致",
+      "suggestion": "检查各规则输入文件是否独立有效",
+      "auto_fix": false
+    }
+  ]
+}

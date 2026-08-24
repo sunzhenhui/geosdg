@@ -1,0 +1,21 @@
+{
+  "version": "1.0",
+  "description": "GeoSDG 验证规则索引 — 每个计算工具对应一个验证规则文件，定义合法区间、异常模式、置信度权重覆盖",
+  "rules_path": "agent/validation/rules/",
+  "tools": {
+    "sdg-land-proportion": "sdg-land-proportion.json",
+    "sdg-land-conversion": "sdg-land-conversion.json",
+    "sdg-buffer-zone": "sdg-buffer-zone.json",
+    "sdg-1131": "sdg-1131.json",
+    "sdg-1322": "sdg-1322.json",
+    "ca-precision": "ca-precision.json",
+    "correlation": "correlation.json",
+    "t-test": "t-test.json",
+    "priority-loss": "priority-loss.json",
+    "priority-transition": "priority-transition.json",
+    "priority-buffer": "priority-buffer.json",
+    "priority-emission": "priority-emission.json",
+    "priority-human-land": "priority-human-land.json",
+    "priority-merge": "priority-merge.json"
+  }
+}

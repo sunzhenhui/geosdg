@@ -1,0 +1,78 @@
+{
+  "name": "pipeline-batch",
+  "category": "pipeline",
+  "cli_command": "geosdg-cli",
+  "cli_subcommand": "pipeline batch",
+  "description": "批量执行目录下所有 Pipeline 配置文件。支持 fail-fast 模式（首个失败即停止）和检查点恢复。",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "directory": {
+        "type": "string",
+        "format": "directory",
+        "description": "包含 Pipeline JSON 配置文件的目录",
+        "required": true
+      },
+      "fail_fast": {
+        "type": "boolean",
+        "default": false,
+        "description": "首个 Pipeline 失败即停止",
+        "required": false
+      },
+      "var": {
+        "type": "array",
+        "items": { "type": "string", "pattern": "^\\w+=.+$" },
+        "description": "覆盖所有 Pipeline 的变量",
+        "required": false
+      },
+      "workers": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 16,
+        "default": 4,
+        "description": "每层最大并行工作线程数",
+        "required": false
+      },
+      "resume": {
+        "type": "boolean",
+        "default": false,
+        "description": "从检查点恢复执行",
+        "required": false
+      },
+      "dry_run": {
+        "type": "boolean",
+        "default": false,
+        "description": "仅打印执行计划",
+        "required": false
+      },
+      "output": {
+        "type": "string",
+        "format": "filepath",
+        "description": "将批量结果保存为 JSON 文件",
+        "required": false
+      }
+    },
+    "required": ["directory"]
+  },
+  "returns": {
+    "type": "object",
+    "properties": {
+      "all_success": { "type": "boolean", "description": "是否全部 Pipeline 成功" },
+      "pipelines": {
+        "type": "array",
+        "description": "各 Pipeline 执行结果列表"
+      }
+    }
+  },
+  "timeout_seconds": 7200,
+  "output_format": "stdout: Batch summary with per-pipeline results",
+  "examples": [
+    {
+      "description": "批量运行所有 Pipeline 模板",
+      "params": {
+        "directory": "agent/pipeline/examples/",
+        "var": ["DATA_DIR=/data/tianmu"]
+      }
+    }
+  ]
+}

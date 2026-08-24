@@ -1,0 +1,72 @@
+{
+  "name": "generate-charts",
+  "category": "report",
+  "cli_command": "python",
+  "cli_subcommand": "scripts/report_charts.py",
+  "description": "生成 SDG 评估可视化图表 PNG（雷达图、柱状图、趋势图、子区域对比图、优先区域空间分布图）。图表输出到 reports/{region}_{type}_{date}/ 目录，与报告 Markdown 同目录存放，实现图文一体。",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "chart_type": {
+        "type": "string",
+        "enum": ["radar", "bar", "trend", "subregion", "priority-map", "cross-dimension", "priority-trend"],
+        "description": "图表类型：radar=三维度雷达图, bar=各指标水平柱状图, trend=时间变化趋势折线图, subregion=子区域对比分组柱状图, priority-map=优先区域空间分布图, cross-dimension=跨维度散点图(经济/社会/环境关联性), priority-trend=优先区域面积变化趋势堆叠面积图",
+        "required": true
+      },
+      "data": {
+        "type": "string",
+        "description": "JSON 格式的图表数据。各类型数据格式：radar={\"economy\":N,\"society\":N,\"environment\":N}; bar={\"indicators\":[{\"name\":\"SDG 7.2.1\",\"score\":85,\"dimension\":\"economy\"},...]}; trend={\"periods\":[{\"year\":2010,\"composite\":68.2,...},...]}; subregion={\"regions\":[{\"name\":\"上城\",\"composite\":82.1,...},...]}; priority-map={\"ranking_tif\":\"/path/to/ranking.tif\",\"stats\":{\"level_0_area\":...,...}}; cross-dimension={\"indicators\":[{\"name\":\"SDG 7.2.1\",\"economy\":85,\"environment\":72,\"sdg\":\"7\"},...]}; priority-trend={\"periods\":[{\"year\":2010,\"levels\":{\"0\":1000,\"1\":500,...}},...]}",
+        "required": true
+      },
+      "output": {
+        "type": "string",
+        "format": "filepath",
+        "description": "输出 PNG 文件路径，建议放在 reports/{region}_{type}_{date}/ 子目录下（如 reports/杭州_综合评估_20260723/radar.png）",
+        "extensions": [".png"],
+        "required": true
+      },
+      "title": {
+        "type": "string",
+        "description": "图表标题（可选）",
+        "required": false
+      }
+    },
+    "required": ["chart_type", "data", "output"]
+  },
+  "returns": {
+    "type": "object",
+    "properties": {
+      "output_path": { "type": "string", "description": "PNG 文件路径" },
+      "status": { "type": "string", "description": "执行状态：success / failed" }
+    }
+  },
+  "input_constraints": {
+    "python_version": "3.9+",
+    "dependencies": "matplotlib, numpy（必需）；GDAL Python 绑定或 rasterio（仅 priority-map 类型需要）",
+    "degradation": "如 matplotlib 不可用，输出占位文本文件而非 PNG",
+    "color_specification": "维度配色使用联合国官方三维度色系（经济红#C5192D/社会蓝#00558A/环境绿#3F7E44）；各 SDG 指标使用联合国官方配色；优先等级色阶 0级#EEEEEE→6级#D73027",
+    "output_convention": "图表输出到 reports/{region}_{type}_{date}/ 子目录，与 report.md 同目录，确保图文一体"
+  },
+  "timeout_seconds": 30,
+  "output_format": "PNG 文件，存放在报告子目录中",
+  "examples": [
+    {
+      "description": "生成三维度雷达图（存放在报告子目录）",
+      "params": {
+        "chart_type": "radar",
+        "data": "{\"economy\": 78.3, \"society\": 65.4, \"environment\": 54.3}",
+        "output": "reports/杭州_综合评估_20260723/radar.png",
+        "title": "杭州 三维度雷达图"
+      }
+    },
+    {
+      "description": "生成优先区域空间分布图",
+      "params": {
+        "chart_type": "priority-map",
+        "data": "{\"ranking_tif\": \"/data/RankingMap.tif\", \"stats\": {\"level_0_area\": 1200, \"priority_pct\": 35.2}}",
+        "output": "reports/杭州_综合评估_20260723/priority_map.png",
+        "title": "杭州 优先区域空间分布"
+      }
+    }
+  ]
+}

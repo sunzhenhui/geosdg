@@ -1,0 +1,24 @@
+{
+  "tool": "priority-buffer",
+  "description": "优先区域 Rule 3/4 — 缓冲区外验证规则",
+  "valid_range": { "min": 0, "max": 6 },
+  "output_type": "geotiff",
+  "anomaly_patterns": [
+    {
+      "id": "buf-all-same",
+      "condition": "unique_values == 1",
+      "severity": "WARN",
+      "diagnosis": "输出文件全图仅 1 个值，可能缓冲区覆盖全部区域或 --types 不匹配",
+      "suggestion": "检查缓冲区数据范围和 --types 参数",
+      "auto_fix": false
+    },
+    {
+      "id": "buf-empty-output",
+      "condition": "file_size < 1024",
+      "severity": "ERROR",
+      "diagnosis": "输出文件 < 1KB，可能写入失败",
+      "suggestion": "检查磁盘空间和输出路径权限",
+      "auto_fix": false
+    }
+  ]
+}

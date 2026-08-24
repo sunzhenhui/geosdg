@@ -1,0 +1,80 @@
+{
+  "name": "pipeline-run",
+  "category": "pipeline",
+  "cli_command": "geosdg-cli",
+  "cli_subcommand": "pipeline run",
+  "description": "执行单个 Pipeline 配置文件，按 DAG 拓扑顺序运行多步骤计算流程。支持变量替换、检查点/恢复、并行执行、条件跳过。",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "config": {
+        "type": "string",
+        "format": "filepath",
+        "extensions": [".json"],
+        "description": "Pipeline JSON 配置文件路径",
+        "required": true
+      },
+      "var": {
+        "type": "array",
+        "items": { "type": "string", "pattern": "^\\w+=.+$" },
+        "description": "覆盖 Pipeline 变量，格式 KEY=VALUE（可重复）",
+        "required": false
+      },
+      "workers": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 16,
+        "default": 4,
+        "description": "每层最大并行工作线程数",
+        "required": false
+      },
+      "resume": {
+        "type": "boolean",
+        "default": false,
+        "description": "从上次检查点恢复执行",
+        "required": false
+      },
+      "dry_run": {
+        "type": "boolean",
+        "default": false,
+        "description": "仅打印执行计划，不实际运行",
+        "required": false
+      },
+      "work_dir": {
+        "type": "string",
+        "description": "工作目录（默认当前目录）",
+        "required": false
+      },
+      "output": {
+        "type": "string",
+        "format": "filepath",
+        "description": "将执行结果保存为 JSON 文件",
+        "required": false
+      }
+    },
+    "required": ["config"]
+  },
+  "returns": {
+    "type": "object",
+    "properties": {
+      "success": { "type": "boolean", "description": "是否全部步骤成功" },
+      "total_duration": { "type": "number", "description": "总执行时间（秒）" },
+      "steps": {
+        "type": "object",
+        "description": "各步骤执行结果（step_id → result）"
+      }
+    }
+  },
+  "timeout_seconds": 3600,
+  "output_format": "stdout: Pipeline summary with step-by-step results",
+  "examples": [
+    {
+      "description": "运行 SDG 全流程 Pipeline",
+      "params": {
+        "config": "agent/pipeline/examples/sdg-full.json",
+        "var": ["DATA_DIR=/data/tianmu", "YEAR=2030"],
+        "workers": 4
+      }
+    }
+  ]
+}

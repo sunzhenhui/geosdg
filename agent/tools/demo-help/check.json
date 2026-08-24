@@ -1,0 +1,115 @@
+{
+  "name": "check",
+  "category": "demo-help",
+  "cli_command": "geosdg-cli",
+  "cli_subcommand": "check",
+  "description": "检查 GeoTIFF 文件的元数据与数据质量。执行 L1 快速元数据检查（维度、投影、波段、NoData、数据类型）和 L2 值统计检查（全零、全同值、值范围、空值率、地类覆盖、类别完整性）。可选与参考文件对比投影和维度。计算前自动调用可提前发现数据问题。",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "file": {
+        "type": "string",
+        "format": "filepath",
+        "extensions": [".tif", ".tiff"],
+        "description": "待检查的 GeoTIFF 文件路径",
+        "required": true
+      },
+      "ref": {
+        "type": "string",
+        "format": "filepath",
+        "extensions": [".tif", ".tiff"],
+        "description": "参考 GeoTIFF 文件路径（用于投影和维度匹配检查）",
+        "required": false
+      },
+      "types": {
+        "type": "string",
+        "format": "comma-list",
+        "description": "期望的地类编码集合（逗号分隔，如 1,2,3），检查值域覆盖",
+        "required": false
+      },
+      "category": {
+        "type": "integer",
+        "description": "期望的地类总类别数（如 LUCC 6 类），检查是否缺类",
+        "required": false
+      },
+      "expect_int": {
+        "type": "boolean",
+        "description": "期望整型数据，若为 Float32/Float64 则发出 WARN（适用于 LUCC/模拟结果等类别型栅格）",
+        "default": false,
+        "required": false
+      }
+    },
+    "required": ["file"]
+  },
+  "returns": {
+    "type": "object",
+    "properties": {
+      "file": { "type": "string", "description": "检查的文件名" },
+      "width": { "type": "integer", "description": "栅格列数" },
+      "height": { "type": "integer", "description": "栅格行数" },
+      "bands": { "type": "integer", "description": "波段数" },
+      "proj": { "type": "string", "description": "投影信息（EPSG 编码或 WKT 摘要）" },
+      "nodata": { "type": "number", "description": "NoData 值" },
+      "dtype": { "type": "string", "description": "GDAL 数据类型名称（Byte/Int16/UInt16/Int32/UInt32/Float32/Float64）" },
+      "min": { "type": "number", "description": "采样最小值" },
+      "max": { "type": "number", "description": "采样最大值" },
+      "mean": { "type": "number", "description": "采样均值" },
+      "nodata_pct": { "type": "number", "description": "NoData 像素占比（0-100）" },
+      "all_zero": { "type": "boolean", "description": "是否全零" },
+      "all_same": { "type": "boolean", "description": "是否全同值" },
+      "proj_match": { "type": "boolean", "description": "与参考文件投影是否匹配（未指定 --ref 时为 true）" },
+      "dim_match": { "type": "boolean", "description": "与参考文件维度是否匹配（未指定 --ref 时为 true）" },
+      "type_coverage": { "type": "string", "description": "采样发现的地类编码列表（逗号分隔）" },
+      "category_count": { "type": "integer", "description": "实际类别数" },
+      "is_integer": { "type": "boolean", "description": "数据类型是否为整型" }
+    }
+  },
+  "input_constraints": {
+    "file_format": "GeoTIFF (.tif/.tiff)",
+    "gdal_support": "需 GDAL 2.0+ 运行时",
+    "readonly": "纯只读工具，不修改任何文件"
+  },
+  "data_safety": {
+    "copy_inputs": "recommended",
+    "readonly": true,
+    "reason": "纯只读检查工具，但仍通过 tmp/ 隔离确保数据安全一致性"
+  },
+  "timeout_seconds": 60,
+  "output_format": "stdout: key=value 键值对（每行一项检查结果），诊断信息以 # WARN / # ERROR 前缀输出",
+  "exit_code": "0 = 所有检查通过；1 = 存在 ERROR 级别问题",
+  "validation": {
+    "rules_file": null,
+    "note": "check 工具本身不参与验证规则引擎，它是数据质量预检工具，其输出供 Executor Step 5c 的 DataQuality 因子使用"
+  },
+  "examples": [
+    {
+      "description": "检查 LUCC 数据基本质量",
+      "params": {
+        "file": "/data/LUCC/2025.tif"
+      }
+    },
+    {
+      "description": "检查 CA 模拟结果（期望整型 + 6 类）",
+      "params": {
+        "file": "/data/Simulation.tif",
+        "expect_int": true,
+        "category": 6
+      }
+    },
+    {
+      "description": "对比两期数据投影和维度",
+      "params": {
+        "file": "/data/LUCC/2030.tif",
+        "ref": "/data/LUCC/2010.tif"
+      }
+    },
+    {
+      "description": "检查地类覆盖完整性",
+      "params": {
+        "file": "/data/LUCC/2025.tif",
+        "types": "1,2,3,4,5,6",
+        "category": 6
+      }
+    }
+  ]
+}

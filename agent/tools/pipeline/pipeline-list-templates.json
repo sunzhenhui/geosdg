@@ -1,0 +1,37 @@
+{
+  "name": "pipeline-list-templates",
+  "category": "pipeline",
+  "cli_command": "geosdg-cli",
+  "cli_subcommand": "pipeline list-templates",
+  "description": "列出可用的 Pipeline 模板配置文件，显示名称和描述。",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "templates_dir": {
+        "type": "string",
+        "format": "directory",
+        "description": "模板目录路径（默认 agent/pipeline/examples/）",
+        "required": false
+      }
+    },
+    "required": []
+  },
+  "returns": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "模板名称" },
+        "description": { "type": "string", "description": "模板描述" }
+      }
+    }
+  },
+  "timeout_seconds": 5,
+  "output_format": "stdout: Table of template names and descriptions",
+  "examples": [
+    {
+      "description": "列出所有内置模板",
+      "params": {}
+    }
+  ]
+}

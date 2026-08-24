@@ -1,0 +1,54 @@
+{
+  "name": "pipeline-dry-run",
+  "category": "pipeline",
+  "cli_command": "geosdg-cli",
+  "cli_subcommand": "pipeline dry-run",
+  "description": "显示 Pipeline 执行计划但不实际运行。输出 DAG 拓扑层级、每步命令预览、依赖关系。",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "config": {
+        "type": "string",
+        "format": "filepath",
+        "extensions": [".json"],
+        "description": "Pipeline JSON 配置文件路径",
+        "required": true
+      },
+      "var": {
+        "type": "array",
+        "items": { "type": "string", "pattern": "^\\w+=.+$" },
+        "description": "覆盖 Pipeline 变量",
+        "required": false
+      },
+      "output": {
+        "type": "string",
+        "format": "filepath",
+        "description": "将执行计划保存为 JSON 文件",
+        "required": false
+      }
+    },
+    "required": ["config"]
+  },
+  "returns": {
+    "type": "object",
+    "properties": {
+      "levels": {
+        "type": "array",
+        "description": "按层级排列的步骤 ID 列表"
+      },
+      "total_steps": { "type": "integer", "description": "总步骤数" },
+      "total_levels": { "type": "integer", "description": "总层级数" }
+    }
+  },
+  "timeout_seconds": 10,
+  "output_format": "stdout: Execution plan with level-by-level step listing",
+  "examples": [
+    {
+      "description": "预览 SDG 全流程执行计划",
+      "params": {
+        "config": "agent/pipeline/examples/sdg-full.json",
+        "var": ["DATA_DIR=/data/tianmu"]
+      }
+    }
+  ]
+}

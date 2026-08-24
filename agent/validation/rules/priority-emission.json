@@ -1,0 +1,24 @@
+{
+  "tool": "priority-emission",
+  "description": "优先区域 Rule 5 — 排放未达峰验证规则",
+  "valid_range": { "min": 0, "max": 6 },
+  "output_type": "geotiff",
+  "anomaly_patterns": [
+    {
+      "id": "emit-all-same",
+      "condition": "unique_values == 1",
+      "severity": "WARN",
+      "diagnosis": "输出文件全图仅 1 个值，可能所有区域排放均已达峰或 --emission 参数不匹配",
+      "suggestion": "检查 --emission 参数和 --ratio 是否合理",
+      "auto_fix": false
+    },
+    {
+      "id": "emit-float-type",
+      "condition": "is_integer == false",
+      "severity": "WARN",
+      "diagnosis": "输出文件为浮点型，应为整型标记值",
+      "suggestion": "检查数据处理流程是否正确",
+      "auto_fix": false
+    }
+  ]
+}

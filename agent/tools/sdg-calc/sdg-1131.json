@@ -1,0 +1,116 @@
+{
+  "name": "sdg-1131",
+  "category": "sdg-calc",
+  "cli_command": "geosdg-cli",
+  "cli_subcommand": "sdg-1131",
+  "description": "计算 SDG 11.3.1 城市用地与人口增长率比值指标。计算城市用地增长率与人口增长率的比值，以最优值 1.12 为中心进行三角归一化到 [0, 100]。比值接近 1.12 表示城市扩张与人口增长协调，偏离则扣分。",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "init_lucc": {
+        "type": "string",
+        "format": "filepath",
+        "extensions": [
+          ".tif",
+          ".tiff"
+        ],
+        "description": "初始期 LUCC GeoTIFF 路径（GDT_Byte）",
+        "required": true
+      },
+      "curr_lucc": {
+        "type": "string",
+        "format": "filepath",
+        "extensions": [
+          ".tif",
+          ".tiff"
+        ],
+        "description": "变化期 LUCC GeoTIFF 路径（GDT_Byte）",
+        "required": true
+      },
+      "init_popu": {
+        "type": "string",
+        "format": "filepath",
+        "extensions": [
+          ".tif",
+          ".tiff"
+        ],
+        "description": "初始期人口 GeoTIFF 路径（GDT_Float32/Float64）",
+        "required": true
+      },
+      "curr_popu": {
+        "type": "string",
+        "format": "filepath",
+        "extensions": [
+          ".tif",
+          ".tiff"
+        ],
+        "description": "变化期人口 GeoTIFF 路径（GDT_Float32/Float64）",
+        "required": true
+      },
+      "types": {
+        "type": "string",
+        "format": "comma-list",
+        "description": "城市用地地类编码集合（如 5 表示建设用地）",
+        "required": true
+      },
+      "max": {
+        "type": "number",
+        "description": "归一化上限阈值",
+        "default": 3.0,
+        "required": false
+      },
+      "min": {
+        "type": "number",
+        "description": "归一化下限阈值",
+        "default": 0,
+        "required": false
+      },
+      "best": {
+        "type": "number",
+        "description": "最优比值阈值（偏离此值扣分，联合国建议 1.12）",
+        "default": 1.12,
+        "required": false
+      }
+    },
+    "required": [
+      "init_lucc",
+      "curr_lucc",
+      "init_popu",
+      "curr_popu",
+      "types"
+    ]
+  },
+  "returns": {
+    "type": "object",
+    "properties": {
+      "score": {
+        "type": "number",
+        "description": "归一化得分（0-100，越接近最优比值得分越高）"
+      }
+    }
+  },
+  "input_constraints": {
+    "data_type": "LUCC=GDT_Byte, POPU=GDT_Float32/Float64",
+    "dimensions": "四个输入文件行列数必须完全一致",
+    "projection": "所有文件投影坐标系必须一致",
+    "value_range": "人口数据应为非负值"
+  },
+  "timeout_seconds": 180,
+  "output_format": "stdout: score=<val>",
+  "examples": [
+    {
+      "description": "评估杭州湾城市增长效率（SDG 11.3.1）",
+      "params": {
+        "init_lucc": "/data/LUCC/2010.tif",
+        "curr_lucc": "/data/LUCC/2020.tif",
+        "init_popu": "/data/POPU/2010.tif",
+        "curr_popu": "/data/POPU/2020.tif",
+        "types": "5",
+        "best": 1.12
+      }
+    }
+  ],
+  "validation": {
+    "rules_file": "agent/validation/rules/sdg-1131.json"
+  }
+}

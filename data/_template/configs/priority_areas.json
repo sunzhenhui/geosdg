@@ -1,0 +1,33 @@
+{
+  "_description": "优先区域识别规则配置文件。这些规则引用 manifest.json 中定义的指标和数据集。",
+
+  "rules": [
+    {
+      "id": "low_sdg",
+      "name": "Low SDG Score Areas",
+      "type": "threshold",
+      "condition": { "indicator": "sdg_11_3_1", "operator": "<", "value": 0.3 },
+      "weight": 1.0
+    },
+    {
+      "id": "high_pop",
+      "name": "High Population Density",
+      "type": "ranking",
+      "condition": { "dataset": "pop", "ranking": "top", "percentile": 30 },
+      "weight": 0.8
+    },
+    {
+      "id": "composite_priority",
+      "name": "Composite Priority Areas",
+      "type": "composite",
+      "aggregation": "weighted_sum",
+      "sub_rules": ["low_sdg", "high_pop"]
+    }
+  ],
+
+  "output": {
+    "n_classes": 5,
+    "labels": ["Very Low", "Low", "Medium", "High", "Very High"],
+    "classification": "quantile"
+  }
+}

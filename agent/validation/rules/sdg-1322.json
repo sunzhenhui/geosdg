@@ -1,0 +1,23 @@
+{
+  "tool": "sdg-1322",
+  "description": "SDG 13.2.2 碳排放达峰指标验证规则",
+  "valid_range": { "min": -100, "max": 100 },
+  "anomaly_patterns": [
+    {
+      "id": "1322-neg-no-decline",
+      "condition": "score < -50 AND emission_all_zero == true",
+      "severity": "FAIL",
+      "diagnosis": "得分严重为负但碳排放数据全为零，疑似排放因子或数据缺失",
+      "suggestion": "检查 --emission 参数和输入 LUCC 数据是否正确",
+      "auto_fix": false
+    },
+    {
+      "id": "1322-negative-no-carbon-decline",
+      "condition": "score < 0 AND carbon_decline == false",
+      "severity": "WARN",
+      "diagnosis": "得分为负但无碳排放下降趋势，可能排放因子符号错误",
+      "suggestion": "检查 --emission 中各类型排放因子的正负号是否正确",
+      "auto_fix": false
+    }
+  ]
+}

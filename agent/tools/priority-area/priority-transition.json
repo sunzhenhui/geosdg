@@ -1,0 +1,84 @@
+{
+  "name": "priority-transition",
+  "category": "priority-area",
+  "cli_command": "geosdg-cli",
+  "cli_subcommand": "priority-transition",
+  "description": "优先区域规则 2：识别特定转换类型的区域。比较两期 LUCC，提取发生指定地类转换（如森林→建设用地）的像元。输出优先区域 GeoTIFF。",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "init_lucc": {
+        "type": "string",
+        "format": "filepath",
+        "extensions": [
+          ".tif",
+          ".tiff"
+        ],
+        "description": "初始期 LUCC GeoTIFF 路径（GDT_Byte）",
+        "required": true
+      },
+      "curr_lucc": {
+        "type": "string",
+        "format": "filepath",
+        "extensions": [
+          ".tif",
+          ".tiff"
+        ],
+        "description": "变化期 LUCC GeoTIFF 路径（GDT_Byte）",
+        "required": true
+      },
+      "output": {
+        "type": "string",
+        "format": "filepath",
+        "description": "输出优先区域 GeoTIFF 路径",
+        "required": true
+      },
+      "transitions": {
+        "type": "string",
+        "format": "transition-map",
+        "description": "转换规则映射，格式 src:t1:t2,...（如 2:5:6 表示森林→建设用地/未利用地）",
+        "required": true
+      }
+    },
+    "required": [
+      "init_lucc",
+      "curr_lucc",
+      "output",
+      "transitions"
+    ]
+  },
+  "returns": {
+    "type": "object",
+    "properties": {
+      "output_file": {
+        "type": "string",
+        "description": "生成的优先区域 GeoTIFF 路径"
+      },
+      "status": {
+        "type": "string",
+        "description": "执行状态：success / failed"
+      }
+    }
+  },
+  "input_constraints": {
+    "data_type": "GDT_Byte",
+    "dimensions": "init_lucc 与 curr_lucc 行列数必须完全一致",
+    "projection": "两期数据投影坐标系必须一致"
+  },
+  "timeout_seconds": 120,
+  "output_format": "stdout: Output: <path>",
+  "examples": [
+    {
+      "description": "识别森林转换为建设用地的区域",
+      "params": {
+        "init_lucc": "/data/LUCC/2025.tif",
+        "curr_lucc": "/data/LUCC/2050.tif",
+        "output": "/data/PriorityAreas-2.tif",
+        "transitions": "2:5:6,4:5"
+      }
+    }
+  ],
+  "validation": {
+    "rules_file": "agent/validation/rules/priority-transition.json"
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "name": "sdg-land-conversion",
+  "category": "sdg-calc",
+  "cli_command": "geosdg-cli",
+  "cli_subcommand": "sdg-land-conversion",
+  "description": "计算土地转换指标（Land Conversion），统计两期 LUCC 间指定转换类型的像元数占初始期总像元数的比例，按正向或负向归一化到 [0, 100]。适用于 SDG 14.5.1（保护区水体变化）、SDG 15.2.1（可持续森林管理）、SDG 15.3.1（土地退化）等指标。",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "init_lucc": {
+        "type": "string",
+        "format": "filepath",
+        "extensions": [
+          ".tif",
+          ".tiff"
+        ],
+        "description": "初始期 LUCC GeoTIFF 路径（GDT_Byte）",
+        "required": true
+      },
+      "curr_lucc": {
+        "type": "string",
+        "format": "filepath",
+        "extensions": [
+          ".tif",
+          ".tiff"
+        ],
+        "description": "变化期 LUCC GeoTIFF 路径（GDT_Byte，行列数须与 init_lucc 一致）",
+        "required": true
+      },
+      "transitions": {
+        "type": "string",
+        "format": "transition-map",
+        "description": "转换规则映射，格式 src:t1:t2,...（如 2:5:6,4:5 表示森林→建设用地/未利用地、水体→建设用地）",
+        "required": true
+      },
+      "max": {
+        "type": "number",
+        "description": "归一化上限阈值",
+        "default": 100,
+        "required": false
+      },
+      "min": {
+        "type": "number",
+        "description": "归一化下限阈值",
+        "default": 0,
+        "required": false
+      },
+      "positive": {
+        "type": "boolean",
+        "description": "true=正向指标（转换越多越好），false=负向指标（转换越多越差，如土地退化）",
+        "default": true,
+        "required": false
+      }
+    },
+    "required": [
+      "init_lucc",
+      "curr_lucc",
+      "transitions"
+    ]
+  },
+  "returns": {
+    "type": "object",
+    "properties": {
+      "score": {
+        "type": "number",
+        "description": "归一化得分（0-100）"
+      },
+      "direction": {
+        "type": "string",
+        "description": "指标方向：positive / negative"
+      }
+    }
+  },
+  "input_constraints": {
+    "data_type": "GDT_Byte",
+    "dimensions": "init_lucc 与 curr_lucc 行列数必须完全一致",
+    "projection": "两期数据投影坐标系必须一致"
+  },
+  "timeout_seconds": 120,
+  "output_format": "stdout: score(positive|negative)=<val>",
+  "examples": [
+    {
+      "description": "评估土地退化（SDG 15.3.1，负向指标）",
+      "params": {
+        "init_lucc": "/data/LUCC/2010.tif",
+        "curr_lucc": "/data/LUCC/2030.tif",
+        "transitions": "2:5:6,4:5",
+        "positive": false
+      }
+    },
+    {
+      "description": "评估森林可持续管理（SDG 15.2.1，正向指标）",
+      "params": {
+        "init_lucc": "/data/LUCC/2025.tif",
+        "curr_lucc": "/data/LUCC/2050.tif",
+        "transitions": "5:2,6:2",
+        "positive": true
+      }
+    }
+  ],
+  "validation": {
+    "rules_file": "agent/validation/rules/sdg-land-conversion.json"
+  }
+}

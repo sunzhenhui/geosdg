@@ -1,0 +1,59 @@
+{
+  "name": "priority-stats",
+  "category": "report",
+  "cli_command": "geosdg-cli",
+  "cli_subcommand": "priority-stats",
+  "description": "统计优先区域排名图各等级面积和占比。从排名图 GeoTIFF 中统计各优先等级（0-6）的像元数，结合空间分辨率换算为面积（km²），输出结构化结果供 Agent 消费。",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "ranking": {
+        "type": "string",
+        "format": "filepath",
+        "description": "排名图 GeoTIFF 路径（priority-merge 输出，值 0-6）",
+        "extensions": [".tif", ".tiff"],
+        "required": true
+      }
+    },
+    "required": ["ranking"]
+  },
+  "returns": {
+    "type": "object",
+    "properties": {
+      "level_0_count": { "type": "integer", "description": "等级 0 像元数" },
+      "level_0_area": { "type": "number", "description": "等级 0 面积 (km²)" },
+      "level_1_count": { "type": "integer", "description": "等级 1 像元数" },
+      "level_1_area": { "type": "number", "description": "等级 1 面积 (km²)" },
+      "level_2_count": { "type": "integer", "description": "等级 2 像元数" },
+      "level_2_area": { "type": "number", "description": "等级 2 面积 (km²)" },
+      "level_3_count": { "type": "integer", "description": "等级 3 像元数" },
+      "level_3_area": { "type": "number", "description": "等级 3 面积 (km²)" },
+      "level_4_count": { "type": "integer", "description": "等级 4 像元数" },
+      "level_4_area": { "type": "number", "description": "等级 4 面积 (km²)" },
+      "level_5_count": { "type": "integer", "description": "等级 5 像元数" },
+      "level_5_area": { "type": "number", "description": "等级 5 面积 (km²)" },
+      "level_6_count": { "type": "integer", "description": "等级 6 像元数" },
+      "level_6_area": { "type": "number", "description": "等级 6 面积 (km²)" },
+      "total_count": { "type": "integer", "description": "总像元数" },
+      "total_area": { "type": "number", "description": "总面积 (km²)" },
+      "priority_count": { "type": "integer", "description": "优先区域像元数（等级 1-6 合计）" },
+      "priority_area": { "type": "number", "description": "优先区域面积 (km²)" },
+      "priority_pct": { "type": "number", "description": "优先区域面积占比 (%)" }
+    }
+  },
+  "input_constraints": {
+    "data_type": "GDT_Byte（排名图像元值 0-6）",
+    "projection": "支持地理坐标系（经纬度）和投影坐标系，自动检测并换算面积",
+    "note": "经纬度投影使用 cos(中心纬度) 修正面积换算；投影坐标系直接使用 GeoTransform 单位换算"
+  },
+  "timeout_seconds": 60,
+  "output_format": "stdout: key=value pairs",
+  "examples": [
+    {
+      "description": "统计排名图各等级面积",
+      "params": {
+        "ranking": "/data/PriorityAreasRankingMap.tif"
+      }
+    }
+  ]
+}

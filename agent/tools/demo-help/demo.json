@@ -1,0 +1,59 @@
+{
+  "name": "demo",
+  "category": "demo-help",
+  "cli_command": "geosdg-cli",
+  "cli_subcommand": "demo",
+  "description": "运行完整演示流程，使用内置样例数据依次执行 8 个步骤：CA 精度评估、相关性检验、t 检验、土地比例指标、土地转换指标、缓冲区指标、SDG 11.3.1/13.2.2、优先区域识别。支持断点续跑。",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "resume": {
+        "type": "boolean",
+        "description": "是否从上次断点继续执行（读取日志中最后的 CHECKPOINT 记录）",
+        "default": false,
+        "required": false
+      }
+    },
+    "required": []
+  },
+  "returns": {
+    "type": "object",
+    "properties": {
+      "status": { "type": "string", "description": "执行状态：success / partial / failed" },
+      "steps_completed": { "type": "integer", "description": "完成的步骤数（1-8）" },
+      "steps_total": { "type": "integer", "description": "总步骤数（固定 8）" }
+    }
+  },
+  "input_constraints": {
+    "working_directory": "需在 cli/build/bin/ 目录下执行，或 ../data/ 路径可达",
+    "data_files": "依赖 ../data/LUCC/、../data/POPU/、../data/INFRA/ 下的样例数据（纯读取，不修改）",
+    "warning": "demo 会硬编码写入 ../data/PriorityAreas-*.tif 和 ../data/PriorityAreasRankingMap.tif，Agent 框架通过 Step 3.5 备份恢复机制自动保护原始数据"
+  },
+  "data_safety": {
+    "copy_inputs": "mandatory",
+    "outputs_pollute_data": true,
+    "reason": "硬编码写入 ../data/PriorityAreas-*.tif 到数据目录",
+    "agent_protection": "Step 3.5 备份 data/ → 执行 demo → Step 7 恢复原始文件 + 移出输出产物",
+    "output_files": [
+      "data/PriorityAreas-1.tif",
+      "data/PriorityAreas-2.tif",
+      "data/PriorityAreas-3.tif",
+      "data/PriorityAreas-4.tif",
+      "data/PriorityAreas-5.tif",
+      "data/PriorityAreas-6.tif",
+      "data/PriorityAreasRankingMap.tif"
+    ]
+  },
+  "timeout_seconds": 600,
+  "output_format": "stdout: 各步骤进度日志 + 最终 'Demo completed successfully!'",
+  "examples": [
+    {
+      "description": "首次运行完整演示（Agent 自动备份恢复 data/）",
+      "params": {}
+    },
+    {
+      "description": "从断点续跑",
+      "params": { "resume": true }
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "tool": "sdg-land-conversion",
+  "description": "SDG 土地转换指标验证规则",
+  "valid_range": { "min": 0, "max": 100 },
+  "anomaly_patterns": [
+    {
+      "id": "conv-zero-with-change",
+      "condition": "score == 0 AND transition_area > 0",
+      "severity": "FAIL",
+      "diagnosis": "得分为 0 但存在转换面积，疑似转换方向参数选反或 transitions 规则不匹配",
+      "suggestion": "检查 --positive/--negative 方向和 --transitions 规则是否与数据匹配",
+      "auto_fix": false
+    },
+    {
+      "id": "conv-full-single-type",
+      "condition": "score == 100 AND unique_transition_types == 1",
+      "severity": "WARN",
+      "diagnosis": "得分为 100 但仅 1 种转换类型，可能 transitions 规则过于宽泛",
+      "suggestion": "检查 --transitions 规则是否需要细化",
+      "auto_fix": false
+    }
+  ]
+}

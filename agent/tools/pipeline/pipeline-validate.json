@@ -1,0 +1,43 @@
+{
+  "name": "pipeline-validate",
+  "category": "pipeline",
+  "cli_command": "geosdg-cli",
+  "cli_subcommand": "pipeline validate",
+  "description": "验证 Pipeline 配置文件的结构正确性，不执行计算。检查字段完整性、步骤 ID 唯一性、依赖引用有效性、DAG 无环、工具名合法性。",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "config": {
+        "type": "string",
+        "format": "filepath",
+        "extensions": [".json"],
+        "description": "Pipeline JSON 配置文件路径",
+        "required": true
+      },
+      "lenient": {
+        "type": "boolean",
+        "default": false,
+        "description": "宽松模式：允许未知工具名",
+        "required": false
+      }
+    },
+    "required": ["config"]
+  },
+  "returns": {
+    "type": "object",
+    "properties": {
+      "valid": { "type": "boolean", "description": "配置是否有效" },
+      "errors": { "type": "array", "description": "验证错误列表（空表示有效）" }
+    }
+  },
+  "timeout_seconds": 10,
+  "output_format": "stdout: Validation result with execution order preview",
+  "examples": [
+    {
+      "description": "验证 SDG 全流程配置",
+      "params": {
+        "config": "agent/pipeline/examples/sdg-full.json"
+      }
+    }
+  ]
+}
