@@ -1,3 +1,8 @@
+---
+name: data-standardizer
+description: GeoSDG 数据标准化。将散乱 GeoTIFF 文件整理为 data/ 标准目录结构并生成 manifest.json。触发关键词：数据标准化、整理数据、data standardization、organize tiffs、生成 manifest、数据目录结构、scan tiffs、数据目录
+---
+
 # data-standardizer
 
 GeoSDG 数据标准化 Skill — 将散乱 GeoTIFF 文件整理为 `data/` 标准目录结构，生成 `manifest.json`。
