@@ -51,13 +51,13 @@ main() {
     # 解析参数
     if [[ $# -eq 0 ]]; then
         # 默认同步所有
-        targets=("codebuddy" "claude" "codex")
+        targets=("codebuddy" "workbuddy" "claude" "codex")
     else
         for arg in "$@"; do
             case "$arg" in
-                codebuddy|claude|codex) targets+=("$arg") ;;
-                all) targets=("codebuddy" "claude" "codex") ;;
-                *) log_error "未知目标: $arg (支持: codebuddy, claude, codex, all)" ; exit 1 ;;
+                codebuddy|workbuddy|claude|codex) targets+=("$arg") ;;
+                all) targets=("codebuddy" "workbuddy" "claude" "codex") ;;
+                *) log_error "未知目标: $arg (支持: codebuddy, workbuddy, claude, codex, all)" ; exit 1 ;;
             esac
         done
     fi
@@ -74,6 +74,7 @@ main() {
     for target in "${targets[@]}"; do
         case "$target" in
             codebuddy) sync_codebuddy || has_error=true ;;
+            workbuddy) sync_workbuddy || has_error=true ;;
             claude)    sync_claude    || has_error=true ;;
             codex)     sync_codex     || has_error=true ;;
         esac
@@ -111,6 +112,34 @@ sync_codebuddy() {
         mkdir -p "$base"
         cp "$AGENT_DIR/codebuddy-settings.json" "$base/settings.json"
         log_info "  Settings → .codebuddy/settings.json"
+    fi
+}
+
+# ============================================================
+# WorkBuddy (.workbuddy/)
+#   项目级: .workbuddy/skills/        ← agent/skills/
+#            .workbuddy/commands/     ← agent/commands/
+#            .workbuddy/rules/        ← agent/rules/
+#            .workbuddy/settings.json ← agent/codebuddy-settings.json (复用)
+#   用户级: ~/.workbuddy/...  (不在本脚本管理范围)
+#   注意: WorkBuddy 与 CodeBuddy 同属 buddy 系，目录结构一致，
+#         复用同一份 settings 配置。
+# ============================================================
+sync_workbuddy() {
+    log_title "同步 WorkBuddy (.workbuddy/)"
+    local base="$PROJECT_ROOT/.workbuddy"
+
+    # Skills
+    sync_dir "$AGENT_DIR/skills" "$base/skills" "  Skills   → .workbuddy/skills/"
+    # Commands
+    sync_dir "$AGENT_DIR/commands" "$base/commands" "  Commands → .workbuddy/commands/"
+    # Rules
+    sync_dir "$AGENT_DIR/rules"  "$base/rules"  "  Rules    → .workbuddy/rules/"
+    # Settings (复用 codebuddy-settings.json)
+    if [[ -f "$AGENT_DIR/codebuddy-settings.json" ]]; then
+        mkdir -p "$base"
+        cp "$AGENT_DIR/codebuddy-settings.json" "$base/settings.json"
+        log_info "  Settings → .workbuddy/settings.json"
     fi
 }
 
@@ -207,6 +236,7 @@ Windows 用户:
 
 目标:
   codebuddy    同步到 .codebuddy/   (CodeBuddy)
+  workbuddy    同步到 .workbuddy/   (WorkBuddy)
   claude       同步到 .claude/      (Claude Code)
   codex        同步到 .agents/      (OpenAI Codex)
   all          同步所有目标 (默认)
@@ -214,6 +244,7 @@ Windows 用户:
 示例:
   $0                    # 同步所有
   $0 codebuddy          # 仅同步 CodeBuddy
+  $0 workbuddy          # 仅同步 WorkBuddy
   $0 claude codex       # 同步 Claude Code 和 Codex
 
 源目录结构:
@@ -227,7 +258,7 @@ Windows 用户:
   └── codebuddy-settings.json → .codebuddy/settings.json
 
 目标目录结构:
-  .codebuddy/
+  .codebuddy/ 与 .workbuddy/
   ├── skills/       ← agent/skills/*
   ├── commands/     ← agent/commands/*
   ├── rules/        ← agent/rules/*

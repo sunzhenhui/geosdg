@@ -49,12 +49,14 @@ CTestTestfile.cmake
 .codebuddy/
 .claude/
 .agents/
+.workbuddy/
 
 # 生成的报告和图表产物
 reports/
 output/
 outputs/
 logs/
+references/
 
 # Agent 运行时记忆
 memory/
