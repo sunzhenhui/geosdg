@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0A97D9',
+            secondary: '#56C02B',
+            accent: '#E4572E',
+            navy: '#0F2740',
+            ink: '#16283A',
+            mist: '#F4F7FA',
+            'text-primary': '#F1F5F9',
+          },
+          fontFamily: {
+            heading: ['Helvetica Neue', 'Segoe UI', 'Arial', 'sans-serif'],
+            body: ['Arial', 'Helvetica Neue', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="w-[1280px] h-[720px] overflow-hidden m-0 p-0 relative font-body">
+  <div class="absolute inset-0 z-0 bg-mist"></div>
+
+  <div class="relative z-10 w-full h-full px-16 py-12 flex flex-col">
+    <div class="mb-8">
+      <p class="text-sm font-semibold text-primary tracking-[0.25em] uppercase mb-2">02 · Method</p>
+      <h1 class="text-5xl font-semibold text-ink font-heading">Multi-Scale Assessment &amp; Priority Areas</h1>
+    </div>
+
+    <div class="grid grid-cols-2 gap-6 flex-1">
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-7 flex flex-col">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center" data-lucide="grid-3x3"></div>
+          <h2 class="text-2xl font-semibold text-ink font-heading">Multi-Scale Aggregation</h2>
+        </div>
+        <div class="flex items-center gap-3 mb-5">
+          <div class="flex-1 h-16 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+            <span class="text-xl font-bold text-primary font-heading">Raster</span>
+          </div>
+          <span class="text-slate-400" data-lucide="arrow-right"></span>
+          <div class="flex-1 h-16 rounded-xl bg-secondary/10 border border-secondary/20 flex items-center justify-center">
+            <span class="text-xl font-bold text-secondary font-heading">City</span>
+          </div>
+          <span class="text-slate-400" data-lucide="arrow-right"></span>
+          <div class="flex-1 h-16 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center">
+            <span class="text-xl font-bold text-accent font-heading">Cluster</span>
+          </div>
+        </div>
+        <p class="text-lg text-slate-500 leading-snug flex-1">Ensures comparability across <span class="text-ink font-semibold">regions and resolutions</span>.</p>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-7 flex flex-col">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-lg bg-accent/10 text-accent flex items-center justify-center" data-lucide="target"></div>
+          <h2 class="text-2xl font-semibold text-ink font-heading">Priority-Area Identification</h2>
+        </div>
+        <p class="text-lg text-slate-500 leading-snug mb-4">Four priority types integrated via raster overlay into a single ranking.</p>
+        <div class="flex items-center justify-between gap-2 flex-1">
+          <div class="flex-1 h-20 rounded-xl bg-slate-100 flex flex-col items-center justify-center">
+            <span class="text-xs font-semibold text-slate-400 uppercase">Low</span>
+          </div>
+          <div class="flex-1 h-20 rounded-xl bg-secondary/30 flex flex-col items-center justify-center">
+            <span class="text-sm font-bold text-secondary font-heading">Moderate</span>
+          </div>
+          <div class="flex-1 h-20 rounded-xl bg-primary/40 flex flex-col items-center justify-center">
+            <span class="text-sm font-bold text-primary font-heading">High</span>
+          </div>
+          <div class="flex-1 h-20 rounded-xl bg-accent/70 flex flex-col items-center justify-center">
+            <span class="text-sm font-bold text-white font-heading">Critical</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 text-center text-sm text-slate-400 font-semibold tracking-wide">Corresponds to Figures 5 &amp; 6 in the paper</div>
+  </div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0A97D9',
+            secondary: '#56C02B',
+            accent: '#E4572E',
+            navy: '#0F2740',
+            ink: '#16283A',
+            mist: '#F4F7FA',
+            'text-primary': '#F1F5F9',
+          },
+          fontFamily: {
+            heading: ['Helvetica Neue', 'Segoe UI', 'Arial', 'sans-serif'],
+            body: ['Arial', 'Helvetica Neue', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="w-[1280px] h-[720px] overflow-hidden m-0 p-0 relative font-body">
+  <div class="absolute inset-0 z-0 bg-mist"></div>
+
+  <div class="relative z-10 w-full h-full px-14 py-10 flex flex-col">
+    <div class="mb-6">
+      <p class="text-sm font-semibold text-primary tracking-[0.25em] uppercase mb-1">02 · Method</p>
+      <h1 class="text-4xl font-semibold text-ink font-heading">Indicator Calculation Paradigm</h1>
+    </div>
+
+    <!-- Main horizontal flow -->
+    <div class="flex items-stretch justify-between gap-3 mb-6">
+      <div class="flex-1 bg-white rounded-xl shadow-sm border-t-4 border-slate-400 p-4 flex flex-col">
+        <div class="flex items-center gap-2 mb-2">
+          <div class="w-8 h-8 rounded-lg bg-slate-500/10 text-slate-500 flex items-center justify-center" data-lucide="database"></div>
+          <p class="text-base font-semibold text-ink font-heading">Input Data</p>
+        </div>
+        <p class="text-sm text-slate-500 leading-snug">Land use · Population · Roads · POIs · DEM</p>
+      </div>
+      <div class="flex items-center text-primary shrink-0" data-lucide="arrow-right"></div>
+
+      <div class="flex-1 bg-white rounded-xl shadow-sm border-t-4 border-primary p-4 flex flex-col">
+        <div class="flex items-center gap-2 mb-2">
+          <div class="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center" data-lucide="boxes"></div>
+          <p class="text-base font-semibold text-ink font-heading">4 Primitives</p>
+        </div>
+        <p class="text-sm text-slate-500 leading-snug">Proportion · Conversion · Buffer · Statistics</p>
+      </div>
+      <div class="flex items-center text-primary shrink-0" data-lucide="arrow-right"></div>
+
+      <div class="flex-1 bg-white rounded-xl shadow-sm border-t-4 border-secondary p-4 flex flex-col">
+        <div class="flex items-center gap-2 mb-2">
+          <div class="w-8 h-8 rounded-lg bg-secondary/10 text-secondary flex items-center justify-center" data-lucide="scale"></div>
+          <p class="text-base font-semibold text-ink font-heading">Normalize</p>
+        </div>
+        <p class="text-sm text-slate-500 leading-snug">Positive · Neutral · Negative → 0–100</p>
+      </div>
+      <div class="flex items-center text-primary shrink-0" data-lucide="arrow-right"></div>
+
+      <div class="flex-1 bg-navy rounded-xl shadow-sm p-4 flex flex-col">
+        <div class="flex items-center gap-2 mb-2">
+          <div class="w-8 h-8 rounded-lg bg-accent/20 text-accent flex items-center justify-center" data-lucide="sigma"></div>
+          <p class="text-base font-semibold text-text-primary font-heading">SDG Score</p>
+        </div>
+        <p class="text-sm text-white/60 leading-snug">SDG = Σ wᵢ · Xnorᵢ (Eq. 1–2)</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-12 gap-5 flex-1 min-h-0">
+      <!-- Left: four primitives detail -->
+      <div class="col-span-7 bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex flex-col">
+        <h2 class="text-lg font-semibold text-ink font-heading mb-3 flex items-center gap-2">
+          <span class="w-6 h-6 rounded-md bg-primary/10 text-primary flex items-center justify-center" data-lucide="layers"></span>
+          Four Measurement Primitives → 27 Indicators
+        </h2>
+        <div class="grid grid-cols-2 gap-3 flex-1">
+          <div class="rounded-xl bg-primary/5 border border-primary/20 p-3">
+            <p class="text-sm font-semibold text-primary font-heading">① Land Proportion</p>
+            <p class="text-xs text-slate-500 mt-1 leading-snug">Ratio of target land class to total (e.g. forest %, agricultural land %)</p>
+          </div>
+          <div class="rounded-xl bg-secondary/5 border border-secondary/20 p-3">
+            <p class="text-sm font-semibold text-secondary font-heading">② Land Conversion</p>
+            <p class="text-xs text-slate-500 mt-1 leading-snug">Change / transition of land class over time (e.g. degraded land, water ecosystem)</p>
+          </div>
+          <div class="rounded-xl bg-accent/5 border border-accent/20 p-3">
+            <p class="text-sm font-semibold text-accent font-heading">③ Buffer Zone</p>
+            <p class="text-xs text-slate-500 mt-1 leading-snug">Population served within buffer of facility / road / station</p>
+          </div>
+          <div class="rounded-xl bg-navy/5 border border-navy/20 p-3">
+            <p class="text-sm font-semibold text-navy font-heading">④ Total Statistics</p>
+            <p class="text-xs text-slate-500 mt-1 leading-snug">Aggregate counts &amp; sums (e.g. grain yield, carbon emissions)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: normalization + formula -->
+      <div class="col-span-5 flex flex-col gap-3">
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex-1">
+          <h2 class="text-lg font-semibold text-ink font-heading mb-3 flex items-center gap-2">
+            <span class="w-6 h-6 rounded-md bg-secondary/10 text-secondary flex items-center justify-center" data-lucide="sliders-horizontal"></span>
+            Normalization Direction
+          </h2>
+          <div class="grid grid-cols-3 gap-2">
+            <div class="rounded-lg bg-secondary/5 border border-secondary/20 p-2 text-center">
+              <p class="text-xs font-semibold text-secondary font-heading">Positive</p>
+              <p class="text-[10px] text-slate-500">higher = better</p>
+            </div>
+            <div class="rounded-lg bg-primary/5 border border-primary/20 p-2 text-center">
+              <p class="text-xs font-semibold text-primary font-heading">Neutral</p>
+              <p class="text-[10px] text-slate-500">closer to opt</p>
+            </div>
+            <div class="rounded-lg bg-accent/5 border border-accent/20 p-2 text-center">
+              <p class="text-xs font-semibold text-accent font-heading">Negative</p>
+              <p class="text-[10px] text-slate-500">lower = better</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-navy rounded-2xl p-5 flex-1 flex flex-col justify-center">
+          <p class="text-sm text-white/50 mb-1">Weighted synthesis</p>
+          <p class="text-lg text-text-primary font-semibold font-heading">SDG = Σ<span class="text-primary">wᵢ</span> · <span class="text-secondary">Xnorᵢ</span> <span class="text-white/40 text-sm font-normal">(k indicators)</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-4 text-center text-sm text-slate-400 font-semibold tracking-wide">Corresponds to Figure 3 &amp; Eq. 1–2 in the paper</div>
+  </div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

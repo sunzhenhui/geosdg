@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0A97D9',
+            secondary: '#56C02B',
+            accent: '#E4572E',
+            navy: '#0F2740',
+            ink: '#16283A',
+            mist: '#F4F7FA',
+            'text-primary': '#F1F5F9',
+          },
+          fontFamily: {
+            heading: ['Helvetica Neue', 'Segoe UI', 'Arial', 'sans-serif'],
+            body: ['Arial', 'Helvetica Neue', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="w-[1280px] h-[720px] overflow-hidden m-0 p-0 relative font-body">
+  <div class="absolute inset-0 z-0 bg-mist"></div>
+  <div class="absolute top-0 right-0 w-72 h-72 rounded-full bg-primary/5 z-0"></div>
+  <div class="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-secondary/5 z-0"></div>
+
+  <div class="relative z-10 w-full h-full px-16 py-12 flex flex-col">
+    <div class="flex items-center gap-4 mb-10">
+      <span class="w-1.5 h-9 rounded-full bg-primary"></span>
+      <h1 class="text-5xl font-semibold text-ink font-heading">Agenda</h1>
+    </div>
+
+    <div class="grid grid-cols-2 gap-6 flex-1">
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-7 flex gap-5 items-start">
+        <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0" data-lucide="globe"></div>
+        <div>
+          <p class="text-xs font-semibold text-primary tracking-widest uppercase mb-1">01 · Background</p>
+          <h2 class="text-2xl font-semibold text-ink mb-2 font-heading">Why Spatialize the SDGs?</h2>
+          <p class="text-lg text-slate-500 leading-snug">Spatial essence of the goals, and the gaps of existing approaches.</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-7 flex gap-5 items-start">
+        <div class="w-12 h-12 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center shrink-0" data-lucide="layers"></div>
+        <div>
+          <p class="text-xs font-semibold text-secondary tracking-widest uppercase mb-1">02 · Method</p>
+          <h2 class="text-2xl font-semibold text-ink mb-2 font-heading">The GeoSDG Framework</h2>
+          <p class="text-lg text-slate-500 leading-snug">Indicators, dual simulation (CALUCC + CAINFRA), and priority areas.</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-7 flex gap-5 items-start">
+        <div class="w-12 h-12 rounded-xl bg-accent/10 text-accent flex items-center justify-center shrink-0" data-lucide="map"></div>
+        <div>
+          <p class="text-xs font-semibold text-accent tracking-widest uppercase mb-1">03 · Case Study</p>
+          <h2 class="text-2xl font-semibold text-ink mb-2 font-heading">Yangtze River Delta</h2>
+          <p class="text-lg text-slate-500 leading-snug">What the toolkit can do — and where its honest limits lie.</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-7 flex gap-5 items-start">
+        <div class="w-12 h-12 rounded-xl bg-navy/10 text-navy flex items-center justify-center shrink-0" data-lucide="bot"></div>
+        <div>
+          <p class="text-xs font-semibold text-navy tracking-widest uppercase mb-1">04 · Tool Evolution</p>
+          <h2 class="text-2xl font-semibold text-ink mb-2 font-heading">GUI → CLI → AI Agent</h2>
+          <p class="text-lg text-slate-500 leading-snug">From a paper artifact toward an AI-era intelligent assistant.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 flex items-center justify-center gap-3">
+      <span class="h-2 w-2 rounded-full bg-primary"></span>
+      <span class="h-2 w-2 rounded-full bg-secondary"></span>
+      <span class="h-2 w-2 rounded-full bg-accent"></span>
+      <span class="h-2 w-2 rounded-full bg-slate-300"></span>
+      <span class="ml-3 text-sm text-slate-400 font-semibold">23 slides · ~15–20 min</span>
+    </div>
+  </div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

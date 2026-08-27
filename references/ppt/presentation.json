@@ -1,0 +1,145 @@
+{
+  "title": "GeoSDG Toolkit — Empowering the Sustainable Future under a Spatial Context",
+  "theme": "1. 整体风格：学术会议报告风格（Academic Conference），GIS 与可持续发展科学调性，干净专业、数据可视化导向，类似期刊主图（Figure）的精致感。\n2. 背景：浅色系，主背景 #F4F7FA（极浅蓝灰），卡片用纯白 #FFFFFF，深色强调区块用深海军蓝 #0F2740。\n3. 字体：标题使用现代无衬线粗体（Helvetica Neue / Segoe UI / Arial），正文使用 Arial / Helvetica Neue；代码/命令/DOI 使用等宽字体（Consolas / Menlo / monospace）。\n4. 配色：主色调 SDG 蓝 #0A97D9；辅色调 SDG 绿 #56C02B；点缀色 橙 #E4572E（优先区/热点强调）；深色区块文字色 #F1F5F9；正文深色 #16283A。\n5. 视觉元素：扁平化几何卡片、12 列网格、SDG 色块图标、时间轴、流程图、数据大数字高亮、圆角卡片 + 细阴影、充足留白、Lucide 线性图标。",
+  "slides": [
+    {
+      "file": "slide_001.html",
+      "type": "title",
+      "title": "GeoSDG Toolkit",
+      "content_spec": "封面：主标题 GeoSDG Toolkit，副标题 Empowering the Sustainable Future under a Spatial Context，下方标注会议主题 GIS in the Era of AI and Big Data、作者单位 School of Geographic Sciences, East China Normal University、日期。",
+      "local_theme": "深海军蓝渐变背景（#0F2740 → #0A97D9 渐变），白色大标题居中，SDG 蓝绿橙三色点缀装饰几何。"
+    },
+    {
+      "file": "slide_002.html",
+      "type": "content",
+      "title": "Agenda",
+      "content_spec": "目录页：四段式叙事 Background → Method → Case Study → Tool Evolution，各配一句要点说明与序号，最后提示 Conclusion。"
+    },
+    {
+      "file": "slide_003.html",
+      "type": "content",
+      "title": "Why Spatialize the SDGs?",
+      "content_spec": "背景页 1：SDG 空间化挑战——17 目标 169 子目标 230+ 指标；诸多目标本质是空间的、依赖土地利用与基础设施；2030 期限临近、进度落后，框架延伸至 2050，要求情景化前瞻预测而非仅回顾评估。"
+    },
+    {
+      "file": "slide_004.html",
+      "type": "content",
+      "title": "Three Gaps in Existing Approaches",
+      "content_spec": "背景页 2：现有方法三类不足——回顾性（基于历史统计，缺未来动态）、非空间（iSDG/IFs/SDG-IO/T21 统计驱动，忽略空间变异）、单一要素（CA 只模拟土地利用，未纳入基础设施动态）。"
+    },
+    {
+      "file": "slide_005.html",
+      "type": "content",
+      "title": "Research Questions & Contributions",
+      "content_spec": "背景页 3：一句话研究问题（如何将 SDG 空间化从回顾性评估升级为前瞻空间动态建模），三大贡献：①CA 引入 10 目标 27 指标空间评估；②提出 CAINFRA 并行模拟基础设施覆盖；③识别关键时间窗口、区域差异与优先干预区。"
+    },
+    {
+      "file": "slide_006.html",
+      "type": "content",
+      "title": "Method Overview: Three Modules",
+      "content_spec": "方法页 1：方法总览三大模块（对应论文 Figure 1）——指标选择与量化、时空动态模拟评分与优先区识别、未来可持续发展展望；用流程箭头串联呈现。"
+    },
+    {
+      "file": "slide_007.html",
+      "type": "content",
+      "title": "Indicator System: 10 Goals, 27 Indicators",
+      "content_spec": "方法页 2：指标系统（对应论文 Table 1）——10 个 SDG、17 个 target、27 个指标；按测量方法分四类：Land Proportion / Land Conversion / Buffer Zone / Total Statistics；强调土地相关逻辑。"
+    },
+    {
+      "file": "slide_008.html",
+      "type": "content",
+      "title": "Calculation Paradigm & Normalization",
+      "content_spec": "方法页 3：指标计算范式——四类原语覆盖 27 指标（方法学工程化核心）；归一化分正向/中性/负向映射到 0–100；SDG 加权综合得分公式 SDG score = Σ w·indicator。"
+    },
+    {
+      "file": "slide_009.html",
+      "type": "content",
+      "title": "Land-Use Simulation: CALUCC",
+      "content_spec": "方法页 4：CALUCC 土地利用模拟——综合转换概率 = 随机森林整体概率 × 邻域效应 × 自适应惯性系数 × 约束因子 × 随机因子，轮盘赌选择；AI 驱动含义：随机森林学习空间驱动因子到土地利用类型的转换规则。"
+    },
+    {
+      "file": "slide_010.html",
+      "type": "content",
+      "title": "Infrastructure Simulation: CAINFRA",
+      "content_spec": "方法页 5：CAINFRA 基础设施模拟（对应论文 Figure 4）——两状态 CA（覆盖/未覆盖），随机森林估计覆盖概率 + 竞争性 patch-seeding；亮点：首次同时模拟土地利用与基础设施覆盖。"
+    },
+    {
+      "file": "slide_011.html",
+      "type": "content",
+      "title": "Multi-Scale Assessment & Priority Areas",
+      "content_spec": "方法页 6：多尺度评估与优先区（对应论文 Figure 5/6）——栅格 CA 模拟 + 空间 SDG 得分，多尺度聚合保证跨区域跨分辨率可比；四类优先区栅格叠加集成排序，四级分级 Low/Moderate/High/Critical。"
+    },
+    {
+      "file": "slide_012.html",
+      "type": "content",
+      "title": "Case Study: Yangtze River Delta",
+      "content_spec": "案例页 0：研究区与数据（对应论文 Table 2）——长三角 211,700 km²、27 城市（沪苏浙皖）、约占全国 GDP 1/5；数据清单：CNLUCC 30m 土地利用、高德 POI、OSM 道路、WorldPop 人口。"
+    },
+    {
+      "file": "slide_013.html",
+      "type": "content",
+      "title": "Value 1 — How Accurate Is It?",
+      "content_spec": "案例页 1（算得准，回扣 D3 前半 + D1）：CALUCC FoM=0.128/OA=0.815、CAINFRA FoM=0.263/OA=0.923；>70% 单元 FoM>0.1、>90% OA>0.8；相关性 SDG11 r=0.898、SDG15 r=0.831 强，SDG3/4/6 中等，SDG2/7/9 无显著。"
+    },
+    {
+      "file": "slide_014.html",
+      "type": "content",
+      "title": "Value 2 — How Far Ahead Can It Look?",
+      "content_spec": "案例页 2（看得远，回扣 D1 + D5）：全部情景 SDG 总分上升，SSP1/2/5 到 2050 最高；SDG6/7/13/14 强劲（>90）、SDG2/15 持续下降、SDG11 波动；2030–2035 为关键波动期；三种时间模式（渐进改善/渐进下降/波动）。"
+    },
+    {
+      "file": "slide_015.html",
+      "type": "content",
+      "title": "Value 3 — How Fine-Grained Is the View?",
+      "content_spec": "案例页 3（看得细，回扣 D5）：2020 格局中部高南北低；2030 年 SSP2/4 改善最小、SSP3 失衡最大；2050 年 SSP4 区域差距最大；区分整体区域表现与区域内部空间不均衡。"
+    },
+    {
+      "file": "slide_016.html",
+      "type": "content",
+      "title": "Value 4 — Where Should We Intervene?",
+      "content_spec": "案例页 4（指得准，回扣 D6）：2030 年 SSP3 优先区最大（>15,000 km²）、SSP2 最小（8,667 km²）；2050 年 SSP3 仍最大（22,853 km²）；优先区集中在苏南、浙北、皖东快速发展城市；优先区随情景动态变化。"
+    },
+    {
+      "file": "slide_017.html",
+      "type": "content",
+      "title": "Honest Limits — Complement, Not Substitute",
+      "content_spec": "案例页 5（边界，回扣 D3 后半 + D4）：对 SDG2/7/9/13 弱相关，空间代理对复杂社会经济过程指标的局限，应补充而非替代传统统计监测；模块化可迁移但目前仅概念性（仅长三角验证），需本地数据重校准。"
+    },
+    {
+      "file": "slide_018.html",
+      "type": "content",
+      "title": "Tool Evolution: GUI → CLI → AI Agent",
+      "content_spec": "工具页 1：版本演进总览时间轴——v1.0 论文 GUI 版（Windows、C++、GPL-3.0、figshare）、v2.0 CLI 版（跨平台可编程）、v3.0 AI Agent 版（自然语言驱动，进行中）；演进动机：AI 时代旧架构难直接应用。"
+    },
+    {
+      "file": "slide_019.html",
+      "type": "content",
+      "title": "v1 — Paper GUI (figshare)",
+      "content_spec": "工具页 2：v1 论文 GUI 版——Windows 桌面 GUI、C++ 实现、GPL-3.0 开源、完整文档与源码、随论文发布于 figshare（DOI）；局限：强绑定 Windows、桌面交互范式、与 AI 自动化衔接困难。"
+    },
+    {
+      "file": "slide_020.html",
+      "type": "content",
+      "title": "v2 — Cross-Platform CLI",
+      "content_spec": "工具页 3：v2 CLI 版——核心算法（指标计算、CA 模拟、优先区识别）重构为独立 CLI，跨平台、可脚本化、可复现，基于 GDAL 栅格算子；价值：可集成批处理流水线，可编程是通往 AI 自动化的前提。"
+    },
+    {
+      "file": "slide_021.html",
+      "type": "content",
+      "title": "v3 — AI Agent (In Progress)",
+      "content_spec": "工具页 4（落点）：v3 AI Agent 版——在 CLI 之上构建 AI Agent Skill 体系；交互链路：自然语言提问 → 大模型理解意图 → 调用 Skill → 底层 CLI/GDAL 计算 → 返回结果与解读；从科研工具升级为 AI 时代智能助手。"
+    },
+    {
+      "file": "slide_022.html",
+      "type": "content",
+      "title": "Conclusions & Outlook",
+      "content_spec": "结论页：三点结论（空间显式前瞻工具是 SDG 落地关键；CA+SSP 实现土地与基础设施协同模拟与情景评估；GUI→CLI→AI Agent 走向开放可复现智能化）；局限（27 指标、仅长三角、长期预测不确定）；展望（跨区域验证、指标扩展、Agent 版进行中）。"
+    },
+    {
+      "file": "slide_023.html",
+      "type": "content",
+      "title": "Acknowledgments & References",
+      "content_spec": "致谢与参考文献：基金（国家自然科学基金重点项目 42130107）、合作者（Minyi Gao, Mengya Li, Ziheng Xu, Xia Li）、完整论文引用（IJGIS 2026, doi:10.1080/13658816.2026.2717629）、数据与代码 figshare DOI。"
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0A97D9',
+            secondary: '#56C02B',
+            accent: '#E4572E',
+            navy: '#0F2740',
+            ink: '#16283A',
+            mist: '#F4F7FA',
+            'text-primary': '#F1F5F9',
+          },
+          fontFamily: {
+            heading: ['Helvetica Neue', 'Segoe UI', 'Arial', 'sans-serif'],
+            body: ['Arial', 'Helvetica Neue', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="w-[1280px] h-[720px] overflow-hidden m-0 p-0 relative font-body">
+  <div class="absolute inset-0 z-0 bg-mist"></div>
+
+  <div class="relative z-10 w-full h-full px-16 py-12 flex flex-col">
+    <div class="mb-7">
+      <p class="text-sm font-semibold text-navy tracking-[0.25em] uppercase mb-2">04 · Tool Evolution</p>
+      <h1 class="text-5xl font-semibold text-ink font-heading">v1 — Paper GUI (figshare)</h1>
+    </div>
+
+    <div class="grid grid-cols-12 gap-6 flex-1">
+      <div class="col-span-7 bg-white rounded-2xl shadow-sm border border-slate-100 p-7 flex flex-col">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center" data-lucide="monitor"></div>
+          <h2 class="text-2xl font-semibold text-ink font-heading">What It Is</h2>
+        </div>
+        <div class="grid grid-cols-2 gap-4 flex-1">
+          <div class="rounded-xl bg-mist border border-slate-100 p-5 flex flex-col justify-center">
+            <p class="text-lg font-semibold text-ink font-heading mb-1">Windows Desktop</p>
+            <p class="text-base text-slate-500">Graphical user interface</p>
+          </div>
+          <div class="rounded-xl bg-mist border border-slate-100 p-5 flex flex-col justify-center">
+            <p class="text-lg font-semibold text-ink font-heading mb-1">C++ / GPL-3.0</p>
+            <p class="text-base text-slate-500">Open-source, full docs &amp; source</p>
+          </div>
+          <div class="rounded-xl bg-mist border border-slate-100 p-5 flex flex-col justify-center col-span-2">
+            <p class="text-lg font-semibold text-ink font-heading mb-1">Published with the Paper</p>
+            <p class="text-base text-slate-500 font-mono">figshare DOI: 10.6084/m9.figshare.29445089.v3</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-span-5 bg-navy rounded-2xl p-7 flex flex-col">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-lg bg-accent/20 text-accent flex items-center justify-center" data-lucide="triangle-alert"></div>
+          <h2 class="text-2xl font-semibold text-text-primary font-heading">Limits (Gentle)</h2>
+        </div>
+        <div class="flex flex-col gap-3 flex-1 justify-center">
+          <div class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-accent shrink-0"></span><span class="text-base text-white/85">Windows-only binding</span></div>
+          <div class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-accent shrink-0"></span><span class="text-base text-white/85">Desktop interaction paradigm</span></div>
+          <div class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-accent shrink-0"></span><span class="text-base text-white/85">Hard to join AI / automated workflows</span></div>
+          <div class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-accent shrink-0"></span><span class="text-base text-white/85">High barrier to reproduce &amp; rework</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

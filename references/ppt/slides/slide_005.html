@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0A97D9',
+            secondary: '#56C02B',
+            accent: '#E4572E',
+            navy: '#0F2740',
+            ink: '#16283A',
+            mist: '#F4F7FA',
+            'text-primary': '#F1F5F9',
+          },
+          fontFamily: {
+            heading: ['Helvetica Neue', 'Segoe UI', 'Arial', 'sans-serif'],
+            body: ['Arial', 'Helvetica Neue', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="w-[1280px] h-[720px] overflow-hidden m-0 p-0 relative font-body">
+  <div class="absolute inset-0 z-0 bg-mist"></div>
+
+  <div class="relative z-10 w-full h-full px-16 py-12 flex flex-col">
+    <div class="mb-7">
+      <p class="text-sm font-semibold text-primary tracking-[0.25em] uppercase mb-2">01 · Background</p>
+      <h1 class="text-5xl font-semibold text-ink font-heading">Research Question &amp; Contributions</h1>
+    </div>
+
+    <div class="bg-navy rounded-2xl px-8 py-6 mb-6 flex items-center gap-5">
+      <div class="w-12 h-12 rounded-xl bg-primary/20 text-primary flex items-center justify-center shrink-0" data-lucide="circle-check"></div>
+      <p class="text-2xl text-text-primary leading-snug">How to upgrade SDG spatialization from <span class="text-slate-300">retrospective assessment</span> to <span class="font-semibold text-primary">prospective, spatial dynamic modeling</span>?</p>
+    </div>
+
+    <div class="grid grid-cols-3 gap-6 flex-1">
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-7 flex flex-col">
+        <div class="w-11 h-11 rounded-xl bg-primary text-white flex items-center justify-center mb-5 font-bold text-lg font-heading">1</div>
+        <h2 class="text-xl font-semibold text-ink mb-3 font-heading leading-snug">CA for 27 Indicators</h2>
+        <p class="text-lg text-slate-500 leading-snug flex-1">Introduce CA into spatial assessment of <span class="text-ink font-semibold">10 land-related SDGs, 27 indicators</span>.</p>
+        <div class="flex items-center gap-2 mt-4 text-primary text-sm font-semibold"><span data-lucide="circle-check" class="w-4 h-4"></span>Indicator system</div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-7 flex flex-col">
+        <div class="w-11 h-11 rounded-xl bg-secondary text-white flex items-center justify-center mb-5 font-bold text-lg font-heading">2</div>
+        <h2 class="text-xl font-semibold text-ink mb-3 font-heading leading-snug">CAINFRA Dual Simulation</h2>
+        <p class="text-lg text-slate-500 leading-snug flex-1">Propose <span class="text-ink font-semibold">CAINFRA</span> to simulate infrastructure coverage in parallel with land use.</p>
+        <div class="flex items-center gap-2 mt-4 text-secondary text-sm font-semibold"><span data-lucide="circle-check" class="w-4 h-4"></span>Dual-domain coupling</div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-7 flex flex-col">
+        <div class="w-11 h-11 rounded-xl bg-accent text-white flex items-center justify-center mb-5 font-bold text-lg font-heading">3</div>
+        <h2 class="text-xl font-semibold text-ink mb-3 font-heading leading-snug">Prioritized Intervention</h2>
+        <p class="text-lg text-slate-500 leading-snug flex-1">Identify <span class="text-ink font-semibold">critical time windows</span>, regional disparities, and <span class="text-ink font-semibold">priority intervention areas</span>.</p>
+        <div class="flex items-center gap-2 mt-4 text-accent text-sm font-semibold"><span data-lucide="circle-check" class="w-4 h-4"></span>Policy targeting</div>
+      </div>
+    </div>
+  </div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

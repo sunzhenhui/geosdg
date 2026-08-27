@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0A97D9',
+            secondary: '#56C02B',
+            accent: '#E4572E',
+            navy: '#0F2740',
+            ink: '#16283A',
+            mist: '#F4F7FA',
+            'text-primary': '#F1F5F9',
+          },
+          fontFamily: {
+            heading: ['Helvetica Neue', 'Segoe UI', 'Arial', 'sans-serif'],
+            body: ['Arial', 'Helvetica Neue', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="w-[1280px] h-[720px] overflow-hidden m-0 p-0 relative font-body">
+  <div class="absolute inset-0 z-0" style="background: linear-gradient(135deg, #0F2740 0%, #0A3A5C 45%, #0A97D9 100%)"></div>
+  <div class="absolute inset-0 z-0 opacity-10" style="background-image: radial-gradient(circle at 20% 20%, #56C02B 0, transparent 22%), radial-gradient(circle at 85% 30%, #E4572E 0, transparent 18%), radial-gradient(circle at 70% 85%, #0A97D9 0, transparent 25%);"></div>
+  <div class="absolute -top-20 -right-20 w-80 h-80 rounded-full border border-white/10 z-0"></div>
+  <div class="absolute -bottom-24 -left-16 w-96 h-96 rounded-full border border-white/10 z-0"></div>
+
+  <div class="relative z-10 w-full h-full flex flex-col items-center justify-center px-20 text-center">
+    <div class="flex items-center gap-3 mb-8">
+      <span class="w-10 h-1 rounded-full bg-secondary"></span>
+      <span class="w-10 h-1 rounded-full bg-primary"></span>
+      <span class="w-10 h-1 rounded-full bg-accent"></span>
+      <span class="w-10 h-1 rounded-full bg-secondary"></span>
+    </div>
+    <p class="text-white/70 text-xl tracking-[0.35em] uppercase mb-6 font-semibold">GIS in the Era of AI and Big Data</p>
+    <h1 class="text-7xl font-bold text-text-primary leading-tight mb-6 font-heading">GeoSDG <span class="text-primary">Toolkit</span></h1>
+    <p class="text-2xl text-white/85 mb-12 max-w-3xl leading-snug">Empowering the Sustainable Future under a Spatial Context</p>
+    <div class="w-24 h-1 rounded-full bg-white/30 mb-12"></div>
+    <div class="flex flex-col items-center gap-2 text-white/75 text-base">
+      <p class="font-semibold text-white/90">School of Geographic Sciences, East China Normal University</p>
+      <p class="font-mono text-sm text-white/60">Sun, Z., Gao, M., Li, M., Xu, Z., &amp; Li, X. (2026). IJGIS. doi:10.1080/13658816.2026.2717629</p>
+    </div>
+  </div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

@@ -49,6 +49,7 @@ CTestTestfile.cmake
 .codebuddy/
 .claude/
 .agents/
+.workbuddy/
 
 # 生成的报告和图表产物
 reports/
@@ -77,3 +78,4 @@ build_mac/
 
 # PDF 文档（论文原文等，不纳入版本库）
 *.pdf
+*.jpeg

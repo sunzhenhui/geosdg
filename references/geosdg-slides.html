@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GeoSDG — New Pathways for UN SDGs Spatialization</title>
+<style>
+  :root {
+    --blue: #0A97D9;
+    --green: #56C02B;
+    --orange: #E4572E;
+    --ink: #16283A;
+    --muted: #64748B;
+    --bg: #F5F8FB;
+    --panel: #FFFFFF;
+    --line: #E2E8F0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; background: #0b1220; font-family: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif; }
+  .deck { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
+  .slide {
+    position: absolute; inset: 0; display: none; flex-direction: column;
+    background: var(--bg); color: var(--ink); padding: 64px 72px 72px;
+  }
+  .slide.active { display: flex; }
+  .slide::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 8px;
+    background: linear-gradient(90deg, var(--blue), var(--green)); }
+
+  /* typography */
+  .kicker { font-size: 15px; letter-spacing: .18em; text-transform: uppercase; color: var(--blue); font-weight: 700; }
+  h1 { font-size: 44px; line-height: 1.15; margin: 12px 0 22px; font-weight: 800; letter-spacing: -.01em; }
+  h2 { font-size: 32px; line-height: 1.2; margin: 8px 0 18px; font-weight: 800; }
+  p, li { font-size: 20px; line-height: 1.5; }
+  ul { list-style: none; }
+  li { padding-left: 26px; position: relative; margin-bottom: 12px; }
+  li::before { content: "▸"; position: absolute; left: 0; color: var(--green); font-weight: 800; }
+  .muted { color: var(--muted); }
+  .small { font-size: 15px; }
+
+  /* layout helpers */
+  .grid { display: grid; gap: 20px; flex: 1; min-height: 0; }
+  .g2 { grid-template-columns: 1fr 1fr; }
+  .g3 { grid-template-columns: 1fr 1fr 1fr; }
+  .col { display: flex; flex-direction: column; gap: 14px; min-height: 0; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 22px 24px; }
+  .card h3 { font-size: 21px; margin-bottom: 10px; font-weight: 700; }
+  .card.accent { border-top: 4px solid var(--blue); }
+  .card.green { border-top: 4px solid var(--green); }
+  .card.orange { border-top: 4px solid var(--orange); }
+
+  /* figure placeholder */
+  .fig {
+    border: 2px dashed #CBD5E1; border-radius: 12px; background: #F8FAFC;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; color: var(--muted); gap: 6px; flex: 1; min-height: 120px; padding: 16px;
+  }
+  .fig .tag { font-weight: 700; color: var(--blue); font-size: 14px; letter-spacing: .05em; }
+  .fig .src { font-size: 13px; }
+  .fig .note { font-size: 12px; color: #94A3B8; max-width: 80%; }
+  .fig img { max-width: 100%; max-height: 100%; border-radius: 8px; }
+
+  /* formula */
+  .formula { font-family: "Times New Roman", Georgia, serif; font-style: italic; font-size: 24px;
+    background: #EEF4FB; border-radius: 10px; padding: 16px 20px; text-align: center; color: var(--ink); }
+
+  /* title slide */
+  .slide.title { background: radial-gradient(1200px 600px at 20% -10%, #0e3a5c, #0b1220); color: #fff; justify-content: center; }
+  .slide.title .kicker { color: var(--green); }
+  .slide.title h1 { font-size: 58px; max-width: 900px; }
+  .slide.title .sub { font-size: 24px; color: #CDE4F3; margin: 8px 0 30px; }
+  .slide.title .meta { font-size: 16px; color: #8FA9BD; line-height: 1.7; }
+  .slide.title .conf { display: inline-block; margin-top: 34px; padding: 10px 18px; border: 1px solid rgba(86,192,43,.6);
+    border-radius: 999px; color: var(--green); font-size: 15px; letter-spacing: .08em; }
+
+  /* footer */
+  .foot { position: absolute; bottom: 18px; left: 72px; right: 72px; display: flex; justify-content: space-between;
+    align-items: center; font-size: 12px; color: var(--muted); }
+  .page { font-weight: 700; color: var(--blue); }
+
+  /* nav */
+  .nav { position: absolute; bottom: 18px; right: 72px; display: flex; gap: 8px; z-index: 5; }
+  .nav button { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line);
+    background: #fff; cursor: pointer; font-size: 16px; color: var(--ink); }
+  .nav button:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
+  .progress { position: absolute; top: 8px; left: 0; height: 8px; background: transparent; z-index: 10; }
+  .progress span { display: block; height: 8px; background: var(--green); transition: width .3s ease; }
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+  <div class="progress"><span id="bar" style="width: 0%"></span></div>
+
+  <!-- 1 TITLE -->
+  <section class="slide title active">
+    <div class="kicker">AI + GIS for Sustainable Development</div>
+    <h1>GeoSDG: Empowering the Sustainable Future under a Spatial Context</h1>
+    <div class="sub">New Pathways for UN SDGs Spatialization</div>
+    <div class="meta">
+      Zhenhui Sun · Minyi Gao · Mengya Li · Ziheng Xu · Xia Li<br>
+      School of Geographic Sciences, East China Normal University
+    </div>
+    <div class="conf">Conference Theme: GIS in the Era of AI and Big Data</div>
+  </section>
+
+  <!-- 2 AGENDA -->
+  <section class="slide">
+    <div class="kicker">Roadmap</div>
+    <h1>Four Questions, One Story</h1>
+    <div class="grid g2">
+      <div class="card accent"><h3>Q1 · Why spatialize SDGs?</h3>
+        <p class="muted">Background — the spatial challenge of sustainable development.</p></div>
+      <div class="card green"><h3>Q2 · How does GeoSDG work?</h3>
+        <p class="muted">Method — indicators, dual CA, multi-scale assessment.</p></div>
+      <div class="card accent"><h3>Q3 · What does GeoSDG prove?</h3>
+        <p class="muted">Case — the Yangtze River Delta validates the toolkit.</p></div>
+      <div class="card orange"><h3>Q4 · Where is GeoSDG heading?</h3>
+        <p class="muted">Evolution — from GUI to CLI to AI Agent.</p></div>
+    </div>
+    <p class="small muted" style="margin-top:20px">Guiding question for this talk: <b>how do we make SDGs visible, computable, and actionable?</b></p>
+  </section>
+
+  <!-- 3 BACKGROUND 1 -->
+  <section class="slide">
+    <div class="kicker">Background</div>
+    <h1>The Spatial Challenge of the SDGs</h1>
+    <div class="grid g2">
+      <div class="col">
+        <ul>
+          <li><b>17 Goals · 169 Targets · 230+ indicators</b> — a shared framework for global resource &amp; environmental challenges.</li>
+          <li>Many goals are <b>inherently spatial</b>, directly tied to land use and infrastructure conditions.</li>
+          <li>Turning global agendas into regional action demands <b>spatially explicit, forward-looking</b> evidence.</li>
+          <li>The <b>2030 deadline</b> is near and progress lags; scholars propose extending the framework to <b>2050</b> (mid-term 2030 + terminal 2050) — requiring <b>scenario projection</b>, not just retrospective assessment.</li>
+        </ul>
+      </div>
+      <div class="col">
+        <div class="fig"><span class="tag">B2 · SDG icon wall</span><span class="src">Official SDG icons — highlight the 10 land-related goals</span><span class="note">To create / from official UN SDG icon set</span></div>
+        <div class="fig"><span class="tag">B3 · Timeline 2015 → 2030 → 2050</span><span class="src">Two-phase framework extension</span><span class="note">Can be drawn in HTML/CSS</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 BACKGROUND 2 -->
+  <section class="slide">
+    <div class="kicker">Background</div>
+    <h1>Limitations of Existing Approaches</h1>
+    <div class="grid g3">
+      <div class="card orange"><h3>① Retrospective</h3>
+        <p class="small muted">Existing SDG scores rely on historical statistics, lacking dynamic simulation of future trends and policy interventions.</p></div>
+      <div class="card orange"><h3>② Non-spatial</h3>
+        <p class="small muted">Statistical / data-driven frameworks (iSDG, IFs, SDG-IO, T21) ignore spatial variability and process-driven spatial dynamics.</p></div>
+      <div class="card orange"><h3>③ Single-domain</h3>
+        <p class="small muted">Existing CA models simulate land use only, omitting infrastructure dynamics; no framework couples both with spatial SDG assessment.</p></div>
+    </div>
+    <p class="small muted" style="margin-top:18px">→ This research gap motivates GeoSDG.</p>
+  </section>
+
+  <!-- 5 BACKGROUND 3 -->
+  <section class="slide">
+    <div class="kicker">Background</div>
+    <h1>Research Question &amp; Contributions</h1>
+    <div class="grid g3">
+      <div class="card accent"><h3>Contribution 1</h3>
+        <p>Introduce CA techniques to spatialize <b>10 land-related SDGs and 27 indicators</b>.</p></div>
+      <div class="card accent"><h3>Contribution 2</h3>
+        <p>Propose <b>CAINFRA</b> to simulate infrastructure coverage change in parallel with land-use change.</p></div>
+      <div class="card accent"><h3>Contribution 3</h3>
+        <p>Identify <b>key time windows, regional disparities, and priority intervention zones</b>.</p></div>
+    </div>
+  </section>
+
+  <!-- 6 METHOD OVERVIEW -->
+  <section class="slide">
+    <div class="kicker">Method</div>
+    <h1>Overview: Three Modules</h1>
+    <div class="fig" style="flex:1">
+      <span class="tag">A1 · Paper Figure 1</span>
+      <span class="src">GeoSDG three-module system framework</span>
+      <span class="note">(1) Indicator selection &amp; quantification → (2) Spatiotemporal simulation, scoring &amp; priority-area identification → (3) Future sustainability outlook</span>
+    </div>
+  </section>
+
+  <!-- 7 INDICATOR SYSTEM -->
+  <section class="slide">
+    <div class="kicker">Method</div>
+    <h1>Indicator System: 10 Goals, 27 Indicators</h1>
+    <div class="grid g2">
+      <div class="col">
+        <ul>
+          <li><b>10 SDGs · 17 targets · 27 indicators</b>, focused on land-related goals.</li>
+          <li>Selection guided by urban physical-examination &amp; territorial spatial planning indicator guidelines.</li>
+          <li>Four measurement types: <b>Land Proportion / Land Conversion / Buffer Zone / Total Statistics</b>.</li>
+        </ul>
+      </div>
+      <div class="fig"><span class="tag">A13 · Paper Table 1</span><span class="src">Indicator matrix (10 SDG icons + 27 indicators)</span><span class="note">Simplify into icon matrix / cards</span></div>
+    </div>
+  </section>
+
+  <!-- 8 PARADIGMS & NORMALIZATION -->
+  <section class="slide">
+    <div class="kicker">Method</div>
+    <h1>Computation Paradigms &amp; Normalization</h1>
+    <div class="grid g2">
+      <div class="col">
+        <div class="fig"><span class="tag">A3 · Paper Figure 3</span><span class="src">SDG indicator computation workflow</span></div>
+        <div class="formula">Normalize: positive / neutral / negative → 0–100</div>
+        <div class="formula">SDG score = Σ w<sub>i</sub> · indicator<sub>i</sub> &nbsp;(Eq. 1–2)</div>
+      </div>
+      <div class="col">
+        <ul>
+          <li><b>Four paradigms</b> cover all 27 indicators — a key engineering insight.</li>
+          <li>Normalization maps heterogeneous indicators to a <b>0–100</b> common scale.</li>
+          <li>Weighted aggregation produces comparable <b>SDG scores</b>.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 CALUCC -->
+  <section class="slide">
+    <div class="kicker">Method</div>
+    <h1>Land-Use Simulation: CALUCC</h1>
+    <div class="formula">P<sub>total</sub> = P<sub>RF</sub> × Ω<sub>neighborhood</sub> × Inertia × Constraints × Stochastic &nbsp;(Eq. 3–5)</div>
+    <div class="grid g2" style="margin-top:14px">
+      <div class="col">
+        <ul>
+          <li>Cellular automata with <b>random forest (RF)</b> learning transition rules from spatial drivers.</li>
+          <li>Adaptive inertia coefficient balances supply &amp; demand; <b>roulette-wheel</b> selection.</li>
+          <li>This is where "AI" enters the model: RF learns driver→land-use-type mapping.</li>
+        </ul>
+      </div>
+      <div class="fig"><span class="tag">Diagram</span><span class="src">CA grid evolution mechanism</span><span class="note">To create / redraw from methodology</span></div>
+    </div>
+  </section>
+
+  <!-- 10 CAINFRA -->
+  <section class="slide">
+    <div class="kicker">Method</div>
+    <h1>Infrastructure Simulation: CAINFRA</h1>
+    <div class="grid g2">
+      <div class="col">
+        <ul>
+          <li>Two-state CA (<b>covered / uncovered</b>) for infrastructure.</li>
+          <li>RF estimates coverage probability + competitive <b>patch-seeding</b> (Eq. 6–7).</li>
+          <li><b>Highlight:</b> first to simulate land use and infrastructure coverage <b>simultaneously</b>.</li>
+        </ul>
+      </div>
+      <div class="fig"><span class="tag">A4 · Paper Figure 4</span><span class="src">Rule-mining &amp; simulation framework</span></div>
+    </div>
+  </section>
+
+  <!-- 11 MULTI-SCALE & PRIORITY -->
+  <section class="slide">
+    <div class="kicker">Method</div>
+    <h1>Multi-scale Assessment &amp; Priority Areas</h1>
+    <div class="grid g2">
+      <div class="fig"><span class="tag">A5 · Paper Figure 5</span><span class="src">Coupling of SDG assessment &amp; CA simulation</span></div>
+      <div class="fig"><span class="tag">A6 · Paper Figure 6</span><span class="src">Priority-area identification (4 types + 4 levels)</span></div>
+    </div>
+    <ul style="margin-top:12px">
+      <li>Multi-scale aggregation (agglomeration / city) ensures comparability across regions &amp; resolutions.</li>
+      <li>Four priority-area types, integrated via raster overlay → Low / Moderate / High / Critical.</li>
+    </ul>
+  </section>
+
+  <!-- 12 STUDY AREA -->
+  <section class="slide">
+    <div class="kicker">Case</div>
+    <h1>Study Area &amp; Data: Yangtze River Delta</h1>
+    <div class="grid g2">
+      <div class="col">
+        <div class="fig"><span class="tag">A7 · Paper Figure 7</span><span class="src">YRDUA location map</span></div>
+        <div class="fig"><span class="tag">A8 · Paper Figure 8 (optional)</span><span class="src">Spatial driving factors</span></div>
+      </div>
+      <div class="col">
+        <ul>
+          <li><b>YRDUA:</b> 211,700 km² · 27 cities (Shanghai, Jiangsu, Zhejiang, Anhui).</li>
+          <li>≈ <b>1/5 of national GDP</b> — a development hotspot.</li>
+          <li>Data: CNLUCC 30m land use, AMap POI, OSM roads, WorldPop population.</li>
+        </ul>
+        <div class="fig"><span class="tag">A14 · Paper Table 2</span><span class="src">Multi-source data table</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 VALUE 1 ACCURACY -->
+  <section class="slide">
+    <div class="kicker">Case · Tool Value ①</div>
+    <h1>How Accurate Is the Toolkit?</h1>
+    <div class="grid g2">
+      <div class="col">
+        <ul>
+          <li>CALUCC: <b>FoM = 0.128</b>, OA = 0.815</li>
+          <li>CAINFRA: <b>FoM = 0.263</b>, OA = 0.923</li>
+          <li>&gt;70% units FoM &gt; 0.1; &gt;90% OA &gt; 0.8</li>
+          <li>Correlation: SDG 11 <b>r = 0.898</b>, SDG 15 <b>r = 0.831</b> (strong); SDG 3/4/6 moderate.</li>
+        </ul>
+        <p class="small muted">↳ Discussion D3 (part 1) + D1: strongest for <b>spatially explicit</b> indicators tied to land cover / ecology.</p>
+      </div>
+      <div class="col">
+        <div class="fig"><span class="tag">Chart</span><span class="src">FoM / OA bar chart</span><span class="note">To create</span></div>
+        <div class="fig"><span class="tag">A15 · Paper Table 3</span><span class="src">Correlation analysis (r values)</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 VALUE 2 FORWARD -->
+  <section class="slide">
+    <div class="kicker">Case · Tool Value ②</div>
+    <h1>How Far Ahead Can It Look?</h1>
+    <div class="fig" style="flex:1">
+      <span class="tag">A9 · Paper Figure 9</span>
+      <span class="src">SDG temporal trends 2020–2050 (a: total, b–k: sub-indicators)</span>
+    </div>
+    <ul style="margin-top:12px">
+      <li>All scenarios rise; <b>SSP1/2/5</b> highest by 2050.</li>
+      <li><b>SDG 6/7/13/14</b> strong (&gt;90); <b>SDG 2/15</b> decline; <b>SDG 11</b> fluctuates.</li>
+      <li><b>2030–2035</b> is a key volatility window. ↳ Discussion D1 + D5 (temporal patterns).</li>
+    </ul>
+  </section>
+
+  <!-- 15 VALUE 3 HETEROGENEITY -->
+  <section class="slide">
+    <div class="kicker">Case · Tool Value ③</div>
+    <h1>How Fine-Grained Is the View?</h1>
+    <div class="fig" style="flex:1">
+      <span class="tag">A10 · Paper Figure 10</span>
+      <span class="src">SDG spatial patterns (2030 / 2050 × SSP1–5)</span>
+    </div>
+    <ul style="margin-top:12px">
+      <li>2020: <b>high center, low north &amp; south</b>.</li>
+      <li>2030: SSP2/4 least improvement; SSP3 greatest imbalance.</li>
+      <li>2050: SSP4 widest regional gap. ↳ Discussion D5 (multi-scale).</li>
+    </ul>
+  </section>
+
+  <!-- 16 VALUE 4 PRIORITY -->
+  <section class="slide">
+    <div class="kicker">Case · Tool Value ④</div>
+    <h1>Where Should We Intervene?</h1>
+    <div class="grid g2">
+      <div class="fig"><span class="tag">A11 · Paper Figure 11</span><span class="src">Priority-area distribution (2030/2050 × SSP)</span></div>
+      <div class="fig"><span class="tag">A12 · Paper Figure 12</span><span class="src">Provincial priority areas 2050</span></div>
+    </div>
+    <ul style="margin-top:12px">
+      <li>2030: SSP3 largest (&gt;15,000 km²), SSP2 smallest (8,667 km²).</li>
+      <li>2050: SSP3 largest (22,853 km²); concentrated in S. Jiangsu, N. Zhejiang, E. Anhui.</li>
+      <li>↳ Discussion D6: <b>dynamic, scenario-dependent</b> priority areas — a methodological advantage.</li>
+    </ul>
+  </section>
+
+  <!-- 17 BOUNDARIES -->
+  <section class="slide">
+    <div class="kicker">Case · Boundaries</div>
+    <h1>The Toolkit Is Not a Panacea</h1>
+    <div class="grid g2">
+      <div class="card orange"><h3>Complement, not substitute</h3>
+        <p class="small muted">Weak correlation for SDG 2/7/9/13 reflects the limit of spatial proxies for complex socioeconomic processes → GeoSDG should <b>complement</b>, not replace, statistical monitoring. (Discussion D3, part 2)</p></div>
+      <div class="card orange"><h3>Transferability is conceptual</h3>
+        <p class="small muted">Modular structure can adapt to data-limited regions, but so far validated <b>only in the YRDUA</b>. Application needs local data + recalibration + adapted indicators/thresholds/weights. (Discussion D4)</p></div>
+    </div>
+  </section>
+
+  <!-- 18 EVOLUTION OVERVIEW -->
+  <section class="slide">
+    <div class="kicker">Tool Evolution</div>
+    <h1>From Paper Release to AI Agent</h1>
+    <div class="grid g3" style="align-items:stretch">
+      <div class="card accent"><h3>v1.0 · GUI</h3><p class="small muted">Windows desktop tool shipped with the paper.</p></div>
+      <div class="card green"><h3>v2.0 · CLI</h3><p class="small muted">Core algorithms refactored into a scriptable command-line tool.</p></div>
+      <div class="card orange"><h3>v3.0 · AI Agent</h3><p class="small muted">Natural-language driven, built on CLI. <i>(in development)</i></p></div>
+    </div>
+    <div class="fig" style="margin-top:16px"><span class="tag">B5 · Version timeline v1 → v2 → v3</span><span class="src">Horizontal timeline</span><span class="note">Can be drawn in HTML/CSS</span></div>
+  </section>
+
+  <!-- 19 V1 GUI -->
+  <section class="slide">
+    <div class="kicker">Tool Evolution · v1.0</div>
+    <h1>The Original GUI Release</h1>
+    <div class="grid g2">
+      <div class="fig"><span class="tag">A2 · Paper Figure 2</span><span class="src">GeoSDG GUI screenshot</span></div>
+      <div class="col">
+        <ul>
+          <li>Windows desktop GUI, implemented in <b>C++</b>, open-source (GPL-3.0).</li>
+          <li>Released with the paper: <b>figshare DOI: 10.6084/m9.figshare.29445089.v3</b>.</li>
+        </ul>
+        <div class="card orange"><h3>Limitations</h3>
+          <p class="small muted">Windows-bound · desktop interaction paradigm · hard to integrate with AI / automation workflows · higher bar for reproduction &amp; re-engineering.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 20 V2 CLI -->
+  <section class="slide">
+    <div class="kicker">Tool Evolution · v2.0</div>
+    <h1>The Scriptable CLI</h1>
+    <div class="grid g2">
+      <div class="col">
+        <ul>
+          <li>Core algorithms (indicator computation, CA simulation, priority-area identification) refactored into a <b>standalone, cross-platform CLI</b>.</li>
+          <li>Built on the <b>GDAL</b> raster ecosystem.</li>
+          <li><b>Scriptable &amp; reproducible</b> — integrates into batch pipelines and third-party systems.</li>
+        </ul>
+        <p class="small muted">↳ Programmability is the prerequisite for AI automation.</p>
+      </div>
+      <div class="fig"><span class="tag">B6 · CLI command examples</span><span class="src">Run actual commands from <code>cli/</code></span><span class="note">Screenshot required</span></div>
+    </div>
+  </section>
+
+  <!-- 21 V3 AGENT -->
+  <section class="slide">
+    <div class="kicker">Tool Evolution · v3.0 — Climax</div>
+    <h1>Toward an AI Agent for SDGs</h1>
+    <div class="formula" style="background:#0e3a5c; color:#fff">Natural language → LLM → Skill → CLI / GDAL → Result &amp; interpretation</div>
+    <div class="grid g2" style="margin-top:16px">
+      <div class="col">
+        <ul>
+          <li>An <b>AI Agent Skill</b> system wraps the CLI into model-callable capabilities.</li>
+          <li>Compute, simulate, and interpret <b>through conversation</b>.</li>
+          <li>Upgrades GeoSDG from a research tool to an <b>intelligent assistant for the AI era</b>.</li>
+        </ul>
+      </div>
+      <div class="fig"><span class="tag">B7 · AI Agent interaction demo</span><span class="src">Screenshot / GIF of a real conversation</span><span class="note">Live demo recommended</span></div>
+    </div>
+  </section>
+
+  <!-- 22 CONCLUSIONS -->
+  <section class="slide">
+    <div class="kicker">Conclusion</div>
+    <h1>Takeaways &amp; Outlook</h1>
+    <div class="grid g3">
+      <div class="card green"><h3>1</h3><p class="small">Spatially explicit, forward-looking tools are key to making SDGs actionable.</p></div>
+      <div class="card green"><h3>2</h3><p class="small">GeoSDG couples land-use &amp; infrastructure CA with SSP scenarios for assessment.</p></div>
+      <div class="card green"><h3>3</h3><p class="small">From GUI → CLI → AI Agent, GeoSDG is evolving toward an open, reproducible, intelligent form.</p></div>
+    </div>
+    <p class="small muted" style="margin-top:16px"><b>Limitations:</b> 27 indicators · validated only in YRDUA · long-term projection uncertainty. <b>Outlook:</b> cross-region validation, indicator expansion, a smarter Agent version (in development).</p>
+  </section>
+
+  <!-- 23 ACKNOWLEDGMENTS -->
+  <section class="slide">
+    <div class="kicker">Thank You</div>
+    <h1>Acknowledgments &amp; References</h1>
+    <p class="small" style="margin-bottom:16px">Funding: National Natural Science Foundation of China Key Project (42130107).</p>
+    <div class="card">
+      <p class="small">Sun, Zhenhui, Minyi Gao, Mengya Li, Ziheng Xu, and Xia Li. 2026. "New Pathways for UN SDGs Spatialization: GeoSDG Toolkit Empowering the Sustainable Future under a Spatial Context." <i>International Journal of Geographical Information Science</i>, August, 1–24. doi:10.1080/13658816.2026.2717629.</p>
+      <p class="small muted" style="margin-top:10px">Data &amp; code: figshare DOI:10.6084/m9.figshare.29445089.v3</p>
+    </div>
+    <div class="fig" style="margin-top:16px; min-height:80px"><span class="tag">QR code / repository link</span><span class="src">Add project repository &amp; data QR code</span></div>
+  </section>
+
+  <div class="nav">
+    <button id="prev" aria-label="Previous">‹</button>
+    <button id="next" aria-label="Next">›</button>
+  </div>
+</div>
+
+<script>
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const bar = document.getElementById('bar');
+  let idx = 0;
+  function show(i) {
+    idx = (i + slides.length) % slides.length;
+    slides.forEach((s, k) => s.classList.toggle('active', k === idx));
+    bar.style.width = ((idx + 1) / slides.length * 100) + '%';
+  }
+  document.getElementById('next').onclick = () => show(idx + 1);
+  document.getElementById('prev').onclick = () => show(idx - 1);
+  window.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') show(idx + 1);
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') show(idx - 1);
+    else if (e.key === 'Home') show(0);
+    else if (e.key === 'End') show(slides.length - 1);
+  });
+  show(0);
+</script>
+</body>
+</html>

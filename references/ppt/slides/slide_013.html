@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#0A97D9',secondary:'#56C02B',accent:'#E4572E',navy:'#0F2740',ink:'#16283A',mist:'#F4F7FA','text-primary':'#F1F5F9'},fontFamily:{heading:['Helvetica Neue','Segoe UI','Arial','sans-serif'],body:['Arial','Helvetica Neue','sans-serif']}}}}</script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="w-[1280px] h-[720px] overflow-hidden m-0 p-0 relative font-body">
+  <div class="absolute inset-0 z-0 bg-mist"></div>
+
+  <div class="relative z-10 w-full h-full px-12 py-8 flex flex-col">
+    <div class="mb-4 flex items-start justify-between">
+      <div>
+        <p class="text-xs font-semibold text-accent tracking-[0.25em] uppercase mb-1">03 · Case Study</p>
+        <h1 class="text-3xl font-semibold text-ink font-heading">Value 1 — How Accurate Is It?</h1>
+      </div>
+      <div class="px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold">Table 3 · Disc. D1 · D3</div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 mb-4">
+      <div class="bg-white rounded-2xl shadow-sm border-t-4 border-secondary p-5 flex items-center gap-5">
+        <div class="w-12 h-12 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center shrink-0" data-lucide="map"></div>
+        <div>
+          <p class="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1">CALUCC</p>
+          <div class="flex items-end gap-6">
+            <div><p class="text-3xl font-bold text-secondary font-heading">0.128</p><p class="text-[11px] text-slate-400">FoM</p></div>
+            <div><p class="text-3xl font-bold text-ink font-heading">0.815</p><p class="text-[11px] text-slate-400">OA</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl shadow-sm border-t-4 border-primary p-5 flex items-center gap-5">
+        <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0" data-lucide="signal"></div>
+        <div>
+          <p class="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1">CAINFRA</p>
+          <div class="flex items-end gap-6">
+            <div><p class="text-3xl font-bold text-primary font-heading">0.263</p><p class="text-[11px] text-slate-400">FoM</p></div>
+            <div><p class="text-3xl font-bold text-ink font-heading">0.923</p><p class="text-[11px] text-slate-400">OA</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-12 gap-4 flex-1 min-h-0">
+      <div class="col-span-5 bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex flex-col min-h-0">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-9 h-9 rounded-lg bg-secondary/10 text-secondary flex items-center justify-center" data-lucide="check-check"></div>
+          <h2 class="text-lg font-semibold text-ink font-heading">Administrative-Unit Validation</h2>
+        </div>
+        <div class="flex flex-col gap-3 flex-1 justify-center">
+          <div class="flex items-center justify-between rounded-xl bg-mist px-4 py-3">
+            <span class="text-sm text-slate-600">&gt;70% units FoM &gt; 0.1</span>
+            <span class="text-base font-bold text-secondary font-heading">70%+</span>
+          </div>
+          <div class="flex items-center justify-between rounded-xl bg-mist px-4 py-3">
+            <span class="text-sm text-slate-600">&gt;90% units OA &gt; 0.8</span>
+            <span class="text-base font-bold text-primary font-heading">90%+</span>
+          </div>
+          <div class="rounded-xl bg-primary/5 border border-primary/20 px-4 py-3">
+            <p class="text-xs text-slate-500 leading-snug">Validated against official statistical SDG scores (Xu et al. 2020b) as ground truth.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-span-7 bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden flex flex-col min-h-0">
+        <div class="flex items-center justify-between px-4 py-2.5 border-b border-slate-100">
+          <div class="flex items-center gap-2">
+            <div class="w-7 h-7 rounded-lg bg-accent/10 text-accent flex items-center justify-center" data-lucide="radiation"></div>
+            <h2 class="text-lg font-semibold text-ink font-heading">Table 3 · Correlation with Official Scores</h2>
+          </div>
+          <span class="text-[11px] text-slate-400">Pearson r + t-test</span>
+        </div>
+        <table class="w-full text-[12px] leading-tight flex-1">
+          <thead><tr class="bg-navy text-white text-[11px] uppercase tracking-wide"><th class="text-left pl-4 py-1.5">SDG type</th><th class="text-center py-1.5">Correlation r</th><th class="text-center py-1.5">t-test (p)</th><th class="text-center py-1.5 pr-4">Strength</th></tr></thead>
+          <tbody>
+            <tr class="border-b border-slate-100"><td class="pl-4 py-[4px] text-slate-700 font-medium">SDG 2 · End Hunger</td><td class="text-center py-[4px] text-slate-600">0.380</td><td class="text-center py-[4px] text-slate-500">0.269</td><td class="text-center py-[4px]"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-400 text-[10px] font-bold">n.s.</span></td></tr>
+            <tr class="border-b border-slate-100"><td class="pl-4 py-[4px] text-slate-700 font-medium">SDG 3 · Good Health</td><td class="text-center py-[4px] text-slate-600">0.415</td><td class="text-center py-[4px] text-slate-500">&lt;0.001</td><td class="text-center py-[4px]"><span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold">moderate</span></td></tr>
+            <tr class="border-b border-slate-100"><td class="pl-4 py-[4px] text-slate-700 font-medium">SDG 4 · Education</td><td class="text-center py-[4px] text-slate-600">0.475</td><td class="text-center py-[4px] text-slate-500">&lt;0.001</td><td class="text-center py-[4px]"><span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold">moderate</span></td></tr>
+            <tr class="border-b border-slate-100"><td class="pl-4 py-[4px] text-slate-700 font-medium">SDG 6 · Clean Water</td><td class="text-center py-[4px] text-slate-600">0.604</td><td class="text-center py-[4px] text-slate-500">&lt;0.001</td><td class="text-center py-[4px]"><span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold">moderate</span></td></tr>
+            <tr class="border-b border-slate-100"><td class="pl-4 py-[4px] text-slate-700 font-medium">SDG 7 · Clean Energy</td><td class="text-center py-[4px] text-slate-600">0.311</td><td class="text-center py-[4px] text-slate-500">0.294</td><td class="text-center py-[4px]"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-400 text-[10px] font-bold">n.s.</span></td></tr>
+            <tr class="border-b border-slate-100"><td class="pl-4 py-[4px] text-slate-700 font-medium">SDG 9 · Infrastructure</td><td class="text-center py-[4px] text-slate-600">0.421</td><td class="text-center py-[4px] text-slate-500">0.762</td><td class="text-center py-[4px]"><span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-400 text-[10px] font-bold">n.s.</span></td></tr>
+            <tr class="border-b border-slate-100"><td class="pl-4 py-[4px] text-slate-700 font-medium">SDG 11 · Cities</td><td class="text-center py-[4px] text-secondary font-bold">0.898</td><td class="text-center py-[4px] text-slate-500">0.003</td><td class="text-center py-[4px]"><span class="px-2 py-0.5 rounded-full bg-secondary/10 text-secondary text-[10px] font-bold">strong</span></td></tr>
+            <tr class="border-b border-slate-100"><td class="pl-4 py-[4px] text-slate-700 font-medium">SDG 13 · Climate</td><td class="text-center py-[4px] text-accent font-bold">−0.141</td><td class="text-center py-[4px] text-slate-500">&lt;0.001</td><td class="text-center py-[4px]"><span class="px-2 py-0.5 rounded-full bg-accent/10 text-accent text-[10px] font-bold">weak (−)</span></td></tr>
+            <tr class="border-b border-slate-100"><td class="pl-4 py-[4px] text-slate-700 font-medium">SDG 14 · Life Below Water</td><td class="text-center py-[4px] text-slate-600">0.370</td><td class="text-center py-[4px] text-slate-500">0.072</td><td class="text-center py-[4px]"><span class="px-2 py-0.5 rounded-full bg-accent/10 text-accent text-[10px] font-bold">weak</span></td></tr>
+            <tr class="border-b border-slate-100"><td class="pl-4 py-[4px] text-slate-700 font-medium">SDG 15 · Life on Land</td><td class="text-center py-[4px] text-secondary font-bold">0.831</td><td class="text-center py-[4px] text-slate-500">&lt;0.001</td><td class="text-center py-[4px]"><span class="px-2 py-0.5 rounded-full bg-secondary/10 text-secondary text-[10px] font-bold">strong</span></td></tr>
+            <tr><td class="pl-4 py-[4px] text-slate-700 font-medium">SDG Score (overall)</td><td class="text-center py-[4px] text-slate-600">0.283</td><td class="text-center py-[4px] text-slate-500">0.002</td><td class="text-center py-[4px]"><span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold">weak</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="mt-3 text-center text-[11px] text-slate-400 font-semibold tracking-wide">Strongest where indicators directly reflect land cover &amp; ecology (SDG 11/15, r &gt; 0.8); weakest for socio-economic proxies (SDG 2/7/9)</div>
+  </div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

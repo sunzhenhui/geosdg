@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0A97D9',
+            secondary: '#56C02B',
+            accent: '#E4572E',
+            navy: '#0F2740',
+            ink: '#16283A',
+            mist: '#F4F7FA',
+            'text-primary': '#F1F5F9',
+          },
+          fontFamily: {
+            heading: ['Helvetica Neue', 'Segoe UI', 'Arial', 'sans-serif'],
+            body: ['Arial', 'Helvetica Neue', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="w-[1280px] h-[720px] overflow-hidden m-0 p-0 relative font-body">
+  <div class="absolute inset-0 z-0 bg-mist"></div>
+
+  <div class="relative z-10 w-full h-full px-16 py-12 flex flex-col">
+    <div class="mb-8">
+      <p class="text-sm font-semibold text-navy tracking-[0.25em] uppercase mb-2">04 · Tool Evolution</p>
+      <h1 class="text-5xl font-semibold text-ink font-heading">GUI → CLI → AI Agent</h1>
+    </div>
+
+    <div class="flex-1 flex items-center">
+      <div class="relative w-full">
+        <div class="absolute top-10 left-0 right-0 h-1 bg-slate-200 rounded-full"></div>
+        <div class="relative grid grid-cols-3 gap-6">
+          <div class="flex flex-col items-center text-center">
+            <div class="w-20 h-20 rounded-full bg-primary text-white flex items-center justify-center mb-5 z-10 ring-8 ring-mist" data-lucide="monitor"></div>
+            <p class="text-xs font-semibold text-primary tracking-widest uppercase mb-2">v1.0 · Paper</p>
+            <h2 class="text-2xl font-semibold text-ink mb-2 font-heading">GUI</h2>
+            <p class="text-base text-slate-500 leading-snug">Windows · C++ · GPL-3.0<br>figshare DOI</p>
+          </div>
+          <div class="flex flex-col items-center text-center">
+            <div class="w-20 h-20 rounded-full bg-secondary text-white flex items-center justify-center mb-5 z-10 ring-8 ring-mist" data-lucide="terminal"></div>
+            <p class="text-xs font-semibold text-secondary tracking-widest uppercase mb-2">v2.0 · Refactor</p>
+            <h2 class="text-2xl font-semibold text-ink mb-2 font-heading">CLI</h2>
+            <p class="text-base text-slate-500 leading-snug">Cross-platform · scriptable<br>reproducible</p>
+          </div>
+          <div class="flex flex-col items-center text-center">
+            <div class="w-20 h-20 rounded-full bg-accent text-white flex items-center justify-center mb-5 z-10 ring-8 ring-mist" data-lucide="bot"></div>
+            <p class="text-xs font-semibold text-accent tracking-widest uppercase mb-2">v3.0 · In Progress</p>
+            <h2 class="text-2xl font-semibold text-ink mb-2 font-heading">AI Agent</h2>
+            <p class="text-base text-slate-500 leading-snug">Natural language · skills<br>intelligent assistant</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 bg-navy rounded-2xl px-7 py-5 flex items-center gap-4">
+      <div class="w-10 h-10 rounded-lg bg-white/10 text-text-primary flex items-center justify-center shrink-0" data-lucide="rocket"></div>
+      <p class="text-xl text-text-primary leading-snug">Motivation: the paper-era architecture is <span class="font-semibold text-accent">hard to apply directly</span> in the AI era.</p>
+    </div>
+  </div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0A97D9',
+            secondary: '#56C02B',
+            accent: '#E4572E',
+            navy: '#0F2740',
+            ink: '#16283A',
+            mist: '#F4F7FA',
+            'text-primary': '#F1F5F9',
+          },
+          fontFamily: {
+            heading: ['Helvetica Neue', 'Segoe UI', 'Arial', 'sans-serif'],
+            body: ['Arial', 'Helvetica Neue', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="w-[1280px] h-[720px] overflow-hidden m-0 p-0 relative font-body">
+  <div class="absolute inset-0 z-0 bg-mist"></div>
+  <div class="absolute top-0 left-0 w-full h-40 z-0" style="background: linear-gradient(180deg, rgba(10,151,217,0.06) 0%, rgba(10,151,217,0) 100%)"></div>
+
+  <div class="relative z-10 w-full h-full px-16 py-12 flex flex-col">
+    <div class="mb-8">
+      <p class="text-sm font-semibold text-primary tracking-[0.25em] uppercase mb-2">01 · Background</p>
+      <h1 class="text-5xl font-semibold text-ink font-heading">Why Spatialize the SDGs?</h1>
+    </div>
+
+    <div class="grid grid-cols-12 gap-6 flex-1">
+      <div class="col-span-7 flex flex-col gap-6">
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-7 flex-1">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-9 h-9 rounded-lg bg-primary/10 text-primary flex items-center justify-center" data-lucide="globe-x"></div>
+            <h2 class="text-2xl font-semibold text-ink font-heading">Spatial at the Core</h2>
+          </div>
+          <p class="text-xl text-slate-600 leading-relaxed">Many goals and indicators are <span class="text-primary font-semibold">inherently spatial</span> — they depend directly on <span class="text-ink font-semibold">land use</span> and <span class="text-ink font-semibold">infrastructure</span> conditions, not just national statistics.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-7 flex-1">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-9 h-9 rounded-lg bg-secondary/10 text-secondary flex items-center justify-center" data-lucide="trending-up"></div>
+            <h2 class="text-2xl font-semibold text-ink font-heading">From Retrospective to Prospective</h2>
+          </div>
+          <p class="text-xl text-slate-600 leading-relaxed">With 2030 approaching and progress lagging, the agenda is being <span class="text-secondary font-semibold">extended to 2050</span> — demanding <span class="text-ink font-semibold">scenario-based foresight</span>, not just retrospective assessment.</p>
+        </div>
+      </div>
+
+      <div class="col-span-5 flex flex-col gap-6">
+        <div class="grid grid-cols-3 gap-4 flex-1">
+          <div class="bg-navy rounded-2xl p-5 flex flex-col items-center justify-center text-center">
+            <p class="text-5xl font-bold text-primary font-heading">17</p>
+            <p class="text-sm text-white/70 mt-2 font-semibold uppercase tracking-wide">Goals</p>
+          </div>
+          <div class="bg-navy rounded-2xl p-5 flex flex-col items-center justify-center text-center">
+            <p class="text-5xl font-bold text-secondary font-heading">169</p>
+            <p class="text-sm text-white/70 mt-2 font-semibold uppercase tracking-wide">Targets</p>
+          </div>
+          <div class="bg-navy rounded-2xl p-5 flex flex-col items-center justify-center text-center">
+            <p class="text-5xl font-bold text-accent font-heading">230+</p>
+            <p class="text-sm text-white/70 mt-2 font-semibold uppercase tracking-wide">Indicators</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-7 flex-1">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-9 h-9 rounded-lg bg-accent/10 text-accent flex items-center justify-center" data-lucide="flag"></div>
+            <h2 class="text-2xl font-semibold text-ink font-heading">2030 → 2050</h2>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="flex-1 h-16 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+              <span class="text-2xl font-bold text-primary font-heading">2030</span>
+            </div>
+            <span class="text-slate-400" data-lucide="arrow-right"></span>
+            <div class="flex-1 h-16 rounded-xl bg-secondary/10 border border-secondary/20 flex items-center justify-center">
+              <span class="text-2xl font-bold text-secondary font-heading">2050</span>
+            </div>
+          </div>
+          <p class="text-base text-slate-500 mt-4 leading-snug">Mid-term checkpoint + long-term horizon for policy.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

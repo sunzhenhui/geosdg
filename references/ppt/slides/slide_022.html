@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0A97D9',
+            secondary: '#56C02B',
+            accent: '#E4572E',
+            navy: '#0F2740',
+            ink: '#16283A',
+            mist: '#F4F7FA',
+            'text-primary': '#F1F5F9',
+          },
+          fontFamily: {
+            heading: ['Helvetica Neue', 'Segoe UI', 'Arial', 'sans-serif'],
+            body: ['Arial', 'Helvetica Neue', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="w-[1280px] h-[720px] overflow-hidden m-0 p-0 relative font-body">
+  <div class="absolute inset-0 z-0 bg-mist"></div>
+
+  <div class="relative z-10 w-full h-full px-16 py-12 flex flex-col">
+    <div class="mb-7">
+      <p class="text-sm font-semibold text-primary tracking-[0.25em] uppercase mb-2">Conclusion</p>
+      <h1 class="text-5xl font-semibold text-ink font-heading">Conclusions &amp; Outlook</h1>
+    </div>
+
+    <div class="grid grid-cols-3 gap-5 flex-1">
+      <div class="bg-white rounded-2xl shadow-sm border-t-4 border-primary p-6 flex flex-col">
+        <div class="w-9 h-9 rounded-lg bg-primary text-white flex items-center justify-center mb-4 font-bold font-heading">1</div>
+        <p class="text-lg text-slate-600 leading-snug flex-1">Spatially explicit, <span class="text-primary font-semibold">prospective</span> tools are key to SDG implementation.</p>
+      </div>
+      <div class="bg-white rounded-2xl shadow-sm border-t-4 border-secondary p-6 flex flex-col">
+        <div class="w-9 h-9 rounded-lg bg-secondary text-white flex items-center justify-center mb-4 font-bold font-heading">2</div>
+        <p class="text-lg text-slate-600 leading-snug flex-1">GeoSDG couples <span class="text-secondary font-semibold">CA + SSP</span> for land &amp; infrastructure co-simulation and scenario assessment.</p>
+      </div>
+      <div class="bg-white rounded-2xl shadow-sm border-t-4 border-accent p-6 flex flex-col">
+        <div class="w-9 h-9 rounded-lg bg-accent text-white flex items-center justify-center mb-4 font-bold font-heading">3</div>
+        <p class="text-lg text-slate-600 leading-snug flex-1">From <span class="text-accent font-semibold">GUI → CLI → AI Agent</span>: open, reproducible, intelligent.</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-6 mt-6">
+      <div class="bg-navy rounded-2xl p-6">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-8 h-8 rounded-lg bg-accent/20 text-accent flex items-center justify-center" data-lucide="triangle-alert"></div>
+          <h2 class="text-xl font-semibold text-text-primary font-heading">Honest Limitations</h2>
+        </div>
+        <p class="text-base text-white/70 leading-snug">27 indicators · single region (YRDUA) · long-term prediction uncertainty.</p>
+      </div>
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-8 h-8 rounded-lg bg-secondary/10 text-secondary flex items-center justify-center" data-lucide="compass"></div>
+          <h2 class="text-xl font-semibold text-ink font-heading">Outlook</h2>
+        </div>
+        <p class="text-base text-slate-500 leading-snug">Cross-region validation · indicator expansion · a smarter Agent version (in progress).</p>
+      </div>
+    </div>
+  </div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

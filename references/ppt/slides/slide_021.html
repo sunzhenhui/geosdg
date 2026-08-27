@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0A97D9',
+            secondary: '#56C02B',
+            accent: '#E4572E',
+            navy: '#0F2740',
+            ink: '#16283A',
+            mist: '#F4F7FA',
+            'text-primary': '#F1F5F9',
+          },
+          fontFamily: {
+            heading: ['Helvetica Neue', 'Segoe UI', 'Arial', 'sans-serif'],
+            body: ['Arial', 'Helvetica Neue', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="w-[1280px] h-[720px] overflow-hidden m-0 p-0 relative font-body">
+  <div class="absolute inset-0 z-0 bg-mist"></div>
+
+  <div class="relative z-10 w-full h-full px-16 py-12 flex flex-col">
+    <div class="mb-7 flex items-start justify-between">
+      <div>
+        <p class="text-sm font-semibold text-navy tracking-[0.25em] uppercase mb-2">04 · Tool Evolution</p>
+        <h1 class="text-5xl font-semibold text-ink font-heading">v3 — AI Agent (In Progress)</h1>
+      </div>
+      <div class="px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold">The Landing Point</div>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-7 mb-6">
+      <div class="flex items-center gap-3 mb-5">
+        <div class="w-10 h-10 rounded-lg bg-accent/10 text-accent flex items-center justify-center" data-lucide="workflow"></div>
+        <h2 class="text-2xl font-semibold text-ink font-heading">The Interaction Chain</h2>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="flex-1 h-24 rounded-xl bg-primary/10 border border-primary/20 p-3 flex flex-col items-center justify-center text-center">
+          <span data-lucide="message-square" class="w-5 h-5 text-primary mb-1"></span>
+          <p class="text-sm font-semibold text-ink leading-tight">Natural-language question</p>
+        </div>
+        <span class="text-slate-400 shrink-0" data-lucide="arrow-right"></span>
+        <div class="flex-1 h-24 rounded-xl bg-secondary/10 border border-secondary/20 p-3 flex flex-col items-center justify-center text-center">
+          <span data-lucide="brain" class="w-5 h-5 text-secondary mb-1"></span>
+          <p class="text-sm font-semibold text-ink leading-tight">LLM understands intent</p>
+        </div>
+        <span class="text-slate-400 shrink-0" data-lucide="arrow-right"></span>
+        <div class="flex-1 h-24 rounded-xl bg-accent/10 border border-accent/20 p-3 flex flex-col items-center justify-center text-center">
+          <span data-lucide="zap" class="w-5 h-5 text-accent mb-1"></span>
+          <p class="text-sm font-semibold text-ink leading-tight">Invokes the Skill</p>
+        </div>
+        <span class="text-slate-400 shrink-0" data-lucide="arrow-right"></span>
+        <div class="flex-1 h-24 rounded-xl bg-navy/10 border border-navy/20 p-3 flex flex-col items-center justify-center text-center">
+          <span data-lucide="terminal" class="w-5 h-5 text-navy mb-1"></span>
+          <p class="text-sm font-semibold text-ink leading-tight">CLI / GDAL computes</p>
+        </div>
+        <span class="text-slate-400 shrink-0" data-lucide="arrow-right"></span>
+        <div class="flex-1 h-24 rounded-xl bg-primary/10 border border-primary/20 p-3 flex flex-col items-center justify-center text-center">
+          <span data-lucide="sparkles" class="w-5 h-5 text-primary mb-1"></span>
+          <p class="text-sm font-semibold text-ink leading-tight">Result + interpretation</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-navy rounded-2xl px-8 py-6 flex items-center justify-between gap-6">
+      <p class="text-xl text-text-primary leading-snug flex-1">From a <span class="text-slate-300">research artifact</span> to an <span class="font-semibold text-accent">AI-era intelligent assistant</span> — the strongest echo of the conference theme.</p>
+      <div class="w-12 h-12 rounded-xl bg-accent/20 text-accent flex items-center justify-center shrink-0" data-lucide="bot"></div>
+    </div>
+  </div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0A97D9',
+            secondary: '#56C02B',
+            accent: '#E4572E',
+            navy: '#0F2740',
+            ink: '#16283A',
+            mist: '#F4F7FA',
+            'text-primary': '#F1F5F9',
+          },
+          fontFamily: {
+            heading: ['Helvetica Neue', 'Segoe UI', 'Arial', 'sans-serif'],
+            body: ['Arial', 'Helvetica Neue', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="w-[1280px] h-[720px] overflow-hidden m-0 p-0 relative font-body">
+  <div class="absolute inset-0 z-0 bg-mist"></div>
+
+  <div class="relative z-10 w-full h-full px-14 py-10 flex flex-col">
+    <div class="mb-6">
+      <p class="text-sm font-semibold text-primary tracking-[0.25em] uppercase mb-1">02 · Method</p>
+      <h1 class="text-4xl font-semibold text-ink font-heading">Infrastructure Simulation: CAINFRA</h1>
+    </div>
+
+    <!-- Main flow -->
+    <div class="flex items-stretch justify-between gap-3 mb-6">
+      <div class="flex-1 bg-white rounded-xl shadow-sm border-t-4 border-slate-400 p-4 flex flex-col">
+        <div class="flex items-center gap-2 mb-2">
+          <div class="w-8 h-8 rounded-lg bg-slate-500/10 text-slate-500 flex items-center justify-center" data-lucide="variable"></div>
+          <p class="text-base font-semibold text-ink font-heading">Driving Factors X</p>
+        </div>
+        <p class="text-sm text-slate-500 leading-snug">Physical · Transport · Location · Socio-economic · Neighbourhood</p>
+      </div>
+      <div class="flex items-center text-primary shrink-0" data-lucide="arrow-right"></div>
+
+      <div class="flex-1 bg-white rounded-xl shadow-sm border-t-4 border-primary p-4 flex flex-col">
+        <div class="flex items-center gap-2 mb-2">
+          <div class="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center" data-lucide="git-branch"></div>
+          <p class="text-base font-semibold text-ink font-heading">Random Forest</p>
+        </div>
+        <p class="text-sm text-slate-500 leading-snug">P<sub>cover</sub>(x) = Σ I(h<sub>m</sub>(x)=d) / M (Eq. 6)</p>
+      </div>
+      <div class="flex items-center text-primary shrink-0" data-lucide="arrow-right"></div>
+
+      <div class="flex-1 bg-white rounded-xl shadow-sm border-t-4 border-secondary p-4 flex flex-col">
+        <div class="flex items-center gap-2 mb-2">
+          <div class="w-8 h-8 rounded-lg bg-secondary/10 text-secondary flex items-center justify-center" data-lucide="toggle-left"></div>
+          <p class="text-base font-semibold text-ink font-heading">Two-State Cell</p>
+        </div>
+        <p class="text-sm text-slate-500 leading-snug">k=1 covered / k=0 not covered (Eq. 7)</p>
+      </div>
+      <div class="flex items-center text-primary shrink-0" data-lucide="arrow-right"></div>
+
+      <div class="flex-1 bg-navy rounded-xl shadow-sm p-4 flex flex-col">
+        <div class="flex items-center gap-2 mb-2">
+          <div class="w-8 h-8 rounded-lg bg-accent/20 text-accent flex items-center justify-center" data-lucide="sprout"></div>
+          <p class="text-base font-semibold text-text-primary font-heading">Patch-Seeding</p>
+        </div>
+        <p class="text-sm text-white/60 leading-snug">Competitive cell-level evolution → future coverage</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-12 gap-5 flex-1 min-h-0">
+      <!-- Left: two-state + RF -->
+      <div class="col-span-6 flex flex-col gap-3">
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex-1">
+          <h2 class="text-lg font-semibold text-ink font-heading mb-2 flex items-center gap-2">
+            <span class="w-6 h-6 rounded-md bg-primary/10 text-primary flex items-center justify-center" data-lucide="toggle-left"></span>
+            Simplified Two-State CA
+          </h2>
+          <p class="text-sm text-slate-500 leading-snug">Unlike land-use CA (multiple classes), CAINFRA distinguishes only <span class="text-primary font-semibold">covered</span> vs <span class="text-slate-600 font-semibold">not covered</span>, adapting Eq. 4 transition rules with infrastructure coverage probability.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex-1">
+          <h2 class="text-lg font-semibold text-ink font-heading mb-2 flex items-center gap-2">
+            <span class="w-6 h-6 rounded-md bg-secondary/10 text-secondary flex items-center justify-center" data-lucide="shield-check"></span>
+            Avoid Circularity
+          </h2>
+          <p class="text-sm text-slate-500 leading-snug">POI categories directly representing the simulated infrastructure (e.g. transit stations) are <span class="text-secondary font-semibold">excluded from predictors</span>.</p>
+        </div>
+      </div>
+
+      <!-- Right: dual simulation -->
+      <div class="col-span-6 bg-navy rounded-2xl p-6 flex flex-col justify-center">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-lg bg-accent/20 text-accent flex items-center justify-center" data-lucide="sparkles"></div>
+          <h2 class="text-2xl font-semibold text-text-primary font-heading">A First: Dual Simulation</h2>
+        </div>
+        <p class="text-lg text-white/80 leading-relaxed mb-5">CAINFRA extends conventional land-use CA by simulating <span class="font-semibold text-secondary">land use</span> and <span class="font-semibold text-primary">infrastructure coverage</span> <span class="font-semibold text-accent">simultaneously</span>.</p>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="rounded-xl bg-white/5 border border-white/10 p-4">
+            <p class="text-sm text-white/60 mb-1">Land Use</p>
+            <p class="text-lg font-semibold text-secondary font-heading">CALUCC</p>
+            <p class="text-xs text-white/40 mt-1">multi-class · Eq. 3–5</p>
+          </div>
+          <div class="rounded-xl bg-white/5 border border-white/10 p-4">
+            <p class="text-sm text-white/60 mb-1">Infrastructure</p>
+            <p class="text-lg font-semibold text-primary font-heading">CAINFRA</p>
+            <p class="text-xs text-white/40 mt-1">two-state · Eq. 6–7</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-4 text-center text-sm text-slate-400 font-semibold tracking-wide">Corresponds to Figure 4 &amp; Eq. 6–7 in the paper</div>
+  </div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

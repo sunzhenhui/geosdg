@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0A97D9',
+            secondary: '#56C02B',
+            accent: '#E4572E',
+            navy: '#0F2740',
+            ink: '#16283A',
+            mist: '#F4F7FA',
+            'text-primary': '#F1F5F9',
+          },
+          fontFamily: {
+            heading: ['Helvetica Neue', 'Segoe UI', 'Arial', 'sans-serif'],
+            body: ['Arial', 'Helvetica Neue', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="w-[1280px] h-[720px] overflow-hidden m-0 p-0 relative font-body">
+  <div class="absolute inset-0 z-0 bg-mist"></div>
+
+  <div class="relative z-10 w-full h-full px-16 py-12 flex flex-col">
+    <div class="mb-8">
+      <p class="text-sm font-semibold text-primary tracking-[0.25em] uppercase mb-2">02 · Method</p>
+      <h1 class="text-5xl font-semibold text-ink font-heading">Method Overview: Three Modules</h1>
+    </div>
+
+    <div class="flex-1 flex items-center gap-4">
+      <div class="flex-1 bg-white rounded-2xl shadow-sm border-t-4 border-primary p-7 flex flex-col items-center text-center h-full justify-center">
+        <div class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-4" data-lucide="list-checks"></div>
+        <p class="text-xs font-semibold text-primary tracking-widest uppercase mb-2">Module 1</p>
+        <h2 class="text-2xl font-semibold text-ink mb-3 font-heading leading-snug">Indicator Selection &amp; Quantification</h2>
+        <p class="text-base text-slate-500 leading-snug">10 SDGs · 27 indicators</p>
+        <p class="text-base text-slate-500 leading-snug">Four measurement primitives</p>
+      </div>
+
+      <div class="text-primary shrink-0" data-lucide="arrow-right"></div>
+
+      <div class="flex-1 bg-white rounded-2xl shadow-sm border-t-4 border-secondary p-7 flex flex-col items-center text-center h-full justify-center">
+        <div class="w-14 h-14 rounded-2xl bg-secondary/10 text-secondary flex items-center justify-center mb-4" data-lucide="cog"></div>
+        <p class="text-xs font-semibold text-secondary tracking-widest uppercase mb-2">Module 2</p>
+        <h2 class="text-2xl font-semibold text-ink mb-3 font-heading leading-snug">Spatiotemporal Simulation &amp; Scoring</h2>
+        <p class="text-base text-slate-500 leading-snug">CALUCC + CAINFRA</p>
+        <p class="text-base text-slate-500 leading-snug">Priority-area identification</p>
+      </div>
+
+      <div class="text-primary shrink-0" data-lucide="arrow-right"></div>
+
+      <div class="flex-1 bg-white rounded-2xl shadow-sm border-t-4 border-accent p-7 flex flex-col items-center text-center h-full justify-center">
+        <div class="w-14 h-14 rounded-2xl bg-accent/10 text-accent flex items-center justify-center mb-4" data-lucide="sparkles"></div>
+        <p class="text-xs font-semibold text-accent tracking-widest uppercase mb-2">Module 3</p>
+        <h2 class="text-2xl font-semibold text-ink mb-3 font-heading leading-snug">Future Sustainability Outlook</h2>
+        <p class="text-base text-slate-500 leading-snug">SSP scenarios 2030–2050</p>
+        <p class="text-base text-slate-500 leading-snug">Multi-scale synthesis</p>
+      </div>
+    </div>
+
+    <div class="mt-6 text-center text-sm text-slate-400 font-semibold tracking-wide">Corresponds to Figure 1 in the paper</div>
+  </div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

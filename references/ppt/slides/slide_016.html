@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0A97D9',
+            secondary: '#56C02B',
+            accent: '#E4572E',
+            navy: '#0F2740',
+            ink: '#16283A',
+            mist: '#F4F7FA',
+            'text-primary': '#F1F5F9',
+          },
+          fontFamily: {
+            heading: ['Helvetica Neue', 'Segoe UI', 'Arial', 'sans-serif'],
+            body: ['Arial', 'Helvetica Neue', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="w-[1280px] h-[720px] overflow-hidden m-0 p-0 relative font-body">
+  <div class="absolute inset-0 z-0 bg-mist"></div>
+
+  <div class="relative z-10 w-full h-full px-16 py-12 flex flex-col">
+    <div class="mb-7 flex items-start justify-between">
+      <div>
+        <p class="text-sm font-semibold text-accent tracking-[0.25em] uppercase mb-2">03 · Case Study</p>
+        <h1 class="text-5xl font-semibold text-ink font-heading">Value 4 — Where Should We Intervene?</h1>
+      </div>
+      <div class="px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold">Disc. D6</div>
+    </div>
+
+    <div class="grid grid-cols-12 gap-6 flex-1 min-h-0">
+      <div class="col-span-5 flex flex-col gap-4">
+        <div class="bg-white rounded-2xl shadow-sm border-t-4 border-accent p-5">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-9 h-9 rounded-lg bg-accent/10 text-accent flex items-center justify-center" data-lucide="target"></div>
+            <h2 class="text-xl font-semibold text-ink font-heading">2030 Priority Areas</h2>
+          </div>
+          <div class="flex items-end gap-6">
+            <div><p class="text-4xl font-bold text-accent font-heading">&gt;15,000</p><p class="text-xs text-slate-400 mt-1">SSP3 · km² (largest)</p></div>
+            <div><p class="text-4xl font-bold text-slate-400 font-heading">8,667</p><p class="text-xs text-slate-400 mt-1">SSP2 · km² (smallest)</p></div>
+          </div>
+          <p class="text-sm text-slate-500 mt-3">Nearly <span class="text-ink font-semibold">20%</span> overlap across multiple SDGs.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border-t-4 border-primary p-5">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-9 h-9 rounded-lg bg-primary/10 text-primary flex items-center justify-center" data-lucide="flag"></div>
+            <h2 class="text-xl font-semibold text-ink font-heading">2050 Priority Areas</h2>
+          </div>
+          <div class="flex items-end gap-6">
+            <div><p class="text-4xl font-bold text-primary font-heading">22,853</p><p class="text-xs text-slate-400 mt-1">SSP3 · km² (still largest)</p></div>
+            <div><p class="text-4xl font-bold text-secondary font-heading">+130%</p><p class="text-xs text-slate-400 mt-1">SSP2 · fastest growth</p></div>
+          </div>
+          <p class="text-sm text-slate-500 mt-3">Expands under all scenarios <span class="text-ink font-semibold">except SSP1</span>.</p>
+        </div>
+
+        <div class="bg-navy rounded-2xl px-6 py-4 flex items-center gap-4">
+          <div class="w-10 h-10 rounded-lg bg-white/10 text-text-primary flex items-center justify-center shrink-0" data-lucide="map-pin"></div>
+          <p class="text-base text-text-primary leading-snug">Clustered in <span class="font-semibold text-secondary">southern Jiangsu, northern Zhejiang, eastern Anhui</span>.</p>
+        </div>
+      </div>
+
+      <div class="col-span-7 flex flex-col gap-4 min-h-0">
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-4 flex-[3] flex flex-col min-h-0">
+          <div class="flex items-center justify-between mb-2">
+            <h2 class="text-lg font-semibold text-ink font-heading">Priority-Area Distribution under SSPs</h2>
+            <span class="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-semibold">Figure 11</span>
+          </div>
+          <div class="flex-1 min-h-0 rounded-xl overflow-hidden bg-mist">
+            <img src="../fig/fig11-priority-2030.jpg" alt="Spatial distribution of priority areas across multiple SDGs" class="w-full h-full object-contain" />
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-4 flex-[2] flex flex-col min-h-0">
+          <div class="flex items-center justify-between mb-2">
+            <h2 class="text-lg font-semibold text-ink font-heading">Province-Level Priorities, 2050</h2>
+            <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold">Figure 12</span>
+          </div>
+          <div class="flex-1 min-h-0 rounded-xl overflow-hidden bg-mist">
+            <img src="../fig/fig12-priority-2050.jpg" alt="Province-level priority areas under different scenarios" class="w-full h-full object-contain" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>
