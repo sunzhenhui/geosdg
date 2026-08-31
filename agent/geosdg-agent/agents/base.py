@@ -95,8 +95,8 @@ class ExpertBase:
 
     def _parse(self, raw: str) -> ExpertOpinion:
         """把 LLM 原始返回解析为 ExpertOpinion；解析失败退化为纯文本."""
-        try:
-            obj = json.loads(raw)
+        obj = self._loads(raw)
+        if obj is not None:
             return ExpertOpinion(
                 role=self.role,
                 layer=self.layer,
@@ -107,9 +107,22 @@ class ExpertBase:
                 concerns=obj.get("concerns", []) or [],
                 raw=raw,
             )
+        return ExpertOpinion(
+            role=self.role, layer=self.layer,
+            answer=raw, reason="[unparseable]",
+            confidence=0.3, raw=raw,
+        )
+
+    @staticmethod
+    def _loads(raw: str) -> dict[str, Any] | None:
+        """尽力把原始文本解析为 dict：直解失败则清洗代码块围栏后重试."""
+        try:
+            obj = json.loads(raw)
+            return obj if isinstance(obj, dict) else None
         except Exception:
-            return ExpertOpinion(
-                role=self.role, layer=self.layer,
-                answer=raw, reason="[unparseable]",
-                confidence=0.3, raw=raw,
-            )
+            pass
+        try:
+            obj = json.loads(api._clean_json_text(raw))
+            return obj if isinstance(obj, dict) else None
+        except Exception:
+            return None
