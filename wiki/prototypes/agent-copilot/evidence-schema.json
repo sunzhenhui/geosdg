@@ -1,0 +1,165 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://geosdg.example/schemas/evidence-schema-v0.1.json",
+  "title": "GeoSDG-Agent Copilot Answer Object",
+  "description": "决策级输出对象。对标 PEACE PEQA few-shot JSON，强制证据可回溯。每一次 sdg_copilot() 调用必须返回一个符合本 schema 的对象。",
+  "type": "object",
+  "required": ["question", "intent", "answer", "confidence", "evidence", "caveats"],
+  "properties": {
+    "question": {
+      "type": "string",
+      "description": "用户原始问题（原文保留）"
+    },
+    "intent": {
+      "type": "object",
+      "description": "路由器识别到的意图（对标 PEACE 的 question_type）",
+      "required": ["sdg_targets", "time_axis", "ability"],
+      "properties": {
+        "sdg_targets": {
+          "type": "array",
+          "items": {"type": "string", "pattern": "^\\d{1,2}\\.\\w+(\\.\\d+)?$"},
+          "description": "涉及的 SDG 目标 ID，例如 [\"11.3.1\", \"13.2.2\"]"
+        },
+        "time_axis": {
+          "type": "string",
+          "enum": ["past", "present", "future", "cross"],
+          "description": "四维评估矩阵的时间维度：过去/现在/未来/目标间"
+        },
+        "scenario": {
+          "type": ["string", "null"],
+          "enum": ["ssp1", "ssp2", "ssp3", "ssp4", "ssp5", "all", null]
+        },
+        "ability": {
+          "type": "string",
+          "enum": ["extracting", "grounding", "referring", "reasoning", "analyzing"],
+          "description": "对标 PEACE 的 5 类能力"
+        }
+      }
+    },
+    "answer": {
+      "type": "string",
+      "description": "决策级结论。要求：(1) 首句结论明确；(2) 包含关键数字；(3) 附带行动建议（若为决策类问题）；(4) 不允许出现无证据支撑的断言。"
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["high", "medium", "low"],
+      "description": "整体置信度。high=所有专家一致 + 数据完备；medium=部分不确定或专家有分歧；low=数据缺失或情景外推"
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "description": "证据链。每一句 answer 中的断言，必须能在此数组中找到支撑。",
+      "items": {
+        "type": "object",
+        "required": ["type"],
+        "oneOf": [
+          {
+            "properties": {
+              "type": {"const": "cli_output"},
+              "tool": {"type": "string", "description": "调用的 CLI 子命令，例如 sdg-1131"},
+              "params": {"type": "object", "description": "调用参数（可复现）"},
+              "result_file": {"type": "string", "description": "结果文件路径，例如 data/outputs/sdg1131_2050_ssp3.tif"},
+              "key_metrics": {"type": "object", "description": "关键数值指标"},
+              "reproduce_cmd": {"type": "string", "description": "一键复现命令行"}
+            },
+            "required": ["type", "tool", "result_file"]
+          },
+          {
+            "properties": {
+              "type": {"const": "knowledge"},
+              "source": {"type": "string", "description": "来源，例如 'UN metadata SDG 11.3.1' / '国土空间规划 §4.2'"},
+              "quote": {"type": "string", "description": "原文引用"},
+              "url_or_path": {"type": "string"}
+            },
+            "required": ["type", "source", "quote"]
+          },
+          {
+            "properties": {
+              "type": {"const": "meta_lookup"},
+              "field": {"type": "string", "description": "从 sdg_meta.json 读取的字段路径，例如 layers.lucc.class_ratio_2020"},
+              "value": {"description": "读到的原始值"}
+            },
+            "required": ["type", "field", "value"]
+          },
+          {
+            "properties": {
+              "type": {"const": "expert_opinion"},
+              "expert": {
+                "type": "string",
+                "enum": ["land_use_expert", "population_expert", "infra_expert", "climate_expert", "policy_expert"]
+              },
+              "stance": {"type": "string", "description": "该专家的立场结论"},
+              "confidence": {"type": "string", "enum": ["high", "medium", "low"]},
+              "supporting_evidence_ids": {
+                "type": "array",
+                "items": {"type": "string"},
+                "description": "本专家立场依赖的其他 evidence 条目 id（数组内交叉引用）"
+              }
+            },
+            "required": ["type", "expert", "stance", "confidence"]
+          }
+        ]
+      }
+    },
+    "conflicts": {
+      "type": "array",
+      "description": "冲突暴露区（GeoSDG 独有：多专家分歧时不藏起来，明确展示）",
+      "items": {
+        "type": "object",
+        "required": ["between", "topic", "resolution"],
+        "properties": {
+          "between": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "冲突方，例如 [\"climate_expert\", \"land_use_expert\"]"
+          },
+          "topic": {"type": "string", "description": "冲突议题"},
+          "resolution": {
+            "type": "string",
+            "enum": ["majority", "escalate_to_human", "conditional"],
+            "description": "majority=按多数意见；escalate_to_human=交人工判断；conditional=按条件不同结论"
+          },
+          "note": {"type": "string"}
+        }
+      }
+    },
+    "visualizations": {
+      "type": "array",
+      "description": "可视化产物路径列表",
+      "items": {"type": "string"}
+    },
+    "action_items": {
+      "type": "array",
+      "description": "决策级行动建议（仅当 ability=reasoning/analyzing 时必填）",
+      "items": {
+        "type": "object",
+        "required": ["priority", "action"],
+        "properties": {
+          "priority": {"type": "string", "enum": ["P0", "P1", "P2"]},
+          "action": {"type": "string"},
+          "target_sdg": {"type": "array", "items": {"type": "string"}},
+          "expected_impact": {"type": "string"}
+        }
+      }
+    },
+    "caveats": {
+      "type": "array",
+      "description": "局限声明（强制填写，禁止空数组）",
+      "minItems": 1,
+      "items": {"type": "string"}
+    },
+    "session": {
+      "type": "object",
+      "description": "增量执行支持",
+      "properties": {
+        "session_id": {"type": "string"},
+        "turn": {"type": "integer"},
+        "cached_evidence_ids": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "本轮复用的历史证据 id（用于 what-if 追问加速）"
+        }
+      }
+    }
+  }
+}

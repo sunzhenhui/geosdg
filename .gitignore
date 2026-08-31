@@ -61,6 +61,9 @@ references/
 # Agent 运行时记忆
 memory/
 
+# Agent 运行时缓存
+.cache/
+
 # Agent 知识库生成索引
 agent/knowledge/index/
 
