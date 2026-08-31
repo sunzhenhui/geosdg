@@ -1,4 +1,9 @@
-"""GeoSDG-Agent 入口（对标 PEACE/copilot.py）.
+"""GeoSDG-Agent 入口：空间可持续发展决策 Copilot.
+
+三段式主流程 HIE → DKI → PEDA：
+    HIE  读研究区栅格 → 分区 + 指标 + UN 标签（"现状长什么样"）
+    DKI  按任务召回 UN 阈值 / 政策红线 / 气候情景 / 模拟可信度（"有哪些约束"）
+    PEDA 专家团合议 → 带证据链的决策建议（"该怎么办"）
 
 调用方式：
     from agent.geosdg_agent.copilot import sdg_copilot
@@ -15,65 +20,65 @@ from typing import Any
 
 from .modules import (
     HierarchicalPartitionExtraction,
-    PromptEnhancedPartitionQA,
+    PartitionExpertDecisionAssembly,
     SDGKnowledgeInjection,
 )
 from .utils import common, prompt
 
-# 单例（对标 PEACE 顶层 hie/dki/peqa 三个模块实例）
+# 单例（三段式主流程的三个模块实例）
 hie = HierarchicalPartitionExtraction()
 dki = SDGKnowledgeInjection()
-peqa = PromptEnhancedPartitionQA()
+peda = PartitionExpertDecisionAssembly()
 
 
 def sdg_copilot(
     region_data: dict[str, Any],
-    question: str,
-    question_type: str,
+    task: str,
+    task_type: str,
     copilot_modes: list[str] | None = None,
 ) -> Any:
-    """GeoSDG-Agent 三段式主流程.
+    """GeoSDG-Agent 三段式决策会诊主流程.
 
     Args:
         region_data: {"name","bbox","lucc_path",...}.
-        question: 用户问题.
-        question_type: 题型 key，见 utils/prompt.py::question_ability2type.
-        copilot_modes: 需要启用的模块集合，默认全开.
+        task: 决策任务描述（自然语言）.
+        task_type: 决策任务 key，见 utils/prompt.py::task_ability2type.
+        copilot_modes: 需要启用的阶段集合，默认全开.
 
     Returns:
-        最终答案（若 LLM 返回是 JSON 则解析为 dict）.
+        决策结论（若合议结果是 JSON 则解析为 dict）.
     """
-    copilot_modes = copilot_modes or ["HIE", "DKI", "PEQA"]
+    copilot_modes = copilot_modes or ["HIE", "DKI", "PEDA"]
 
-    if common.rai_filter(question):
+    if common.rai_filter(task):
         return "I can't help you with that."
 
-    # HIE — 分区+指标+标签
+    # HIE — 分区 + 指标 + UN 标签
     information = hie.digitalize(region_data) if "HIE" in copilot_modes else None
 
-    # DKI — 政策/UN 知识注入
-    knowledge = dki.consult(question, information) if "DKI" in copilot_modes else None
+    # DKI — UN/政策/气候/模拟知识注入
+    knowledge = dki.consult(task, information) if "DKI" in copilot_modes else None
 
-    # PEQA — 自动 prompt + LLM
-    raw = peqa.answer(
+    # PEDA — 专家团合议
+    raw = peda.consult(
         information,
         knowledge,
-        "PEQA" in copilot_modes,
+        "PEDA" in copilot_modes,
         region_data,
-        question,
-        question_type,
+        task,
+        task_type,
     )
 
     try:
         parsed = json.loads(raw)
-        final = prompt.get_final_answer(parsed, question_type)
+        final = prompt.get_final_answer(parsed, task_type)
     except Exception:
         final = raw
 
     if common.echo:
         print("Selected knowledge:", list(knowledge.keys()) if knowledge else knowledge)
-        print("Raw Answer:", raw)
-        print("Final Answer:", final)
+        print("Raw Verdict:", raw)
+        print("Final Decision:", final)
         print("======================================================")
     return final
 
@@ -87,7 +92,7 @@ if __name__ == "__main__":
         "resolution": "30m",
         "year": 2020,
     }
-    demo_question = "在当前分区中，哪几个应被列为优先干预区？"
+    demo_task = "在当前分区中，哪几个应被列为优先干预区？"
     demo_type = "analyzing-priority_area"
-    answer = sdg_copilot(demo_region, demo_question, demo_type)
-    print(f"\n[FINAL] {answer!r}")
+    decision = sdg_copilot(demo_region, demo_task, demo_type)
+    print(f"\n[DECISION] {decision!r}")

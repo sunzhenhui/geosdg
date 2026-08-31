@@ -1,9 +1,9 @@
-"""专家抽象基类（新增，供 10 个专家共用）.
+"""专家抽象基类（供 11 个专家共用）.
 
 设计目标：
 - 统一 role / layer / system_prompt / output_schema 四要素
-- 统一 answer() 出入参形态，方便 Moderator 编排
-- 每个专家用自己的视角回答同一个问题，返回结构化 JSON
+- 统一 assess() 出入参形态，方便 Moderator 编排
+- 每个专家用自己的视角会诊同一个决策任务，返回结构化 JSON
 """
 
 from __future__ import annotations
@@ -51,15 +51,15 @@ class ExpertBase:
     # public
     # ------------------------------------------------------------------
 
-    def answer(
+    def assess(
         self,
-        question: str,
-        question_type: str,
+        task: str,
+        task_type: str,
         sdg_meta: dict[str, Any],
         knowledge: dict[str, Any],
     ) -> ExpertOpinion:
         partition_count = len(sdg_meta.get("partitions", {}))
-        instruction = prompt.ability2instruction(question_type, partition_count)
+        instruction = prompt.ability2instruction(task_type, partition_count)
         focused_meta = self._focus(sdg_meta)
 
         messages = [
@@ -68,7 +68,7 @@ class ExpertBase:
                 "role": "user",
                 "content": (
                     f"[Your Role]\n{self.role} (layer={self.layer})\n\n"
-                    f"[Question]\n{question}\n\n"
+                    f"[Decision Task]\n{task}\n\n"
                     f"[Instruction]\n{instruction}\n\n"
                     f"[Required Output Schema]\n{self.output_schema}\n\n"
                     f"[Partitions & Indicators]\n{focused_meta}\n\n"

@@ -1,0 +1,20 @@
+{
+  "id": "case_003_policy_conflict",
+  "description": "政策判定：优先开发建议是否与生态红线冲突（布尔判定）",
+  "region": {
+    "name": "Benchmark City B",
+    "bbox": [116.0, 39.5, 117.0, 40.2],
+    "lucc_path": "data/rasters/lucc/2020.tif",
+    "resolution": "30m",
+    "year": 2020
+  },
+  "task": "把湿地分区改为建设用地，是否与生态保护红线冲突？",
+  "task_type": "analyzing-policy_conflict",
+  "gold": {
+    "answer_keywords": ["true", "冲突", "conflict"],
+    "must_cite_partitions": [],
+    "must_cite_indicators": [],
+    "expected_un_status": null,
+    "min_confidence": 0.7
+  }
+}

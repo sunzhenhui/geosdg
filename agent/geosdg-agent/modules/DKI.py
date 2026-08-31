@@ -1,7 +1,7 @@
 """SDG Knowledge Injection (DKI-SDG).
 
 对标 PEACE/modules/DKI.py。
-干的事：按分区/指标召回外部知识（政策红线 + UN 阈值 + 气候情景 + 数据质量），
+干的事：按分区/指标召回外部知识（政策红线 + UN 阈值 + 气候情景 + 模拟精度 + 数据质量），
 再让 LLM 挑出与问题相关的子集.
 """
 
@@ -9,7 +9,13 @@ from __future__ import annotations
 
 from typing import Any
 
-from ..agents import ClimateExpert, DataQualityExpert, PolicyExpert, UnExpert
+from ..agents import (
+    ClimateExpert,
+    DataQualityExpert,
+    PolicyExpert,
+    SimulationExpert,
+    UnExpert,
+)
 from ..utils import api
 
 
@@ -21,11 +27,13 @@ class SDGKnowledgeInjection:
         policy: PolicyExpert | None = None,
         un: UnExpert | None = None,
         climate: ClimateExpert | None = None,
+        simulation: SimulationExpert | None = None,
         data_quality: DataQualityExpert | None = None,
     ) -> None:
         self.policy = policy or PolicyExpert()
         self.un = un or UnExpert()
         self.climate = climate or ClimateExpert()
+        self.simulation = simulation or SimulationExpert()
         self.data_quality = data_quality or DataQualityExpert()
 
     def consult(
@@ -44,6 +52,7 @@ class SDGKnowledgeInjection:
             "policy": self.policy.get_knowledge(region_bbox) if region_bbox else {},
             "un": self.un.get_knowledge(indicators) if indicators else {},
             "climate": self.climate.get_knowledge(indicators),
+            "simulation": self.simulation.get_knowledge(indicators),
             "data_quality": self.data_quality.get_knowledge(sdg_meta),
         }
 

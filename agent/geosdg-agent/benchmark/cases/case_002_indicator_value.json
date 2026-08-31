@@ -1,0 +1,20 @@
+{
+  "id": "case_002_indicator_value",
+  "description": "现状诊断：读取指定分区 SDG 15.3.1 土地退化比例现状值",
+  "region": {
+    "name": "Benchmark City A",
+    "bbox": [113.0, 22.0, 114.5, 23.5],
+    "lucc_path": "data/rasters/lucc/2020.tif",
+    "resolution": "30m",
+    "year": 2020
+  },
+  "task": "林地分区当前的土地退化比例（SDG 15.3.1）是多少？",
+  "task_type": "diagnosing-indicator_value",
+  "gold": {
+    "answer_keywords": [],
+    "must_cite_partitions": [],
+    "must_cite_indicators": ["SDG_15_3_1"],
+    "expected_un_status": null,
+    "min_confidence": 0.0
+  }
+}

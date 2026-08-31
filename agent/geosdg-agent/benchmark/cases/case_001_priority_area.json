@@ -1,0 +1,20 @@
+{
+  "id": "case_001_priority_area",
+  "description": "优先干预区排序：城镇分区 SDG 11.3.1 土地消耗/人口增长失衡最严重",
+  "region": {
+    "name": "Benchmark City A",
+    "bbox": [113.0, 22.0, 114.5, 23.5],
+    "lucc_path": "data/rasters/lucc/2020.tif",
+    "resolution": "30m",
+    "year": 2020
+  },
+  "task": "在当前分区中，哪几个应被列为优先干预区？",
+  "task_type": "analyzing-priority_area",
+  "gold": {
+    "answer_keywords": ["A1", "A3"],
+    "must_cite_partitions": ["A1"],
+    "must_cite_indicators": ["SDG_11_3_1"],
+    "expected_un_status": "critical",
+    "min_confidence": 0.6
+  }
+}

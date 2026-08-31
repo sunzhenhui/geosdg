@@ -4,7 +4,7 @@
   1) 按 routing.py 决定本题需要哪些专家
   2) 逐个调用专家 → 收集 ExpertOpinion
   3) 合并：按 confidence 加权投票 + 汇总 concerns + 拼 evidence 链
-  4) 返回主 answer + 全部 opinions 明细（PEQA 拿去序列化）
+  4) 返回主 answer + 全部 opinions 明细（PEDA 拿去序列化）
 """
 
 from __future__ import annotations
@@ -22,6 +22,7 @@ from .economist_expert import EconomistExpert
 from .planner_expert import PlannerExpert
 from .policy_expert import PolicyExpert
 from .routing import group_by_layer
+from .simulation_expert import SimulationExpert
 from .sociologist_expert import SociologistExpert
 from .statistician_expert import StatisticianExpert
 from .un_expert import UnExpert
@@ -40,6 +41,7 @@ def _build_registry() -> dict[str, ExpertBase]:
         PolicyExpert(),
         ClimateExpert(),
         DataQualityExpert(),
+        SimulationExpert(),
         DevilAdvocateExpert(),
         StatisticianExpert(),
     ]
@@ -58,13 +60,13 @@ class Moderator:
 
     def deliberate(
         self,
-        question: str,
-        question_type: str,
+        task: str,
+        task_type: str,
         sdg_meta: dict[str, Any],
         knowledge: dict[str, Any],
     ) -> dict[str, Any]:
         """跑一轮合议，返回结构化裁决结果."""
-        plan = group_by_layer(question_type)
+        plan = group_by_layer(task_type)
 
         opinions: list[ExpertOpinion] = []
         for layer in ("L1", "L2", "L3"):
@@ -74,12 +76,12 @@ class Moderator:
                     if common.echo:
                         print(f"[moderator] WARN unknown expert role: {role}")
                     continue
-                op = expert.answer(question, question_type, sdg_meta, knowledge)
+                op = expert.assess(task, task_type, sdg_meta, knowledge)
                 opinions.append(op)
                 if common.echo:
                     print(f"[moderator] {op.role:>16} ({op.layer}) → conf={op.confidence:.2f}")
 
-        return self._merge(opinions, question_type)
+        return self._merge(opinions, task_type)
 
     # ------------------------------------------------------------------
     # 合议逻辑
@@ -88,7 +90,7 @@ class Moderator:
     def _merge(
         self,
         opinions: list[ExpertOpinion],
-        question_type: str,
+        task_type: str,
     ) -> dict[str, Any]:
         """把 N 份 ExpertOpinion 合并成一份最终答案.
 
@@ -108,7 +110,7 @@ class Moderator:
         overall_conf = self._aggregate_confidence(opinions)
 
         return {
-            "question_type": question_type,
+            "task_type": task_type,
             "answer": main_answer,
             "confidence": overall_conf,
             "reasoning": {
