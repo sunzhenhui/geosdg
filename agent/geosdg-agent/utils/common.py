@@ -32,35 +32,6 @@ CACHE_DIR: Path = PROJECT_ROOT / ".cache" / "geosdg-agent"
 CLI_BINARY: Path = PROJECT_ROOT / "cli" / "build" / "bin" / "geosdg-cli"
 """geosdg-cli 可执行文件路径（真实计算指标时调用）."""
 
-# ============================================================================
-# LLM 配置（OpenAI 兼容接口；未配置 API Key 时自动走 mock）
-# ============================================================================
-
-LLM_API_KEY: str = os.environ.get("GEOSDG_LLM_API_KEY", "")
-"""LLM API Key；为空则 api.chat 走 mock（骨架仍可跑）."""
-
-LLM_BASE_URL: str = os.environ.get(
-    "GEOSDG_LLM_BASE_URL", "https://api.openai.com/v1"
-)
-"""OpenAI 兼容端点根地址（混元/通义/文心/DeepSeek 等均可通过其兼容端点接入）."""
-
-LLM_MODEL: str = os.environ.get("GEOSDG_LLM_MODEL", "gpt-4o-mini")
-"""默认模型名（专家调用时传入的 mock-* 占位名会被此默认值覆盖）."""
-
-LLM_TEMPERATURE: float = float(os.environ.get("GEOSDG_LLM_TEMPERATURE", "0.2"))
-"""采样温度."""
-
-LLM_MAX_TOKENS: int = int(os.environ.get("GEOSDG_LLM_MAX_TOKENS", "1024"))
-"""单次回复最大 token 数."""
-
-LLM_TIMEOUT: float = float(os.environ.get("GEOSDG_LLM_TIMEOUT", "60"))
-"""请求超时（秒）."""
-
-
-def llm_enabled() -> bool:
-    """是否已配置真实 LLM（有 API Key 才启用，否则走 mock）."""
-    return bool(LLM_API_KEY)
-
 
 def ensure_cache_dir(subdir: str = "") -> Path:
     """确保缓存目录存在并返回."""

@@ -122,7 +122,7 @@ class ExpertBase:
         except Exception:
             pass
         try:
-            obj = json.loads(api._clean_json_text(raw))
+            obj = json.loads(api.clean_json_text(raw))
             return obj if isinstance(obj, dict) else None
         except Exception:
             return None

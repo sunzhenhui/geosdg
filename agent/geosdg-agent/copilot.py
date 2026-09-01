@@ -36,6 +36,7 @@ def sdg_copilot(
     task: str,
     task_type: str,
     copilot_modes: list[str] | None = None,
+    llm_provider: Any | None = None,
 ) -> Any:
     """GeoSDG-Agent 三段式决策会诊主流程.
 
@@ -44,10 +45,16 @@ def sdg_copilot(
         task: 决策任务描述（自然语言）.
         task_type: 决策任务 key，见 utils/prompt.py::task_ability2type.
         copilot_modes: 需要启用的阶段集合，默认全开.
+        llm_provider: LLM 提供者（实现 api.LLMProvider 协议），
+                      由宿主平台注入；未提供时走 MockProvider.
 
     Returns:
         决策结论（若合议结果是 JSON 则解析为 dict）.
     """
+    if llm_provider is not None:
+        from .utils import api
+        api.set_provider(llm_provider)
+
     copilot_modes = copilot_modes or ["HIE", "DKI", "PEDA"]
 
     if common.rai_filter(task):
